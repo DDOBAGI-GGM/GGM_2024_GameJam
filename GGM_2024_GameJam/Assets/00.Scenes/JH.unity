@@ -375,6 +375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 112843415}
   - component: {fileID: 112843416}
+  - component: {fileID: 112843417}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -410,6 +411,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Is3D: 0
+--- !u!114 &112843417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112843414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e70a4441af84164d8d95129d22387d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &126939185
 GameObject:
   m_ObjectHideFlags: 0
