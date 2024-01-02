@@ -64,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
         Move();
         AnimatorControl();
         PlayerRotate();
+
+        float z = Math.Clamp(transform.position.z, -1.35f, -1.30f);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, z);
     }
 
     private void PlayerDead()

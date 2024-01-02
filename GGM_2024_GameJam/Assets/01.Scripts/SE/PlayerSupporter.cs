@@ -22,9 +22,9 @@ public class PlayerSupporter : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.Raycast(transform.position, _playerInput.Move, out hit,  2, supporterLayer))           // 레이퀘스트 해주고
+        if (Physics.Raycast(transform.position, _playerInput.Move, out hit,  3, supporterLayer))           // 레이퀘스트 해주고
         {
-            Debug.Log("dk");
+            Debug.Log("지지자 닿음");
             // 변수 가져와서 Supporter 내의 함수 사용
             // 큐에 넣어주고 끝 이 친구 더이상 충돌하지 않도록 나의 서포터로 레이어? 바꿔주기
             if (Input.GetKeyDown(KeyCode.E))
@@ -43,8 +43,8 @@ public class PlayerSupporter : MonoBehaviour
 
         if (Input.GetKeyDown (KeyCode.E))
         {
-            int xOffset = 1;
-            int yOffset = 1;
+            int xOffset = 2;
+            int yOffset = 2;
             while (supportersQueue.Count > 0)
             {
                 supportersList.Remove(supportersQueue.Peek());
