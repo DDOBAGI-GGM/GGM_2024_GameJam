@@ -1,10 +1,8 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
-    public static GameManager Instance;
-
     private Camera _cam;
     private Light _light;
 
@@ -26,11 +24,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-
         _light = FindObjectOfType<Light>();
     }
 
