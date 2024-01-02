@@ -6,13 +6,14 @@ public class Laser : MonoBehaviour
 {
     [SerializeField]
     private LineRenderer _lineRenderer;
-
+    [SerializeField]
+    private LayerMask _mapLayerMask;
 
     private void Update()
     {
         RaycastHit hit;
         _lineRenderer.SetPosition(0, transform.position);
-        if(Physics.Raycast(transform.position, transform.forward, out hit, 50f))
+        if(Physics.Raycast(transform.position, transform.forward, out hit, 50f, _mapLayerMask))
         {
             _lineRenderer.SetPosition(1, hit.point);
         }

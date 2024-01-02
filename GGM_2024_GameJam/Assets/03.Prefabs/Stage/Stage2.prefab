@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 957964722672308739}
   - component: {fileID: 5953848509211895976}
   - component: {fileID: 6489155450008218446}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 99802484648311258}
   - component: {fileID: 191354961845655497}
   - component: {fileID: 4454183355576212116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -932,9 +932,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4990233651762958509}
+  - {fileID: 1553970287129675622}
   - {fileID: 7602812009268501649}
-  - {fileID: 3288480520847873172}
+  - {fileID: 606672998901710369}
   m_Father: {fileID: 5070862101703102751}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7525882156299723165
@@ -1225,7 +1225,7 @@ GameObject:
   - component: {fileID: 1473506100466179352}
   - component: {fileID: 7888910225681442848}
   - component: {fileID: 6955965125949831711}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Child
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1391,12 +1391,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5481195044132491984, guid: 19009228947118646904f1be88f6e6d1,
+        type: 3}
+      propertyPath: _mapLayerMask.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19009228947118646904f1be88f6e6d1, type: 3}
---- !u!4 &3288480520847873172 stripped
+--- !u!4 &606672998901710369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2722516669920881330, guid: 19009228947118646904f1be88f6e6d1,
     type: 3}
@@ -1475,12 +1480,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 5481195044132491984, guid: 19009228947118646904f1be88f6e6d1,
+        type: 3}
+      propertyPath: _mapLayerMask.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19009228947118646904f1be88f6e6d1, type: 3}
---- !u!4 &4990233651762958509 stripped
+--- !u!4 &1553970287129675622 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2722516669920881330, guid: 19009228947118646904f1be88f6e6d1,
     type: 3}
@@ -1558,6 +1568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Laser (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481195044132491984, guid: 19009228947118646904f1be88f6e6d1,
+        type: 3}
+      propertyPath: _mapLayerMask.m_Bits
+      value: 192
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
