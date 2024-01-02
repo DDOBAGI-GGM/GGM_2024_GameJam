@@ -9,9 +9,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _rootTrm;
     [SerializeField] private float _gravityMultiplier = 4f;
 
+    public bool IsDead = false;
+
     private PlayerInput _playerInput;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
+
 
     private CharacterController _characterController;
     public bool IsGround
@@ -44,6 +47,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (IsDead)
+        {
+            PlayerDead();
+        }
+
         //키보드로 움직일때만 이렇게 움직이고
         if (_activeMove && GameManager.Instance.Is3D)
         {
@@ -59,6 +67,11 @@ public class PlayerMovement : MonoBehaviour
         Move();
         AnimatorControl();
         PlayerRotate();
+    }
+
+    private void PlayerDead()
+    {
+        StopImmediately();
     }
 
     private void AnimatorControl()
