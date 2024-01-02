@@ -1,42 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Enemy_OBJ : MonoBehaviour
 {
-    [SerializeField] private List<Transform> points;
+    Rigidbody rb;
+
+    [Header("Move")]
+    [SerializeField] private Transform[] points;
     [SerializeField] private float speed;
-    [SerializeField] int idx = 0;
+
+    private int idx = 0;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
-        Vector3 moveDirection = points[idx].position.normalized * speed * Time.deltaTime;
-        transform.Translate(moveDirection);
+        Vector3 target = points[idx].position;
+        Vector3 dir = (target - transform.position).normalized;
+        rb.velocity = dir * speed;
 
-        float distance = Vector3.Distance(transform.position, points[idx].position);
+        float distance = Vector3.Distance(transform.position, target);
 
-        if (distance < 0.5f)
-        {
-            if (idx == points.Count - 1)
-                idx--;
-            else
-                idx++;
-        }
-
-        //transform.DOMove(points[idx].position, speed).OnComplete(() =>
-        //{
-        //    idx++;
-        //    if (idx == points.Count)
-        //        idx = 0;
-        //});
+        if (distance < 0.1f)
+            idx = (idx + 1) % points.Length;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("test1"))
         {
-            // 데미지 주기?.. 밀어내기???ㄴ... ＝ 죽이기
+            
         }
     }
 }
