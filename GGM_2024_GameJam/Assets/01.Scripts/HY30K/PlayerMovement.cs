@@ -9,8 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _rootTrm;
     [SerializeField] private float _gravityMultiplier = 4f;
 
+    public bool IsDead = false;
+
     private PlayerInput _playerInput;
-    private SpriteRenderer _spriteRenderer;
     private Animator _animator;
 
     private CharacterController _characterController;
@@ -35,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _animator = gameObject.GetComponentInChildren<Animator>();
-        _spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         _characterController = GetComponent<CharacterController>();
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
@@ -44,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (IsDead)
+        {
+            PlayerDead();
+        }
+
         //키보드로 움직일때만 이렇게 움직이고
         if (_activeMove && GameManager.Instance.Is3D)
         {
@@ -61,28 +66,14 @@ public class PlayerMovement : MonoBehaviour
         PlayerRotate();
     }
 
+    private void PlayerDead()
+    {
+        StopImmediately();
+    }
+
     private void AnimatorControl()
     {
-        if (_inputDirection.x > 0 || _inputDirection.y > 0)
-        {
-            _spriteRenderer.flipX = false;
-            _animator.SetBool("IsMove", true);
-        }
-        else if (_inputDirection.x < 0 | _inputDirection.y < 0)
-        {
-            _spriteRenderer.flipX = true;
-            _animator.SetBool("IsMove", true);
-        }
-        else
-        {
-            _animator.SetBool("IsMove", false);
-            _animator.SetBool("IsIdle", true);
-        }
-
-        if (IsGround)
-        {
-            _animator.SetBool("IsJump", false);
-        }
+        
     }
 
     private void SetMovement(Vector2 vector)
@@ -111,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsGround && _verticalVelocity < 0)  //땅에 착지 상태
         {
-            _verticalVelocity = -1f;
+            _verticalVelocity = -0.1f;
         }
         else
         {
@@ -128,7 +119,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        _animator.SetBool("IsJump", true);
         if (!IsGround) return;
         if (!GameManager.Instance.Is3D)
         {

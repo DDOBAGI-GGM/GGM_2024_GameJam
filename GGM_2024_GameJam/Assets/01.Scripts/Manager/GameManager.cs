@@ -1,11 +1,9 @@
 using DG.Tweening;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : Singleton<GameManager>
 {
-    private PlayerMovement _playerMovement;
-    public PlayerMovement PlayerMovement { get { return _playerMovement; } private set { } }
+    private PlayerMovement _player;
     private Camera _cam;
     private Light _light;
 
@@ -28,7 +26,7 @@ public class GameManager : Singleton<GameManager>
     public override void Awake()
     {
         base.Awake();
-        _playerMovement = FindObjectOfType<PlayerMovement>();
+        _player = FindObjectOfType<PlayerMovement>();
         _light = FindObjectOfType<Light>();
     }
 
@@ -37,7 +35,7 @@ public class GameManager : Singleton<GameManager>
         Physics.gravity = _2DGravity;
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -62,7 +60,7 @@ public class GameManager : Singleton<GameManager>
 
     private void CamAngleChange()
     {
-        Cam.transform.DOMoveX(_playerMovement.transform.position.x, 1f);
+        Cam.transform.DOMoveX(_player.transform.position.x, 2f);
 
         if (Is3D == false)
         {
@@ -72,8 +70,8 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            Cam.transform.DOMoveY(0, 1f); //= new Vector3(0, 25, -15);
-            Cam.transform.DORotate(new Vector3(-35, 0, 0), 1f); //= Quaternion.Euler(65, 0, 0);
+            Cam.transform.DOMoveY(-13f, 1f); //= new Vector3(0, 25, -15);
+            Cam.transform.DORotate(new Vector3(-45, 0, 0), 1f); //= Quaternion.Euler(65, 0, 0);
             _light.transform.rotation = Quaternion.Euler(30, 30, 0); //new Vector3(140, 0, 0)
         }
     }

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - test1
+  - test2
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - UI
   - Wall
   - Child
-  - Supporter
+  - Obstacle
   - 
   - 
   - 
