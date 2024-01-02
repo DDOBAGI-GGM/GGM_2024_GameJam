@@ -11,7 +11,7 @@ public class Supporter : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    [SerializeField] private Material red;
+    [SerializeField] private Material red, before;
 
     [SerializeField] private bool chase = false;
 
@@ -19,20 +19,29 @@ public class Supporter : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        before = GetComponent<MeshRenderer>().material;
     }
 
-    public void ChaseStart()
+    public void ChaseStart(Transform _target)
     {
         GetComponent<MeshRenderer>().material = red;
+        target = _target;
         chase = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (chase)
+        if (chase && GameManager.Instance.Is3D)
         {
             agent.SetDestination(target.position);
         }
+    }
+
+    public void UseMe(Vector3 pos)
+    {
+        chase = false;
+        agent.SetDestination(pos);
+        GetComponent<MeshRenderer>().material = before;
     }
 }

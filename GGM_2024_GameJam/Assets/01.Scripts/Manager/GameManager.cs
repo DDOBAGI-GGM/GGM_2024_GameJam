@@ -4,7 +4,8 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : Singleton<GameManager>
 {
-    private PlayerMovement _player;
+    private PlayerMovement _playerMovement;
+    public PlayerMovement PlayerMovement { get { return _playerMovement; } private set { } }
     private Camera _cam;
     private Light _light;
 
@@ -27,7 +28,7 @@ public class GameManager : Singleton<GameManager>
     public override void Awake()
     {
         base.Awake();
-        _player = FindObjectOfType<PlayerMovement>();
+        _playerMovement = FindObjectOfType<PlayerMovement>();
         _light = FindObjectOfType<Light>();
     }
 
@@ -61,7 +62,7 @@ public class GameManager : Singleton<GameManager>
 
     private void CamAngleChange()
     {
-        Cam.transform.DOMoveX(_player.transform.position.x, 1f);
+        Cam.transform.DOMoveX(_playerMovement.transform.position.x, 1f);
 
         if (Is3D == false)
         {
