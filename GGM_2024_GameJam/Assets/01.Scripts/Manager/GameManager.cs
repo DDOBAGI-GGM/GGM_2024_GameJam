@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         {
             Cam.transform.DOMove(new Vector3(0, 30, -30), 1f); //= new Vector3(0, 25, -15);
             Cam.transform.DORotate(new Vector3(45, 0, 0), 1f); //= Quaternion.Euler(65, 0, 0);
-            _light.transform.rotation = Quaternion.Euler(130, 0, 0); //new Vector3(140, 0, 0)
+            _light.transform.rotation = Quaternion.Euler(50, 50, 0); //new Vector3(140, 0, 0)
         }
     }
 }
