@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         yInput = Input.GetAxis("Vertical");
 
 
-        if (GravityManager.Instance.Is3D == false)
+        if (GameManager.Instance.Is3D == false)
         {
             transform.rotation = Quaternion.Euler(90, 90, 90);
         }
