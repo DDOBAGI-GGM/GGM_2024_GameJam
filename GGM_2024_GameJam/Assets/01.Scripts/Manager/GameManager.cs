@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
 
     public override void Awake()
     {
+        base.Awake();
         _light = FindObjectOfType<Light>();
     }
 
