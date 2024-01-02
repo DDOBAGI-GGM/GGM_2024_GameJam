@@ -66,7 +66,8 @@ public class StageManager : Singleton<StageManager>
 
     public void ReSet()
     {
-        // 따까리 위치 제자리...
+        // 일단 따라다니던 따까리 삭제시키고
+        // 따까리 위치...를 통해서 다시 생성?...
         isClear = false;
         starCnt = 0;
     }
