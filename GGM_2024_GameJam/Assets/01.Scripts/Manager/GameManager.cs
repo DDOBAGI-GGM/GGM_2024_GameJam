@@ -22,7 +22,7 @@ public class GameManager : Singleton<GameManager>
     private Vector3 _2DGravity = new Vector3(0, 0, -9.8f);
     private Vector3 _3DGravity = new Vector3(0, 0, 0);
 
-    private void Awake()
+    public override void Awake()
     {
         _light = FindObjectOfType<Light>();
     }
