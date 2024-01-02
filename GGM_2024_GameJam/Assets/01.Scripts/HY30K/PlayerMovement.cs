@@ -81,13 +81,6 @@ public class PlayerMovement : MonoBehaviour
         _movementVelocity = Vector3.zero;
     }
 
-    // 만약 다른 스크립트에서 이동을 건드리려 한다면 사용
-    /*public void SetMovement(Vector3 value)
-    {
-        _movementVelocity = new Vector3(value.x, 0, value.z);
-        _verticalVelocity = value.y;
-    }*/
-
     private void ApplyGravity()
     {
         if (IsGround && _verticalVelocity < 0)  //땅에 착지 상태
