@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _gravityMultiplier = 4f;
 
     private PlayerInput _playerInput;
+    private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
 
     private CharacterController _characterController;
     public bool IsGround
@@ -35,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        _animator = gameObject.GetComponentInChildren<Animator>();
+        _spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         _characterController = GetComponent<CharacterController>();
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
@@ -56,7 +57,16 @@ public class PlayerMovement : MonoBehaviour
             ApplyGravity(); //중력 적용 (2D일때만)
 
         Move();
+        AnimatorControl();
         PlayerRotate();
+    }
+
+    private void AnimatorControl()
+    {
+        if (_inputDirection.x > 0)
+            _spriteRenderer.flipX = false;
+        else if (_inputDirection.x < 0)
+            _spriteRenderer.flipX = true;
     }
 
     private void SetMovement(Vector2 vector)
