@@ -14,8 +14,14 @@ public class Star : MonoBehaviour
         {
             if (collider.CompareTag("test1"))
             {
-                Destroy(this.gameObject);
-                StageManager.Instance.GetStar();
+                //if (StageManager.Instance.StarCnt < StageManager.Instance.DustCnt)
+                //{
+                    StageManager.Instance.GetDust(gameObject);
+                    StageManager.Instance.GetStar(gameObject);
+                this.gameObject.SetActive(false);
+                //Destroy(this.gameObject);
+                //StageManager.Instance.GetStar();
+                //}
             }
         }
     }

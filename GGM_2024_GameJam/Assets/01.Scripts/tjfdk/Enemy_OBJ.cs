@@ -10,7 +10,6 @@ public class Enemy_OBJ : MonoBehaviour
     [Header("Move")]
     [SerializeField] private Transform[] points;
     [SerializeField] private float speed;
-
     private int idx = 0;
 
     private void Awake()
