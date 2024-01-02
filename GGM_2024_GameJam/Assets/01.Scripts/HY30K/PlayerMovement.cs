@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerDead()
     {
         StopImmediately();
+        StageManager.Instance.ReSet();
     }
 
     private void AnimatorControl()
