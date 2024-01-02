@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        base.Awake();
         _light = FindObjectOfType<Light>();
     }
 
