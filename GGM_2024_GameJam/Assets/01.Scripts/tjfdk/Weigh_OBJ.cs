@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Weigh_OBJ : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class Weigh_OBJ : MonoBehaviour
     [SerializeField] private Transform[] points;
     [SerializeField] private float speed;
     private int idx = 0;
+
+    [Header("Ray")]
+    [SerializeField] private float distance;
+    [SerializeField] private LayerMask layer;
+    private bool isCollision = false;
 
     [Header("Position")]
     [SerializeField] private float upPos;
@@ -35,6 +41,12 @@ public class Weigh_OBJ : MonoBehaviour
 
     private void Update()
     {
+        Move();
+        Ray();
+    }
+
+    private void Move()
+    {
         if (isDown)
         {
             Vector3 target = points[idx].position;
@@ -53,39 +65,86 @@ public class Weigh_OBJ : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Ray()
     {
-        if (collision.transform.CompareTag("test1"))
+        Collider[] colliders = Physics.OverlapSphere(transform.position, distance, layer);
+
+        if (colliders.Length > 0)
         {
-            cnt--;
-
-            if (cnt == 0)
+            if (!isCollision)
             {
-                isDown = true;
-                transform.DOKill();
-                transform.DOMoveY(downPos, 0.5f);
-                renderer.material = downColor;
+                isCollision = true;
+                Debug.Log("µé¾î¿È");
 
-                collision.transform.SetParent(this.transform);
+                foreach (Collider collider in colliders)
+                {
+                    cnt--;
+
+                    if (cnt == 0)
+                    {
+                        isDown = true;
+                        transform.DOKill();
+                        transform.DOMoveY(downPos, 0.5f);
+                        renderer.material = downColor;
+
+                        collider.transform.SetParent(this.transform);
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (isCollision)
+            {
+                isCollision = false;
+                cnt++;
+
+                if (cnt != 0)
+                {
+                    isDown = false;
+                    transform.DOKill();
+                    transform.DOMoveY(upPos, 0.5f);
+                    renderer.material = upColor;
+
+                    //collision.transform.SetParent(null);
+                }
             }
         }
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.transform.CompareTag("test1"))
-        {
-            cnt++;
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.transform.CompareTag("test1"))
+    //    {
+    //        cnt--;
 
-            if (cnt != 0)
-            {
-                isDown = false;
-                transform.DOKill();
-                transform.DOMoveY(upPos, 0.5f);
-                renderer.material = upColor;
+    //        if (cnt == 0)
+    //        {
+    //            isDown = true;
+    //            transform.DOKill();
+    //            transform.DOMoveY(downPos, 0.5f);
+    //            renderer.material = downColor;
 
-                collision.transform.SetParent(null);
-            }
-        }
-    }
+    //            collision.transform.SetParent(this.transform);
+    //        }
+    //    }
+    //}
+
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.transform.CompareTag("test1"))
+    //    {
+    //        cnt++;
+
+    //        if (cnt != 0)
+    //        {
+    //            isDown = false;
+    //            transform.DOKill();
+    //            transform.DOMoveY(upPos, 0.5f);
+    //            renderer.material = upColor;
+
+    //            collision.transform.SetParent(null);
+    //        }
+    //    }
+    //}
 }

@@ -147,3 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0.5
+  layer:
+    serializedVersion: 2
+    m_Bits: 512
