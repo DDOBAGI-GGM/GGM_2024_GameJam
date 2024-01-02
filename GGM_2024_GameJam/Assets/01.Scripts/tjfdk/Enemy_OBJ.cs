@@ -34,7 +34,7 @@ public class Enemy_OBJ : MonoBehaviour
     {
         if (collision.transform.CompareTag("test1"))
         {
-            
+            collision.transform.GetComponent<PlayerMovement>().IsDead = true;
         }
     }
 }

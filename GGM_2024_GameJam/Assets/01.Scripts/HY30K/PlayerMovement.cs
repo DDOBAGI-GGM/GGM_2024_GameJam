@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -69,11 +70,15 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerDead()
     {
         StopImmediately();
+        StageManager.Instance.ReSet();
     }
 
     private void AnimatorControl()
     {
-        
+        if (_inputDirection.x == 0)
+            _animator.SetBool("IsMove", false);
+        else
+            _animator.SetBool("IsMove", true);
     }
 
     private void SetMovement(Vector2 vector)
