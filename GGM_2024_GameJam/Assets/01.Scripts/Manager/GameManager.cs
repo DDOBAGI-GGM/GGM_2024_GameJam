@@ -70,7 +70,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            Cam.transform.DOMoveY(0, 1f); //= new Vector3(0, 25, -15);
+            Cam.transform.DOMoveY(-0.5f, 1f); //= new Vector3(0, 25, -15);
             Cam.transform.DORotate(new Vector3(-35, 0, 0), 1f); //= Quaternion.Euler(65, 0, 0);
             _light.transform.rotation = Quaternion.Euler(30, 30, 0); //new Vector3(140, 0, 0)
         }
