@@ -6,6 +6,8 @@ using UnityEngine;
 public class Gravity_OBJ : MonoBehaviour
 {
     private Rigidbody rb;
+    public bool test = true;
+
 
     private void Awake()
     {
@@ -14,6 +16,12 @@ public class Gravity_OBJ : MonoBehaviour
 
     private void Update()
     {
-        rb.useGravity = true;
+        if (Input.GetKeyDown(KeyCode.R))
+            GameManager.Instance.Is3D = !GameManager.Instance.Is3D;
+
+        if (GameManager.Instance.Is3D)
+            rb.useGravity = false;
+        else
+            rb.useGravity = true;
     }
 }
