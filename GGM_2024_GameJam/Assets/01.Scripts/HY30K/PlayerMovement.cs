@@ -64,9 +64,25 @@ public class PlayerMovement : MonoBehaviour
     private void AnimatorControl()
     {
         if (_inputDirection.x > 0)
+        {
             _spriteRenderer.flipX = false;
+            _animator.SetBool("IsMove", true);
+        }
         else if (_inputDirection.x < 0)
+        {
             _spriteRenderer.flipX = true;
+            _animator.SetBool("IsMove", true);
+        }
+        else
+        {
+            _animator.SetBool("IsMove", false);
+            _animator.SetBool("IsIdle", true);
+        }
+
+        if (IsGround)
+        {
+            _animator.SetBool("IsJump", false);
+        }
     }
 
     private void SetMovement(Vector2 vector)
@@ -112,9 +128,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        _animator.SetBool("IsJump", true);
         if (!IsGround) return;
         if (!GameManager.Instance.Is3D)
+        {
             _verticalVelocity += _jumpPower;
+        }
     }
 
     private void PlayerRotate()
