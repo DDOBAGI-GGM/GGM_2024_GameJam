@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    [SerializeField]
-    private LineRenderer _lineRenderer;
-    [SerializeField]
-    private LayerMask _mapLayerMask;
+    [SerializeField] private LineRenderer _lineRenderer;
+
+    [SerializeField] private LayerMask _mapLayerMask;
+    [SerializeField] private LayerMask _playerLayerMask;
+
+    PlayerMovement _playerMovement;
+
+    private void Awake()
+    {
+        _playerMovement = FindObjectOfType<PlayerMovement>();
+    }
 
     private void Update()
     {
@@ -20,6 +27,11 @@ public class Laser : MonoBehaviour
         else
         {
             _lineRenderer.SetPosition(1, transform.position + transform.forward * 50f);
+        }
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 50f, _playerLayerMask))
+        {
+            _playerMovement.IsDead = true;
         }
     }
 }
