@@ -63,12 +63,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void AnimatorControl()
     {
-        if (_inputDirection.x > 0)
+        if (_inputDirection.x > 0 || _inputDirection.y > 0)
         {
             _spriteRenderer.flipX = false;
             _animator.SetBool("IsMove", true);
         }
-        else if (_inputDirection.x < 0)
+        else if (_inputDirection.x < 0 | _inputDirection.y < 0)
         {
             _spriteRenderer.flipX = true;
             _animator.SetBool("IsMove", true);
