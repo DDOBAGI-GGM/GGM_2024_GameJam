@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class GameManager : MonoSingleton<GameManager>
+public class GameManager : Singleton<GameManager>
 {
     private Camera _cam;
     private Light _light;
