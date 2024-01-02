@@ -44,7 +44,7 @@ public class StageManager : Singleton<StageManager>
             isClear = true;
     }
 
-    private void ReSet()
+    private void NextLevel()
     {
         isClear = false;
         starCnt = 0;
@@ -60,7 +60,14 @@ public class StageManager : Singleton<StageManager>
             if (currentStage == valueCnt.Count)
                 isEndt = true;
             else
-                ReSet();    
+                NextLevel();    
         }
+    }
+
+    public void ReSet()
+    {
+        // 따까리 위치 제자리...
+        isClear = false;
+        starCnt = 0;
     }
 }
