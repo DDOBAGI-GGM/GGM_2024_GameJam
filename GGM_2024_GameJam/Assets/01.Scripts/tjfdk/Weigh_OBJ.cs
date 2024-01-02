@@ -5,6 +5,11 @@ using DG.Tweening;
 
 public class Weigh_OBJ : MonoBehaviour
 {
+    [Header("Move")]
+    [SerializeField] private Transform[] points;
+    [SerializeField] private float speed;
+    private int idx = 0;
+
     [Header("Position")]
     [SerializeField] private float upPos;
     [SerializeField] private float downPos;
@@ -17,12 +22,35 @@ public class Weigh_OBJ : MonoBehaviour
     [SerializeField] private int cnt;
 
     private MeshRenderer renderer;
-    private bool isDown = false;
+    //private Rigidbody rb;
+
+    public bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
     private void Awake()
     {
         renderer = GetComponent<MeshRenderer>();
+        //rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if (isDown)
+        {
+            Vector3 target = points[idx].position;
+            Vector3 dir = (target - transform.position).normalized;
+            //rb.velocity = dir * speed;
+            transform.Translate(dir * speed * Time.deltaTime);
+
+            float distance = Vector3.Distance(transform.position, target);
+
+            if (distance < 0.1f)
+                idx = (idx + 1) % points.Length;
+        }
+        else
+        {
+            transform.Translate(Vector3.zero);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,6 +65,8 @@ public class Weigh_OBJ : MonoBehaviour
                 transform.DOKill();
                 transform.DOMoveY(downPos, 0.5f);
                 renderer.material = downColor;
+
+                collision.transform.SetParent(this.transform);
             }
         }
     }
@@ -47,12 +77,14 @@ public class Weigh_OBJ : MonoBehaviour
         {
             cnt++;
 
-            if (cnt != 0 && isDown == false)
+            if (cnt != 0)
             {
                 isDown = false;
                 transform.DOKill();
                 transform.DOMoveY(upPos, 0.5f);
                 renderer.material = upColor;
+
+                collision.transform.SetParent(null);
             }
         }
     }
