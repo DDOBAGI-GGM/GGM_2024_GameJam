@@ -12,9 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool IsDead = false;
 
     private PlayerInput _playerInput;
-    private SpriteRenderer _spriteRenderer;
     private Animator _animator;
-
 
     private CharacterController _characterController;
     public bool IsGround
@@ -38,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _animator = gameObject.GetComponentInChildren<Animator>();
-        _spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         _characterController = GetComponent<CharacterController>();
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
@@ -76,26 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void AnimatorControl()
     {
-        if (_inputDirection.x > 0 || _inputDirection.y > 0)
-        {
-            _spriteRenderer.flipX = false;
-            _animator.SetBool("IsMove", true);
-        }
-        else if (_inputDirection.x < 0 | _inputDirection.y < 0)
-        {
-            _spriteRenderer.flipX = true;
-            _animator.SetBool("IsMove", true);
-        }
-        else
-        {
-            _animator.SetBool("IsMove", false);
-            _animator.SetBool("IsIdle", true);
-        }
-
-        if (IsGround)
-        {
-            _animator.SetBool("IsJump", false);
-        }
+        
     }
 
     private void SetMovement(Vector2 vector)
@@ -124,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsGround && _verticalVelocity < 0)  //¶¥¿¡ ÂøÁö »óÅÂ
         {
-            _verticalVelocity = -1f;
+            _verticalVelocity = -0.1f;
         }
         else
         {
@@ -141,7 +119,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        _animator.SetBool("IsJump", true);
         if (!IsGround) return;
         if (!GameManager.Instance.Is3D)
         {
