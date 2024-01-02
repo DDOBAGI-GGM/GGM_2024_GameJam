@@ -60,18 +60,18 @@ public class GameManager : Singleton<GameManager>
 
     private void CamAngleChange()
     {
-        Cam.transform.DOMoveX(_player.transform.position.x, 2f);
+        Cam.transform.DOMoveX(_player.transform.position.x, 1f);
 
         if (Is3D == false)
         {
-            Cam.transform.DOMoveY(26, 1f); //= new Vector3(0, 30, 0);
             Cam.transform.DORotate(new Vector3(0, 0, 0), 1f); //= Quaternion.Euler(90, 0, 0);
+            Cam.transform.DOMoveY(26, 1f); //= new Vector3(0, 30, 0);
             _light.transform.rotation = Quaternion.Euler(30, 0, 0); //new Vector3(130, 30, 0)
         }
         else
         {
-            Cam.transform.DOMoveY(-13f, 1f); //= new Vector3(0, 25, -15);
             Cam.transform.DORotate(new Vector3(-45, 0, 0), 1f); //= Quaternion.Euler(65, 0, 0);
+            Cam.transform.DOMoveY(-13f, 1f); //= new Vector3(0, 25, -15);
             _light.transform.rotation = Quaternion.Euler(30, 30, 0); //new Vector3(140, 0, 0)
         }
     }
