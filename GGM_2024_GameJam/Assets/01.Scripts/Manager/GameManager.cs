@@ -10,7 +10,7 @@ public class GameManager : Singleton<GameManager>
 
     // 이게 지금 3D인지 2D인지 확인해주는 불변수임
     [HideInInspector] public bool Is3D = false;
-    [HideInInspector] public bool IsDead => _isDead;
+    [HideInInspector] public bool IsDead { get { return IsDead; } set { IsDead = value; } }
     private bool _isDead = false;
 
     public Camera Cam
