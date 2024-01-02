@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 
     private Camera _cam;
     private Light _light;
-    private PlayerMovement _player;
 
     // 이게 지금 3D인지 2D인지 확인해주는 불변수임
     [HideInInspector] public bool Is3D = false;
@@ -66,15 +65,15 @@ public class GameManager : MonoBehaviour
     {
         if (Is3D == false)
         {
-            Cam.transform.DOMove(new Vector3(0, 30, 0), 1f); //= new Vector3(0, 30, 0);
-            Cam.transform.DORotate(new Vector3(90, 0, 0), 1f); //= Quaternion.Euler(90, 0, 0);
-            _light.transform.rotation = Quaternion.Euler(130, 30, 0); //new Vector3(130, 30, 0)
+            Cam.transform.DOMove(new Vector3(0, 26, -40), 1f); //= new Vector3(0, 30, 0);
+            Cam.transform.DORotate(new Vector3(0, 0, 0), 1f); //= Quaternion.Euler(90, 0, 0);
+            _light.transform.rotation = Quaternion.Euler(30, 30, 0); //new Vector3(130, 30, 0)
         }
         else
         {
-            Cam.transform.DOMove(new Vector3(0, 30, -30), 1f); //= new Vector3(0, 25, -15);
-            Cam.transform.DORotate(new Vector3(45, 0, 0), 1f); //= Quaternion.Euler(65, 0, 0);
-            _light.transform.rotation = Quaternion.Euler(50, 50, 0); //new Vector3(140, 0, 0)
+            Cam.transform.DOMove(new Vector3(0, 0, -40), 1f); //= new Vector3(0, 25, -15);
+            Cam.transform.DORotate(new Vector3(-35, 0, 0), 1f); //= Quaternion.Euler(65, 0, 0);
+            _light.transform.rotation = Quaternion.Euler(30, 0, 0); //new Vector3(140, 0, 0)
         }
     }
 }

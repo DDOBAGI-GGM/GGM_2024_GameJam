@@ -2,40 +2,127 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 5f;
-    private CharacterController _characterController;
-    private Rigidbody _rb;
+    [SerializeField] private float _gravity;
+    [SerializeField] private float _jumpPower;
+    [SerializeField] private Transform _rootTrm;
+    [SerializeField] private float _gravityMultiplier = 4f;
 
-    private float xInput;
-    private float yInput;
+    private PlayerInput _playerInput;
+
+    private CharacterController _characterController;
+    public bool IsGround
+    {
+        get => _characterController.isGrounded;
+    }
+
+    private Vector2 _inputDirection;
+    private Vector3 _movementVelocity;
+    private float _verticalVelocity;
+
+    public Vector3 MovementVelocity => _movementVelocity;
+
+    private bool _activeMove = true;
+    public bool ActiveMove
+    {
+        get => _activeMove;
+        set => _activeMove = value;
+    }
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-        _rb = GetComponent<Rigidbody>();
+        _playerInput = GetComponent<PlayerInput>();
+        _playerInput.OnMovement += SetMovement;
+        _playerInput.OnJump += Jump;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        //키보드로 움직일때만 이렇게 움직이고
+        if (_activeMove && GameManager.Instance.Is3D)
+        {
+            CalculatePlayerMovement();
+        }
+        else
+        {
+            CalulatePlayer2DMovement();
+        }
+        if (!GameManager.Instance.Is3D)
+            ApplyGravity(); //중력 적용 (2D일때만)
+
         Move();
+        PlayerRotate();
+    }
+
+    private void SetMovement(Vector2 vector)
+    {
+        _inputDirection = vector;
+    }
+
+    private void CalculatePlayerMovement()
+    {
+        _movementVelocity = (_rootTrm.forward * _inputDirection.y + _rootTrm.right * _inputDirection.x)
+                            * (_moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void CalulatePlayer2DMovement()
+    {
+        _movementVelocity = (_rootTrm.right * _inputDirection.x) * (_moveSpeed * Time.fixedDeltaTime);
+    }
+
+    // 즉시 정지
+    public void StopImmediately()
+    {
+        _movementVelocity = Vector3.zero;
+    }
+
+    // 만약 다른 스크립트에서 이동을 건드리려 한다면 사용
+    /*public void SetMovement(Vector3 value)
+    {
+        _movementVelocity = new Vector3(value.x, 0, value.z);
+        _verticalVelocity = value.y;
+    }*/
+
+    private void ApplyGravity()
+    {
+        if (IsGround && _verticalVelocity < 0)  //땅에 착지 상태
+        {
+            _verticalVelocity = -1f;
+        }
+        else
+        {
+            _verticalVelocity += _gravity * _gravityMultiplier * Time.fixedDeltaTime;
+        }
+
+        _movementVelocity.y = _verticalVelocity;
     }
 
     private void Move()
     {
-        xInput = Input.GetAxis("Horizontal");
-        yInput = Input.GetAxis("Vertical");
+        _characterController.Move(_movementVelocity);
+    }
 
+    private void Jump()
+    {
+        if (!IsGround) return;
+        if (!GameManager.Instance.Is3D)
+            _verticalVelocity += _jumpPower;
+    }
 
-        if (GameManager.Instance.Is3D == false)
+    private void PlayerRotate()
+    {
+        if (!GameManager.Instance.Is3D)
         {
-            transform.rotation = Quaternion.Euler(90, 90, 90);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.Euler(-90, 0, 0);
         }
     }
 }
