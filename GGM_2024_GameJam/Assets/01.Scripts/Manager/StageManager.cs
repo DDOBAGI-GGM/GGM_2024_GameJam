@@ -93,8 +93,8 @@ public class StageManager : Singleton<StageManager>
             beforeStage = currentStage;
             currentStage += 1;
 
-            if (currentStage == stageValue.Count)
-                isEndt = true;
+            if (currentStage >= stageValue.Count)
+                UIManager.Instance.ChangeScene("Clear");
             else
             {
                 isClear = false;
@@ -124,14 +124,15 @@ public class StageManager : Singleton<StageManager>
 
     void ReGenerate()
     {
-        while (objs.Count() > stageValue[beforeStage] - 1)
+        Debug.Log(objs.Count() + " " + stars.Count());  
+        while (objs.Count() > stageValue[beforeStage])
         {
             Dust temp = objs.Pop();
             temp.obj.transform.position = temp.transform.position;
             // 성은이 함수 호출
         }
         
-        while (stars.Count() > stageValue[beforeStage] - 1)
+        while (stars.Count() > stageValue[beforeStage])
         {
             GameObject temp = stars.Pop();
             temp.SetActive(true);
