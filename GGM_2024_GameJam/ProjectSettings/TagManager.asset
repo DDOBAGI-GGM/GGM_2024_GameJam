@@ -6,6 +6,7 @@ TagManager:
   tags:
   - test1
   - test2
+  - Map
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Wall
   - Child
   - Obstacle
-  - 
+  - Player
   - 
   - 
   - Supporter

@@ -1,16 +1,21 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float _rotateSpeed = 10f;
     [SerializeField] private float _gravity;
     [SerializeField] private float _jumpPower;
     [SerializeField] private Transform _rootTrm;
     [SerializeField] private float _gravityMultiplier = 4f;
+    [SerializeField] private GameObject _visual;
 
     public bool IsDead = false;
+    public int FacingDirection { get; private set; } = 1;
 
+    protected bool _facingRight = true;
     private PlayerInput _playerInput;
     private Animator _animator;
 
@@ -72,11 +77,25 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerDead()
     {
         StopImmediately();
+        StageManager.Instance.ReSet();
     }
 
     private void AnimatorControl()
     {
-        
+        if (GameManager.Instance.Is3D)
+        {
+            if (_inputDirection.y > 0 || _inputDirection.x > 0 || _inputDirection.y < 0 || _inputDirection.x < 0)
+                _animator.SetBool("IsMove", true);
+            else
+                _animator.SetBool("IsMove", false);
+        }
+        else
+        {
+            if (_inputDirection.x > 0 || _inputDirection.x < 0)
+                _animator.SetBool("IsMove", true);
+            else
+                _animator.SetBool("IsMove", false);
+        }
     }
 
     private void SetMovement(Vector2 vector)
@@ -87,12 +106,26 @@ public class PlayerMovement : MonoBehaviour
     private void CalculatePlayerMovement()
     {
         _movementVelocity = (_rootTrm.forward * _inputDirection.y + _rootTrm.right * _inputDirection.x)
-                            * (_moveSpeed * Time.fixedDeltaTime);
+                        * (_moveSpeed * Time.fixedDeltaTime);
+
+        // If there is movement, rotate the _visual object to face the movement direction
+        if (_movementVelocity.magnitude > 0)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(_movementVelocity.normalized, Vector3.back);
+            _visual.transform.rotation = Quaternion.Slerp(_visual.transform.rotation, targetRotation, _rotateSpeed * Time.fixedDeltaTime);
+        }
     }
 
     private void CalulatePlayer2DMovement()
     {
         _movementVelocity = (_rootTrm.right * _inputDirection.x) * (_moveSpeed * Time.fixedDeltaTime);
+
+        if (_inputDirection.x > 0)
+            _visual.transform.rotation = Quaternion.Euler(0, 90, 0);
+        else if (_inputDirection.x < 0)
+            _visual.transform.rotation = Quaternion.Euler(0, -90, 0);
+        else
+            _visual.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     // 즉시 정지
