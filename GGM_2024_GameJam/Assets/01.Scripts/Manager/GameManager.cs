@@ -44,6 +44,7 @@ public class GameManager : Singleton<GameManager>
         }
         GravityConvert();
         CamAngleChange();
+        // 이거 위에 이프문 안으로 넣어두기!
     }
 
     private void GravityConvert()
