@@ -39,7 +39,6 @@ public class Enemy_OBJ : MonoBehaviour
             if (!isCollision)
             {
                 isCollision = true;
-                Debug.Log("µé¾î¿È");
 
                 foreach (Collider collider in colliders)
                 {
@@ -52,7 +51,6 @@ public class Enemy_OBJ : MonoBehaviour
             if (isCollision)
             {
                 isCollision = false;
-                Debug.Log("³ª°¨");
             }
         }
     }
