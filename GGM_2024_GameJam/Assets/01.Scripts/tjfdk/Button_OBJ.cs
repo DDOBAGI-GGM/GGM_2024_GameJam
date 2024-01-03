@@ -25,7 +25,7 @@ public class Button_OBJ : MonoBehaviour, IReset
     [SerializeField] private bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
-    public Transform body;
+    private Transform body;
     private bool isCollision = false;
 
     private void Awake()
