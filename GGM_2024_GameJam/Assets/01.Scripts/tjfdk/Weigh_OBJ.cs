@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using Unity.VisualScripting;
 
 public class Weigh_OBJ : MonoBehaviour
 {
+    private MeshRenderer renderer;
+
     [Header("Move")]
     [SerializeField] private Transform[] points;
     [SerializeField] private float speed;
@@ -27,9 +30,9 @@ public class Weigh_OBJ : MonoBehaviour
     [Header("Count")]
     [SerializeField] private int cnt;
 
-    private MeshRenderer renderer;
     private Transform btn;
-
+    public PlayerMovement player;
+    private Transform originPos;
     public bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
@@ -37,6 +40,13 @@ public class Weigh_OBJ : MonoBehaviour
     {
         btn = this.transform.GetChild(0).GetComponent<Transform>();
         renderer = btn.GetComponent<MeshRenderer>();
+        originPos = transform;
+    }
+
+    public void Reset()
+    {
+        transform.position = originPos.position;
+        isCollision = false;
     }
 
     private void Update()
@@ -52,6 +62,8 @@ public class Weigh_OBJ : MonoBehaviour
             Vector3 target = points[idx].position;
             Vector3 dir = (target - transform.position).normalized;
             transform.Translate(dir * speed * Time.deltaTime);
+
+            //player.SetMovement(dir);
 
             float distance = Vector3.Distance(transform.position, target);
 
@@ -85,7 +97,10 @@ public class Weigh_OBJ : MonoBehaviour
                         btn.DOLocalMoveY(downPos, 0.5f);
                         renderer.material = downColor;
 
-                        collider.transform.SetParent(btn);
+                        if (player == null)
+                            player = collider.transform.GetComponent<PlayerMovement>();
+                        //playerTrm = collider.gameObject.transform;
+                        //collider.transform.SetParent(btn);
                     }
                 }
             }
@@ -104,8 +119,7 @@ public class Weigh_OBJ : MonoBehaviour
                     btn.DOKill();
                     btn.DOLocalMoveY(upPos, 0.5f);
                     renderer.material = upColor;
-
-                    btn.GetChild(0).SetParent(null);
+                    //btn.GetChild(0).SetParent(null);
                 }
             }
         }

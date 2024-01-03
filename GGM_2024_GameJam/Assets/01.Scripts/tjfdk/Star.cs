@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class Star : MonoBehaviour
+public class Star : MonoBehaviour, IReset
 {
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
     private bool isCollision = false;
 
-    public Transform testPos;
+    private Transform originPos;
 
     private void Awake()
     {
-        testPos = transform;
+        originPos = transform;
     }
 
-    private void Start()
+    public void Reset()
     {
         this.gameObject.SetActive(true);
-        transform.position = testPos.position;
+        transform.position = originPos.position;
         isCollision = false;
     }
 
