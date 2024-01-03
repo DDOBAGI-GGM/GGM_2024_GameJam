@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             // 플레이어랑 충돋했을 때 위치 좀 초기화 해주는거를 리스트로 위치 저장해주고 내가 얻은 따까리의 수로 스위치 만들어주기
+
         }
     }
 }
