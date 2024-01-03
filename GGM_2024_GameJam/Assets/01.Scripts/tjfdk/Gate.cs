@@ -8,6 +8,8 @@ public class Gate : MonoBehaviour
     private Transform bridge;
     private bool isChecking = false;
 
+    [SerializeField] private List<Transform> walls;
+
     private void Awake()
     {
         bridge = transform.GetChild(0).GetComponent<Transform>();
@@ -23,6 +25,9 @@ public class Gate : MonoBehaviour
                 bridge.gameObject.SetActive(true);
                 StageManager.Instance.NextStage();
                 isChecking = true;
+
+                foreach (Transform obj in walls)
+                    obj.gameObject.SetActive(false);
             }
         }
     }

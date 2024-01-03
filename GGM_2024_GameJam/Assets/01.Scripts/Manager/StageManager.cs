@@ -68,7 +68,8 @@ public class StageManager : Singleton<StageManager>
 
     public void GetStar()
     {
-        starCnt++;
+        if (starCnt + 1 <= dustCnt)
+            starCnt++;
     }
 
     public void GetDust()
