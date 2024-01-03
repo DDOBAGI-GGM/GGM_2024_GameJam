@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.ComponentModel;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -20,6 +21,13 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    private bool _canConvert = true;
+    public bool CanConvert
+    {
+        get => _canConvert;
+        set => _canConvert = value;
+    }
+
     private Vector3 _2DGravity = new Vector3(0, 0, -9.8f);
     private Vector3 _3DGravity = new Vector3(0, 0, 0);
 
@@ -37,9 +45,12 @@ public class GameManager : Singleton<GameManager>
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (CanConvert)
         {
-            Is3D = !Is3D;
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                Is3D = !Is3D;
+            }
         }
         GravityConvert();
         CamAngleChange();
