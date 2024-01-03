@@ -206,9 +206,10 @@ MonoBehaviour:
   distance: 0.75
   layer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4096
   upPos: 0.2
   downPos: 0.15
   upColor: {fileID: 2100000, guid: 34c4f7917211f194cabe747c5e91bd99, type: 2}
   downColor: {fileID: 2100000, guid: 8439191267e0e924bb9489e127287b12, type: 2}
+  objs: []
   isDown: 0
