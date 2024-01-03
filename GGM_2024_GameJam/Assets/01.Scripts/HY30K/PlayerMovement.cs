@@ -89,8 +89,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerDead()
     {
-        Instantiate(_deadParticle, transform.position, Quaternion.identity);
         transform.position = originPos;
+        Instantiate(_deadParticle, transform.position, Quaternion.identity);
         StageManager.Instance.ReSet();
 
         StartCoroutine(DeadfalseCoroutine());
@@ -202,11 +202,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("ddddddddddd");
             transform.SetParent(other.transform);
-        }
-        if (other.CompareTag("test2"))
-        {
-            Debug.Log("°¨ÁöµÊ");
-            IsDead = true;
         }
     }
 
