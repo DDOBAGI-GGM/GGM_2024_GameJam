@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6615689846147050007}
   - component: {fileID: 5234678693549228442}
   - component: {fileID: 1152567348035299617}
-  - component: {fileID: 8682053772325483086}
   - component: {fileID: 658386208051583959}
   m_Layer: 8
   m_Name: Enemy
@@ -31,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.74, y: 1, z: -3.0959759}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,34 +107,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!136 &8682053772325483086
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6514572349954829651}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &658386208051583959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,5 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d7ebd5c53eb2cf46a264bfba902046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0.75
+  layer:
+    serializedVersion: 2
+    m_Bits: 512
   points: []
   speed: 0

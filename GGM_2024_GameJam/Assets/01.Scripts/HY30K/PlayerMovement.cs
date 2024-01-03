@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _gravityMultiplier = 4f;
     [SerializeField] private GameObject _visual;
     [SerializeField] float zPos = -2.08f;
+    [SerializeField] private ParticleSystem _deadParticle;
 
     public bool IsDead = false;
     public int FacingDirection { get; private set; } = 1;
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerDead();
         }
 
-        //Å°º¸µå·Î ¿òÁ÷ÀÏ¶§¸¸ ÀÌ·¸°Ô ¿òÁ÷ÀÌ°í
+        //í‚¤ë³´ë“œë¡œ ì›€ì§ì¼ë•Œë§Œ ì´ë ‡ê²Œ ì›€ì§ì´ê³ 
         if (_activeMove && GameManager.Instance.Is3D)
         {
             CalculatePlayerMovement();
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
             CalulatePlayer2DMovement();
         }
         if (!GameManager.Instance.Is3D)
-            ApplyGravity(); //Áß·Â Àû¿ë (2DÀÏ¶§¸¸)
+            ApplyGravity(); //ì¤‘ë ¥ ì ìš© (2Dì¼ë•Œë§Œ)
 
         Move();
         AnimatorControl();
@@ -78,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerDead()
     {
         StopImmediately();
+        Instantiate(_deadParticle, transform.position, Quaternion.identity);
         StageManager.Instance.ReSet();
     }
 
@@ -129,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
             _visual.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
-    // Áï½Ã Á¤Áö
+    // ì¦‰ì‹œ ì •ì§€
     public void StopImmediately()
     {
         _movementVelocity = Vector3.zero;
@@ -137,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (IsGround && _verticalVelocity < 0)  //¶¥¿¡ ÂøÁö »óÅÂ
+        if (IsGround && _verticalVelocity < 0)  //ë•…ì— ì°©ì§€ ìƒíƒœ
         {
             _verticalVelocity = -0.1f;
         }

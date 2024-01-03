@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Weigh_OBJ : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class Weigh_OBJ : MonoBehaviour
     [SerializeField] private Transform[] points;
     [SerializeField] private float speed;
     private int idx = 0;
+
+    [Header("Ray")]
+    [SerializeField] private float distance;
+    [SerializeField] private LayerMask layer;
+    private bool isCollision = false;
 
     [Header("Position")]
     [SerializeField] private float upPos;
@@ -22,24 +28,29 @@ public class Weigh_OBJ : MonoBehaviour
     [SerializeField] private int cnt;
 
     private MeshRenderer renderer;
-    //private Rigidbody rb;
+    private Transform btn;
 
     public bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
     private void Awake()
     {
-        renderer = GetComponent<MeshRenderer>();
-        //rb = GetComponent<Rigidbody>();
+        btn = this.transform.GetChild(0).GetComponent<Transform>();
+        renderer = btn.GetComponent<MeshRenderer>();
     }
 
     private void Update()
+    {
+        Move();
+        Ray();
+    }
+
+    private void Move()
     {
         if (isDown)
         {
             Vector3 target = points[idx].position;
             Vector3 dir = (target - transform.position).normalized;
-            //rb.velocity = dir * speed;
             transform.Translate(dir * speed * Time.deltaTime);
 
             float distance = Vector3.Distance(transform.position, target);
@@ -53,39 +64,56 @@ public class Weigh_OBJ : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Ray()
     {
-        if (collision.transform.CompareTag("test1"))
+        Collider[] colliders = Physics.OverlapSphere(transform.position, distance, layer);
+
+        if (colliders.Length > 0)
         {
-            cnt--;
-
-            if (cnt == 0)
+            if (!isCollision)
             {
-                isDown = true;
-                transform.DOKill();
-                transform.DOMoveY(downPos, 0.5f);
-                renderer.material = downColor;
+                isCollision = true;
 
-                collision.transform.SetParent(this.transform);
+                foreach (Collider collider in colliders)
+                {
+                    cnt--;
+
+                    if (cnt == 0)
+                    {
+                        isDown = true;
+                        btn.DOKill();
+                        btn.DOLocalMoveY(downPos, 0.5f);
+                        renderer.material = downColor;
+
+                        collider.transform.SetParent(btn);
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (isCollision)
+            {
+                isCollision = false;
+
+                cnt++;
+
+                if (cnt != 0)
+                {
+                    isDown = false;
+                    btn.DOKill();
+                    btn.DOLocalMoveY(upPos, 0.5f);
+                    renderer.material = upColor;
+
+                    btn.GetChild(0).SetParent(null);
+                }
             }
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnDrawGizmos()
     {
-        if (collision.transform.CompareTag("test1"))
-        {
-            cnt++;
-
-            if (cnt != 0)
-            {
-                isDown = false;
-                transform.DOKill();
-                transform.DOMoveY(upPos, 0.5f);
-                renderer.material = upColor;
-
-                collision.transform.SetParent(null);
-            }
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, distance);
     }
 }
