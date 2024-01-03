@@ -41,6 +41,7 @@ public class Star : MonoBehaviour, IReset
                     StageManager.Instance.GetDust(gameObject);
                     StageManager.Instance.GetStar(gameObject);
                     this.gameObject.SetActive(false);
+
                     isInteraction = true;
                 }
             }

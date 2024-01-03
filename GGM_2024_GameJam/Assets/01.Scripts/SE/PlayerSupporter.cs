@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSupporter : MonoBehaviour
 {
-    [SerializeField] private List<Supporter> supportersList = new List<Supporter>();        // SerializeField 는 지워도 되고~ 애는 단순 확인용!
+    [SerializeField] public List<Supporter> supportersList = new List<Supporter>();     // 나에게 있는 지지자들
     private Queue<Supporter> supportersQueue = new Queue<Supporter>();
 
     [SerializeField] private GameObject supporterEdgePrefab;            // 배치 가능하다고 표시해줄 프리텝
