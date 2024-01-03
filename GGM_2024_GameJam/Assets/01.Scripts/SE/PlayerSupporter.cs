@@ -6,11 +6,15 @@ public class PlayerSupporter : MonoBehaviour
 {
     [SerializeField] private List<Supporter> supportersList = new List<Supporter>();        // SerializeField 는 지워도 되고~ 애는 단순 확인용!
     private Queue<Supporter> supportersQueue = new Queue<Supporter>();
+    
     [SerializeField] private GameObject supporterEdgePrefab;            // 배치 가능하다고 표시해줄 프리텝
     private LineRenderer lineRenderer;
+    private List<GameObject> supporterEdgeList = new List<GameObject>();
+    [SerializeField] private LayerMask WallOrObstacleLayer;
 
     [SerializeField] private LayerMask supporterLayer;
     private RaycastHit hit;
+    private bool is_UseOk = false;
 
     private PlayerInput _playerInput;
     private Transform lastFollow;
@@ -19,7 +23,6 @@ public class PlayerSupporter : MonoBehaviour
     {
         _playerInput = GameManager.Instance.PlayerMovement.gameObject.GetComponent<PlayerInput>();
         lineRenderer = GetComponentInChildren<LineRenderer>();
-        lineRenderer.SetPosition(0, transform.position);
         lastFollow = transform;
     }
 
@@ -40,6 +43,7 @@ public class PlayerSupporter : MonoBehaviour
                     lastFollow = supporter.transform;
                     supportersQueue.Enqueue(supporter);
                     supportersList.Add(supporter);
+                    CreateSupporterEdge();
                 }
                 return;     // 뒤에있는거 작동 ㄴㄴ
             }
@@ -48,11 +52,11 @@ public class PlayerSupporter : MonoBehaviour
         if (Input.GetKeyDown (KeyCode.E) && GameManager.Instance.Is3D)      // 3D 일때
         {
             int xOffset = 2;
-            int yOffset = 2;
+            int yOffset = 2;        // 이 친구들 잘 사용하기!
             while (supportersQueue.Count > 0)
             {
                 supportersList.Remove(supportersQueue.Peek());
-                supportersQueue.Peek().UseMe(new Vector3(transform.position.x + xOffset, transform.position.y + yOffset));
+                supportersQueue.Peek().UseMe(new Vector2(lineRenderer.GetPosition(1).x + 1, lineRenderer.GetPosition(1).y + 1));
                 supportersQueue.Dequeue();
                 xOffset++; yOffset++;
             }
@@ -60,15 +64,36 @@ public class PlayerSupporter : MonoBehaviour
             lastFollow = transform;
         }
 
-        Vector3 dir = GameManager.Instance.PlayerMovement.GetComponent<PlayerInput>().Move;     // 노멀라이즈된.
-        lineRenderer.SetPosition(0,transform.position);
-        lineRenderer.SetPosition(1, new Vector3(transform.position.x + dir.x * 2, transform.position.y + dir.y * 2, transform.position.z));
+        //if ()     // 여기서 서포터를 사용할 수 있는지 없는지 확인 계속 해주기
+        // 아래꺼도 들어가야함. 일단 저렇게 해두고
         if (supportersQueue.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
         {
-            foreach (var supporter in supportersQueue)
+            Vector3 dir = GameManager.Instance.PlayerMovement.GetComponent<PlayerInput>().Move.normalized;     // 노멀라이즈된.
+            Vector3 lineEnd = new Vector3(transform.position.x + dir.x * 2, transform.position.y + dir.y * 2, transform.position.z);
+       /*     if (Physics.Raycast(transform.position, dir, out RaycastHit hit, 2, WallOrObstacleLayer))
             {
-
+                Debug.Log("k");
+                lineEnd = hit.point;
+            }*/
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, lineEnd);
+            foreach (var supporter in supporterEdgeList)
+            {
+                supporter.transform.position = lineRenderer.GetPosition(1);
             }
+        }
+    }
+
+    private void CreateSupporterEdge()
+    {
+        lineRenderer.positionCount++;
+        Quaternion rotation = Quaternion.Euler(-90f, 90f, -90f);
+        if (supportersQueue.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
+        {
+            GameObject supporterEdge = Instantiate(supporterEdgePrefab, lineRenderer.GetPosition(1), rotation, transform);
+            supporterEdge.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+            supporterEdgeList.Add(supporterEdge);
+            is_UseOk = true;
         }
     }
 
