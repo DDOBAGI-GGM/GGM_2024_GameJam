@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class FollowEnemy : MonoBehaviour
 {
     [SerializeField] private float startdelay;
     [SerializeField] private float speed;
+    [SerializeField] private float numToSubtract;
 
     [SerializeField] private bool isStart = false;
 
-    [SerializeField] private List<Transform> enemyPos = new List<Transform>();
+    private Vector3 originalPosition;
 
     private Rigidbody _rigidbody;
 
@@ -38,8 +39,9 @@ public class Enemy : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            // 플레이어랑 충돋했을 때 위치 좀 초기화 해주는거를 리스트로 위치 저장해주고 내가 얻은 따까리의 수로 스위치 만들어주기
+            originalPosition = transform.position;
 
+            transform.position = originalPosition + new Vector3(-numToSubtract, 0, 0);
         }
     }
 }

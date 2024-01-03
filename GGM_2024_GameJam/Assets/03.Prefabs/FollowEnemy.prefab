@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6042288418440213377}
+  - component: {fileID: 7522801525130081380}
   m_Layer: 0
   m_Name: FollowEnemy
   m_TagString: Untagged
@@ -34,6 +35,22 @@ Transform:
   - {fileID: 6546686041999363587}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &7522801525130081380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3169122205935466251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6341691f347a70f4dad597cf0bafb68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startdelay: 20
+  speed: 3
+  numToSubtract: 50
+  isStart: 0
 --- !u!1 &3336889178954184260
 GameObject:
   m_ObjectHideFlags: 0
