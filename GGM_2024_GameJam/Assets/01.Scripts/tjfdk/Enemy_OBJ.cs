@@ -4,7 +4,7 @@ using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Enemy_OBJ : MonoBehaviour
+public class Enemy_OBJ : MonoBehaviour, IReset
 {
     Rigidbody rb;
 
@@ -17,11 +17,20 @@ public class Enemy_OBJ : MonoBehaviour
     [SerializeField] private float speed;
     private int idx = 0;
 
+    private Transform originPos;
     private bool isCollision = false;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        originPos = transform;
+    }
+
+    public void Reset()
+    {
+        transform.position = originPos.position;
+        isCollision = false;
+        rb.velocity = Vector3.zero;
     }
 
     private void Update()
@@ -66,14 +75,6 @@ public class Enemy_OBJ : MonoBehaviour
         if (distance < 0.1f)
             idx = (idx + 1) % points.Length;
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.transform.CompareTag("test1"))
-    //    {
-    //        collision.transform.GetComponent<PlayerMovement>().IsDead = true;
-    //    }
-    //}
 
     private void OnDrawGizmos()
     {

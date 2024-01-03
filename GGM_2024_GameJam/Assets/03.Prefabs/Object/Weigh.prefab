@@ -54,8 +54,8 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 512
-  upPos: 0.2
-  downPos: 0.15
+  upPos: 0
+  downPos: 0
   upColor: {fileID: 2100000, guid: 34c4f7917211f194cabe747c5e91bd99, type: 2}
   downColor: {fileID: 2100000, guid: 8439191267e0e924bb9489e127287b12, type: 2}
   cnt: 1
@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 4344853308341794520}
   - component: {fileID: 600510935498606796}
   - component: {fileID: 6664859618407986710}
+  - component: {fileID: 7175699926645131475}
   m_Layer: 8
   m_Name: Btn
   m_TagString: Untagged
@@ -226,3 +227,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7175699926645131475
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5777510472284583603}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4451116937438810943, guid: f47c51683588dab4c8d1eee75bb2f758, type: 3}

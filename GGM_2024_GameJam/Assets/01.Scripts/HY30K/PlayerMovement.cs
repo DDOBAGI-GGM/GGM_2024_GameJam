@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
         Move();
         AnimatorControl();
-        PlayerRotate();
+        PlayerRotate(); 
 
         //float z = Math.Clamp(transform.position.z, -1.35f, -1.30f);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, zPos);
@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void SetMovement(Vector2 vector)
+    public void SetMovement(Vector2 vector)
     {
         _inputDirection = vector;
     }
@@ -176,5 +176,20 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(-90, 0, 0);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("test1"))
+        {
+            Debug.Log("ddddddddddd");
+            transform.SetParent(other.transform);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("tqkf");
+        transform.SetParent(null);
     }
 }

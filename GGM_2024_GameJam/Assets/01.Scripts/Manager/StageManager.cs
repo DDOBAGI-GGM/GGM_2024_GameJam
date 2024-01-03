@@ -25,6 +25,7 @@ public class StageManager : Singleton<StageManager>
 {
     [Header("Stage")]
     [SerializeField] private List<int> stageValue = new List<int>();
+    [SerializeField] private List<GameObject> stageObj = new List<GameObject>();
     [SerializeField] private int currentStageMax;
     [SerializeField] private int currentStage;
     [SerializeField] private int beforeStage;
@@ -32,16 +33,15 @@ public class StageManager : Singleton<StageManager>
     [Header("Dust")]
     [SerializeField] private int dustCnt;
     [HideInInspector] public int DustCnt => dustCnt;
-    //[SerializeField] private int maxDustCnt;
 
     [Header("Star")]
     [SerializeField] private int starCnt;
     [HideInInspector] public int StarCnt => starCnt;
-    //[SerializeField] private int maxStarCnt;
 
     [Header("Clear")]
     [SerializeField] private bool isClear = false;
-    [SerializeField] private bool isEndt = false;
+    [SerializeField] private bool isReset = false;
+    [HideInInspector] public bool IsReset => isReset;  
 
     public Stack<Dust> objs = new Stack<Dust>();
 
@@ -117,6 +117,11 @@ public class StageManager : Singleton<StageManager>
         {
             dustCnt = 0;
             starCnt = 0;
+        }
+
+        foreach (GameObject obj in stageObj)
+        {
+            obj.GetComponent<IReset>().Reset();
         }
 
         //ReGenerate();
