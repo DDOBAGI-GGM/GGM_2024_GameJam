@@ -38,11 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Fresnel_Power: 1.5
     - _Offset: 0.6
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _why: 1
     m_Colors:
-    - _Emission: {r: 0, g: 6.0628657, b: 2.020751, a: 0}
+    - _Emission: {r: 0, g: 6.0628657, b: 2.020751, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &4797042055787744706
 MonoBehaviour:

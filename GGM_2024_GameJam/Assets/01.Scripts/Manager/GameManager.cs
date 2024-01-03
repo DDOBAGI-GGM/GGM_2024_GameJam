@@ -10,7 +10,9 @@ public class GameManager : Singleton<GameManager>
     private Light _light;
     private CinemachineVirtualCamera _2DCam;
     private CinemachineVirtualCamera _3DCam;
-    private CinemachineConfiner _confiner;
+
+    private float timeSinceLastSwitch = 0f;
+    [SerializeField] private float switchCooldown = 1f;
 
     private bool _canConvert = true;
     public bool CanConvert
@@ -23,18 +25,8 @@ public class GameManager : Singleton<GameManager>
     // 이게 지금 3D인지 2D인지 확인해주는 불변수임
     [HideInInspector] public bool Is3D = false;
 
-    [SerializeField] private float _3DY, _2DY, orthographicSize = 8.5f;
-    [SerializeField] bool test = false;
-
-    public Camera Cam
-    {
-        get
-        {
-            if (_cam == null)
-                _cam = Camera.main;
-            return _cam;
-        }
-    }
+    [SerializeField] private float _3DY, _2DY;
+    //[SerializeField] bool test = false;
 
     private Vector3 _2DGravity = new Vector3(0, 0, -9.8f);
     private Vector3 _3DGravity = new Vector3(0, 0, 0);
@@ -44,7 +36,6 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         _3DCam = GameObject.Find("3DCam").GetComponent<CinemachineVirtualCamera>();
         _2DCam = GameObject.Find("2DCam").GetComponent<CinemachineVirtualCamera>();
-        _confiner = _2DCam.GetComponent<CinemachineConfiner>();
         _player = FindObjectOfType<PlayerMovement>();
         _light = FindObjectOfType<Light>();
     }
@@ -58,13 +49,15 @@ public class GameManager : Singleton<GameManager>
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.K) && CanConvert)
+        timeSinceLastSwitch += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Q) && CanConvert && timeSinceLastSwitch >= switchCooldown)
         {
-            Debug.Log("시점변경");
+            //Debug.Log("시점변경");
             Is3D = !Is3D;
             GravityConvert();
-            //CamAngleChange();
             SwitchCamera();
+            timeSinceLastSwitch = 0f; // Reset the cooldown timer
         }
         // 이거 위에 이프문 안으로 넣어두기!
         //Cam.transform.DOMoveX(_player.transform.position.x, 2f);
@@ -82,56 +75,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void CamAngleChange()
-    {
-        if (Is3D == false)
-        {
-            #region 레거시 카메라
-            /* Cam.transform.DOMoveY(_3DY, 1f); //= new Vector3(0, 30, 0);
-             //Cam.transform.DOMoveY(26, 1f); //= new Vector3(0, 30, 0);
-             Cam.transform.DORotate(new Vector3(0, 0, 0), 1f); //= Quaternion.Euler(90, 0, 0);
-             _light.transform.rotation = Quaternion.Euler(10, -20, 0); //new Vector3(140, 0, 0)
-            Cam.orthographic = true;
-            Cam.orthographicSize = orthographicSize;*/
-            #endregion
-
-            #region vCam 1
-            _2DCam.transform.DOMoveY(_2DY, 1f);
-            _2DCam.transform.DORotate(new Vector3(0, 0, 0), 0.5f);
-            _2DCam.m_Lens.OrthographicSize = 5;
-            //_confiner.enabled = true;
-            #endregion
-
-            _2DCam.Priority = 10;
-            _3DCam.Priority = 0;
-        }
-        else
-        {
-            #region 레거시 카메라
-            /*Cam.transform.DOMoveY(_2DY, 1f); //= new Vector3(0, 25, -15);
-            //Cam.transform.DOMoveY(-13f, 1f); //= new Vector3(0, 25, -15);
-            Cam.transform.DORotate(new Vector3(-45, 0, 0), 1f); //= Quaternion.Euler(65, 0, 0);
-            _light.transform.rotation = Quaternion.Euler(-10, 30, 0); //new Vector3(130, 30, 0)*/
-
-            /*Cam.orthographic = false;
-            if (test)
-            {
-                Cam.fieldOfView = 13;
-            }*/
-            #endregion
-
-            #region VCam 1
-            _2DCam.transform.DOMoveY(_3DY, 1f);
-            _2DCam.transform.DORotate(new Vector3(-25, 0, 0), 0.5f);
-            _2DCam.m_Lens.OrthographicSize = 9;
-            //_confiner.enabled = false;
-            #endregion
-
-            _2DCam.Priority = 0;
-            _3DCam.Priority = 10;
-        }
-    }
-
     void SwitchCamera()
     {
         // 씨네머신 브레인을 가져옵니다.
@@ -140,7 +83,7 @@ public class GameManager : Singleton<GameManager>
         // 브레인에 블렌딩 설정을 추가합니다.
         cineMachineBrain.m_DefaultBlend = new CinemachineBlendDefinition
         {
-            m_Style = CinemachineBlendDefinition.Style.EaseInOut,
+            m_Style = CinemachineBlendDefinition.Style.Linear,
             m_Time = 1.0f     // 전환에 걸리는 시간을 조절합니다.
         };
 
