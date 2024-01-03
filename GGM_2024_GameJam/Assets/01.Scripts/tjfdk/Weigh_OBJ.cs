@@ -28,15 +28,15 @@ public class Weigh_OBJ : MonoBehaviour
     [SerializeField] private int cnt;
 
     private MeshRenderer renderer;
-    //private Rigidbody rb;
+    private Transform btn;
 
     public bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
     private void Awake()
     {
-        renderer = GetComponent<MeshRenderer>();
-        //rb = GetComponent<Rigidbody>();
+        btn = this.transform.GetChild(0).GetComponent<Transform>();
+        renderer = btn.GetComponent<MeshRenderer>();
     }
 
     private void Update()
@@ -51,7 +51,6 @@ public class Weigh_OBJ : MonoBehaviour
         {
             Vector3 target = points[idx].position;
             Vector3 dir = (target - transform.position).normalized;
-            //rb.velocity = dir * speed;
             transform.Translate(dir * speed * Time.deltaTime);
 
             float distance = Vector3.Distance(transform.position, target);
@@ -74,7 +73,6 @@ public class Weigh_OBJ : MonoBehaviour
             if (!isCollision)
             {
                 isCollision = true;
-                Debug.Log("µé¾î¿È");
 
                 foreach (Collider collider in colliders)
                 {
@@ -83,11 +81,11 @@ public class Weigh_OBJ : MonoBehaviour
                     if (cnt == 0)
                     {
                         isDown = true;
-                        transform.DOKill();
-                        transform.DOMoveY(downPos, 0.5f);
+                        btn.DOKill();
+                        btn.DOLocalMoveY(downPos, 0.5f);
                         renderer.material = downColor;
 
-                        collider.transform.SetParent(this.transform);
+                        collider.transform.SetParent(btn);
                     }
                 }
             }
@@ -97,54 +95,25 @@ public class Weigh_OBJ : MonoBehaviour
             if (isCollision)
             {
                 isCollision = false;
+
                 cnt++;
 
                 if (cnt != 0)
                 {
                     isDown = false;
-                    transform.DOKill();
-                    transform.DOMoveY(upPos, 0.5f);
+                    btn.DOKill();
+                    btn.DOLocalMoveY(upPos, 0.5f);
                     renderer.material = upColor;
 
-                    //collision.transform.SetParent(null);
+                    btn.GetChild(0).SetParent(null);
                 }
             }
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.transform.CompareTag("test1"))
-    //    {
-    //        cnt--;
-
-    //        if (cnt == 0)
-    //        {
-    //            isDown = true;
-    //            transform.DOKill();
-    //            transform.DOMoveY(downPos, 0.5f);
-    //            renderer.material = downColor;
-
-    //            collision.transform.SetParent(this.transform);
-    //        }
-    //    }
-    //}
-
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.transform.CompareTag("test1"))
-    //    {
-    //        cnt++;
-
-    //        if (cnt != 0)
-    //        {
-    //            isDown = false;
-    //            transform.DOKill();
-    //            transform.DOMoveY(upPos, 0.5f);
-    //            renderer.material = upColor;
-
-    //            collision.transform.SetParent(null);
-    //        }
-    //    }
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, distance);
+    }
 }
