@@ -428,7 +428,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game
+          m_StringArgument: CutScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &494312675
@@ -671,9 +671,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965b9779a3510684781025856f59ba26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cutSceneImages:
+  - {fileID: 21300000, guid: f9faaf58a411566488df772c2e019fa1, type: 3}
+  - {fileID: 21300000, guid: 40e272019b52d134a99961fc9ba6164c, type: 3}
+  - {fileID: 21300000, guid: 6374c121f90d3ca43ae848a00ea194af, type: 3}
+  - {fileID: 21300000, guid: bced9df4f2b8d8a4d89a9dbd403f5673, type: 3}
+  cutSceneViewer: {fileID: 0}
+  sceneName: Game
   fadePanel: {fileID: 1277470685}
   duration: 1
-  easingFunc: 11
+  easingFunc: 17
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0

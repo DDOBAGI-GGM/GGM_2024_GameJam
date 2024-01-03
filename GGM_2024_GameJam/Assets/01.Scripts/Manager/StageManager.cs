@@ -23,7 +23,7 @@ public class StageManager : Singleton<StageManager>
     [SerializeField] private List<Stage> stageValue = new List<Stage>();
     //[SerializeField] private List<GameObject> stageObj = new List<GameObject>();
     [SerializeField] private int currentStageMax;
-    [SerializeField] private int currentStage = 1;
+    [SerializeField] private int currentStage;
     [SerializeField] private int beforeStage;
 
     [Header("Dust")]

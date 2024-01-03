@@ -20,7 +20,6 @@ public class Weigh_OBJ : MonoBehaviour, IReset
     [Header("Count")]
     [SerializeField] private int cnt;
 
-    public PlayerMovement player;
     public bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
