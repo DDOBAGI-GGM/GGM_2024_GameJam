@@ -20,7 +20,6 @@ public class Enemy_OBJ : MonoBehaviour, IReset
 
     [Header("Reset")]
     [SerializeField] private Vector3 originPos;
-    [SerializeField] private bool isInteraction = false;
 
     private void Awake()
     {
@@ -50,9 +49,7 @@ public class Enemy_OBJ : MonoBehaviour, IReset
 
                 foreach (Collider collider in colliders)
                 {
-                    Debug.Log("ddddddddddddddddddddd" + colliders.Length);
                     collider.transform.GetComponent<PlayerMovement>().IsDead = true;
-                    Debug.Log("충돌계속...");
                 }
             }
         }

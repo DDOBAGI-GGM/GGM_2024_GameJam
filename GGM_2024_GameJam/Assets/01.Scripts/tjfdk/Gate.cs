@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
-    private GameObject bridge;
+    private Transform bridge;
     private bool isChecking = false;
 
     private void Awake()
     {
-        bridge = transform.GetChild(0).GetComponent<GameObject>();
+        bridge = transform.GetChild(0).GetComponent<Transform>();
+        bridge.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +20,7 @@ public class Gate : MonoBehaviour
         {
             if (StageManager.Instance.IsClear)
             {
-                bridge.SetActive(true);
+                bridge.gameObject.SetActive(true);
                 StageManager.Instance.NextStage();
                 isChecking = true;
             }
