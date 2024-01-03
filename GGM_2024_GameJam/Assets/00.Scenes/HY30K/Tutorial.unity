@@ -1272,8 +1272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 443092934}
   - component: {fileID: 443092933}
-  - component: {fileID: 443092932}
-  - component: {fileID: 443092931}
+  - component: {fileID: 443092935}
   m_Layer: 0
   m_Name: 2DCam
   m_TagString: Untagged
@@ -1281,36 +1280,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &443092931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443092930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4533178852c2b6c4eb0faa7e255433ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 261835525}
---- !u!114 &443092932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443092930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 0
-  m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 710096893}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0.5
 --- !u!114 &443092933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,6 +1335,21 @@ Transform:
   - {fileID: 644209541}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &443092935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443092930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoundingShape2D: {fileID: 710096893}
+  m_Damping: 0.5
+  m_MaxWindowSize: -1
 --- !u!1 &453843647
 GameObject:
   m_ObjectHideFlags: 0
@@ -3243,7 +3227,7 @@ Transform:
   m_GameObject: {fileID: 1425669721}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.10851669, y: 22.75181, z: -21}
+  m_LocalPosition: {x: -0.12393427, y: 22.68537, z: -21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3446,6 +3430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd67a2239055aa47b90493f89cb4ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  switchCooldown: 1
   Is3D: 0
   _3DY: 15
   _2DY: 26
@@ -10672,12 +10657,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1425669725}
+  - {fileID: 1430817024}
+  - {fileID: 443092934}
   - {fileID: 1019355926}
   - {fileID: 774420671}
   - {fileID: 261835522}
   - {fileID: 696776040}
-  - {fileID: 1430817024}
-  - {fileID: 443092934}
   - {fileID: 131279110}
   - {fileID: 1476315837}
   - {fileID: 171087810}

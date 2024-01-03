@@ -10,7 +10,9 @@ public class GameManager : Singleton<GameManager>
     private Light _light;
     private CinemachineVirtualCamera _2DCam;
     private CinemachineVirtualCamera _3DCam;
-    private CinemachineConfiner _confiner;
+
+    private float timeSinceLastSwitch = 0f;
+    [SerializeField] private float switchCooldown = 1f;
 
     private bool _canConvert = true;
     public bool CanConvert
@@ -44,7 +46,6 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         _3DCam = GameObject.Find("3DCam").GetComponent<CinemachineVirtualCamera>();
         _2DCam = GameObject.Find("2DCam").GetComponent<CinemachineVirtualCamera>();
-        _confiner = _2DCam.GetComponent<CinemachineConfiner>();
         _player = FindObjectOfType<PlayerMovement>();
         _light = FindObjectOfType<Light>();
     }
@@ -58,13 +59,15 @@ public class GameManager : Singleton<GameManager>
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.K) && CanConvert)
+        timeSinceLastSwitch += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.K) && CanConvert && timeSinceLastSwitch >= switchCooldown)
         {
-            Debug.Log("시점변경");
+            //Debug.Log("시점변경");
             Is3D = !Is3D;
             GravityConvert();
-            //CamAngleChange();
             SwitchCamera();
+            timeSinceLastSwitch = 0f; // Reset the cooldown timer
         }
         // 이거 위에 이프문 안으로 넣어두기!
         //Cam.transform.DOMoveX(_player.transform.position.x, 2f);
@@ -140,7 +143,7 @@ public class GameManager : Singleton<GameManager>
         // 브레인에 블렌딩 설정을 추가합니다.
         cineMachineBrain.m_DefaultBlend = new CinemachineBlendDefinition
         {
-            m_Style = CinemachineBlendDefinition.Style.EaseInOut,
+            m_Style = CinemachineBlendDefinition.Style.Linear,
             m_Time = 1.0f     // 전환에 걸리는 시간을 조절합니다.
         };
 
