@@ -36,8 +36,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _activeMove = true;
 
-    public Vector3 originPos;
-
     public bool ActiveMove
     {
         get => _activeMove;
@@ -51,11 +49,6 @@ public class PlayerMovement : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
         _playerInput.OnJump += Jump;
-    }
-
-    private void Start()
-    {
-        originPos = transform.position;
     }
 
     private void FixedUpdate()
@@ -89,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerDead()
     {
-        transform.position = originPos;
+        transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         StageManager.Instance.ReSet();
 
@@ -194,19 +187,5 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(-90, 0, 0);
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("test1"))
-        {
-            Debug.Log("ddddddddddd");
-            transform.SetParent(other.transform);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        transform.SetParent(null);
     }
 }
