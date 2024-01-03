@@ -13,6 +13,7 @@ using UnityEngine.UIElements;
 [System.Serializable]
 public class Stage
 {
+    public Transform reStartPos;
     public int pointCnt;
     public List<GameObject> obj;
 }
@@ -21,9 +22,11 @@ public class StageManager : Singleton<StageManager>
 {
     [Header("Stage")]
     [SerializeField] private List<Stage> stageValue = new List<Stage>();
+    [HideInInspector] public List<Stage> StageValue => stageValue;
     //[SerializeField] private List<GameObject> stageObj = new List<GameObject>();
     [SerializeField] private int currentStageMax;
     [SerializeField] private int currentStage;
+    [HideInInspector] public int CurrentStage => currentStage;
     [SerializeField] private int beforeStage;
 
     [Header("Dust")]
@@ -36,6 +39,7 @@ public class StageManager : Singleton<StageManager>
 
     [Header("Clear")]
     [SerializeField] private bool isClear = false;
+    [HideInInspector] public bool IsClear => isClear;
     [SerializeField] private bool isReset = false;
 
     private void Awake()
@@ -62,12 +66,12 @@ public class StageManager : Singleton<StageManager>
             isClear = true;
     }
 
-    public void GetStar(GameObject star)
+    public void GetStar()
     {
         starCnt++;
     }
 
-    public void GetDust(GameObject dust)
+    public void GetDust()
     {
         dustCnt++;
     }   

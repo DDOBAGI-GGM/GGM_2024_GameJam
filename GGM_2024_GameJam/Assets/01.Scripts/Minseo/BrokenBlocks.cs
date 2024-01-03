@@ -6,12 +6,11 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 using Unity.VisualScripting;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
-public class BrokenBlocks : MonoBehaviour
+public class BrokenBlocks : MonoBehaviour, IReset
 {
     [SerializeField] private float delay = 1;
 
     private Vector3 originalPosition;
-
 
     public bool isBroken = false;
     bool isCollision = false;
@@ -19,6 +18,11 @@ public class BrokenBlocks : MonoBehaviour
     private void Start()
     {
         originalPosition = transform.position;
+    }
+
+    public void Reset()
+    {
+        isBroken = true;
     }
 
     private void Update()

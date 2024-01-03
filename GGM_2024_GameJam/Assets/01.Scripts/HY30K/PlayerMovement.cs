@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -35,8 +36,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _activeMove = true;
 
-    public Vector3 originPos;
-
     public bool ActiveMove
     {
         get => _activeMove;
@@ -50,12 +49,6 @@ public class PlayerMovement : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
         _playerInput.OnJump += Jump;
-
-    }
-
-    private void Start()
-    {
-        originPos = transform.position;
     }
 
     private void FixedUpdate()
@@ -63,36 +56,43 @@ public class PlayerMovement : MonoBehaviour
         if (IsDead)
         {
             PlayerDead();
-            //IsDead = false;
         }
 
         //?§Î≥¥?úÎ°ú ?ÄÏßÅÏùº?åÎßå ?¥Î†áÍ≤??ÄÏßÅÏù¥Í≥?
-        if (_activeMove && GameManager.Instance.Is3D)
+        if (IsDead == false)
         {
-            CalculatePlayerMovement();
-        }
-        else
-        {
-            CalulatePlayer2DMovement();
-        }
-        if (!GameManager.Instance.Is3D)
-            ApplyGravity(); //Ï§ëÎ†• ?ÅÏö© (2D?ºÎïåÎß?
+            if (_activeMove && GameManager.Instance.Is3D)
+            {
+                CalculatePlayerMovement();
+            }
+            else
+            {
+                CalulatePlayer2DMovement();
+            }
+            if (!GameManager.Instance.Is3D)
+                ApplyGravity(); //Ï§ëÎ†• ?ÅÏö© (2D?ºÎïåÎß?
 
-        Move();
-        AnimatorControl();
-        PlayerRotate(); 
-
+            Move();
+            AnimatorControl();
+            PlayerRotate();
+        }
         //float z = Math.Clamp(transform.position.z, -1.35f, -1.30f);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, zPos);
     }
 
     private void PlayerDead()
     {
-        //StopImmediately();
+        transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
-        transform.position = originPos;
-        IsDead = false;
         StageManager.Instance.ReSet();
+
+        StartCoroutine(DeadfalseCoroutine());
+    }
+
+    private IEnumerator DeadfalseCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        IsDead = false;
     }
 
     private void AnimatorControl()
@@ -187,20 +187,5 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(-90, 0, 0);
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("test1"))
-        {
-            Debug.Log("ddddddddddd");
-            transform.SetParent(other.transform);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log("tqkf");
-        transform.SetParent(null);
     }
 }
