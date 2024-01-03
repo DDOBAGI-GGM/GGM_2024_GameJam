@@ -51,7 +51,7 @@ public class GameManager : Singleton<GameManager>
     {
         timeSinceLastSwitch += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.K) && CanConvert && timeSinceLastSwitch >= switchCooldown)
+        if (Input.GetKeyDown(KeyCode.Q) && CanConvert && timeSinceLastSwitch >= switchCooldown)
         {
             //Debug.Log("시점변경");
             Is3D = !Is3D;
