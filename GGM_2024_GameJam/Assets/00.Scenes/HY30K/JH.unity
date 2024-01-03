@@ -274,9 +274,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Is3D: 0
   _3DY: 26
-  _2DY: 0
+  _2DY: -14
   orthographicSize: 8.5
-  test: 0
+  test: 1
 --- !u!1 &126939185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1695,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 80
-  field of view: 60
+  field of view: 30
   orthographic: 1
   orthographic size: 8
   m_Depth: 0
