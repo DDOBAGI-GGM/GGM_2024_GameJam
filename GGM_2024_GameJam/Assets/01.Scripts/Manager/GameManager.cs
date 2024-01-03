@@ -51,7 +51,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.K) && CanConvert)
         {
-            Debug.Log("시점변경");
+            //Debug.Log("시점변경");
             Is3D = !Is3D;
             GravityConvert();
             CamAngleChange();
@@ -88,12 +88,12 @@ public class GameManager : Singleton<GameManager>
         {
             Cam.transform.DOMoveY(_2DY, 1f); //= new Vector3(0, 25, -15);
             //Cam.transform.DOMoveY(-13f, 1f); //= new Vector3(0, 25, -15);
-            Cam.transform.DORotate(new Vector3(-45, 0, 0), 1f); //= Quaternion.Euler(65, 0, 0);
+            Cam.transform.DORotate(new Vector3(-30, 0, 0), 1f);         // 준혁 -45 -45 각도가 더 보기 좋은가? 일단 성은은 30임.
             _light.transform.rotation = Quaternion.Euler(-10, 30, 0); //new Vector3(130, 30, 0)
             Cam.orthographic = false;
             if (test)
             {
-                Cam.fieldOfView = 13;
+                Cam.fieldOfView = 37;       // 준혁 13
             }
         }
     }

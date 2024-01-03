@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerDead();
         }
 
-        //키보드로 움직일때만 이렇게 움직이고
+        //?�보?�로 ?�직일?�만 ?�렇�??�직이�?
         if (_activeMove && GameManager.Instance.Is3D)
         {
             CalculatePlayerMovement();
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
             CalulatePlayer2DMovement();
         }
         if (!GameManager.Instance.Is3D)
-            ApplyGravity(); //중력 적용 (2D일때만)
+            ApplyGravity(); //중력 ?�용 (2D?�때�?
 
         Move();
         AnimatorControl();
@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
             _visual.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
-    // 즉시 정지
+    // 즉시 ?��?
     public void StopImmediately()
     {
         _movementVelocity = Vector3.zero;
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (IsGround && _verticalVelocity < 0)  //땅에 착지 상태
+        if (IsGround && _verticalVelocity < 0)  //?�에 착�? ?�태
         {
             _verticalVelocity = -0.1f;
         }
