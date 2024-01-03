@@ -2,17 +2,19 @@ using UnityEngine;
 using System.Collections;
 using DG.Tweening;
 using System;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using Unity.VisualScripting;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class BrokenBlocks : MonoBehaviour
 {
     [SerializeField] private float delay = 1;
 
-    [SerializeField] LayerMask _playerLayerMask;
     private Vector3 originalPosition;
 
 
     public bool isBroken = false;
-    private bool isFirst = true;
+    bool isCollision = false;
 
     private void Start()
     {
@@ -24,41 +26,33 @@ public class BrokenBlocks : MonoBehaviour
         if(isBroken)
             gameObject.SetActive(true);
 
+        Ray();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Ray()
     {
-        Debug.Log("1");
-        if (collision.transform.CompareTag("Player") && isFirst == true)
-        {
-            
-            isFirst = false;
-            //if (GameManager.Instance.Is3D == false)
-            //{
-                StartCoroutine(ShakeRoutine());
-                Invoke("DestroyBlock", delay);
-           // }
-        }
-    }
+        RaycastHit hit;
+        bool isHit = Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.up, out hit, transform.rotation, 0.1f);
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.transform.CompareTag("Player") && isFirst == true)
+        Debug.DrawRay(transform.position, transform.forward * 1f, Color.red);
+
+        if (isHit)
         {
-            Debug.Log("ef");
-            isFirst = false;
-            if (GameManager.Instance.Is3D == false)
+
+            Debug.Log("1"); 
+            if (!isCollision)
             {
+                isCollision = true;
+
                 StartCoroutine(ShakeRoutine());
                 Invoke("DestroyBlock", delay);
             }
         }
     }
 
-
     private IEnumerator ShakeRoutine()
     {
-        while (!isFirst)
+        while (isCollision)
         {
             ShakeBlock();
             Debug.Log("ef");
@@ -69,18 +63,17 @@ public class BrokenBlocks : MonoBehaviour
     private void ShakeBlock()
     {
         float offsetX = UnityEngine.Random.Range(-0.1f, 0.1f);
-            float offsetY = UnityEngine.Random.Range(-0.1f, 0.1f);
-            float offsetZ = UnityEngine.Random.Range(-0.1f, 0.1f);
+        float offsetY = UnityEngine.Random.Range(-0.1f, 0.1f);
+        float offsetZ = UnityEngine.Random.Range(-0.1f, 0.1f);
 
-            transform.position = originalPosition + new Vector3(offsetX, offsetY, offsetZ);
-        
+        transform.position = originalPosition + new Vector3(offsetX, offsetY, offsetZ);
     }
 
     private void DestroyBlock()
     {
         transform.position = originalPosition;
-        
-        isFirst = true;
+
+        isCollision = false;
 
         gameObject.SetActive(false);
     }
