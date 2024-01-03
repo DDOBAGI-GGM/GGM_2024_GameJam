@@ -10,6 +10,7 @@ public class Supporter : MonoBehaviour
    [SerializeField] private Transform target;
 
     private NavMeshAgent agent;
+    private Animator animator;
 
     [SerializeField] private bool chase = false;
 
@@ -17,6 +18,7 @@ public class Supporter : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void ChaseStart(Transform _target)
@@ -31,6 +33,15 @@ public class Supporter : MonoBehaviour
         if (chase && GameManager.Instance.Is3D)
         {
             agent.SetDestination(target.position);
+            Debug.Log(agent.remainingDistance);
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                animator.SetBool("IsMove", false);
+            }
+            else
+            {
+                animator.SetBool("IsMove", true);
+            }
         }
     }
 

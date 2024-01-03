@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _rootTrm;
     [SerializeField] private float _gravityMultiplier = 4f;
     [SerializeField] private GameObject _visual;
+    [SerializeField] float zPos = -2.08f;
 
     public bool IsDead = false;
     public int FacingDirection { get; private set; } = 1;
@@ -70,8 +71,8 @@ public class PlayerMovement : MonoBehaviour
         AnimatorControl();
         PlayerRotate();
 
-        float z = Math.Clamp(transform.position.z, -1.35f, -1.30f);
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, z);
+        //float z = Math.Clamp(transform.position.z, -1.35f, -1.30f);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, zPos);
     }
 
     private void PlayerDead()
