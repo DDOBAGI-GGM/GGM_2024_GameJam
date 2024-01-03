@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class Star : MonoBehaviour, IReset
 {
@@ -22,6 +23,7 @@ public class Star : MonoBehaviour, IReset
     private void Update()
     {
         Ray();
+        Size();
     }
 
     private void Ray()
@@ -50,6 +52,12 @@ public class Star : MonoBehaviour, IReset
                 isCollision = false;
             }
         }
+    }
+
+    private void Size()
+    {
+        transform.DOScale(new Vector3(2f, 2f, 2f), 0.5f).OnComplete(() 
+            => { transform.DOScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f); });
     }
 
     private void OnDrawGizmos()

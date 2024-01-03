@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4375381319102211074}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &783027798590758270
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -127,10 +127,8 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 512
-  upPos: 0
-  downPos: 0
-  upColor: {fileID: 2100000, guid: 34c4f7917211f194cabe747c5e91bd99, type: 2}
-  downColor: {fileID: 2100000, guid: 8439191267e0e924bb9489e127287b12, type: 2}
   cnt: 1
   player: {fileID: 0}
   isDown: 0
+  originPos: {x: 0, y: 0, z: 0}
+  isInteraction: 0
