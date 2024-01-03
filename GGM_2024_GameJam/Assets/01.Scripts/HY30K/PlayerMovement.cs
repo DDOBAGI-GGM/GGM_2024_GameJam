@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _rootTrm;
     [SerializeField] private float _gravityMultiplier = 4f;
     [SerializeField] private GameObject _visual;
+    [SerializeField] private ParticleSystem _deadParticle;
 
     public bool IsDead = false;
     public int FacingDirection { get; private set; } = 1;
@@ -74,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerDead()
     {
         StopImmediately();
+        Instantiate(_deadParticle, transform.position, Quaternion.identity);
         StageManager.Instance.ReSet();
     }
 

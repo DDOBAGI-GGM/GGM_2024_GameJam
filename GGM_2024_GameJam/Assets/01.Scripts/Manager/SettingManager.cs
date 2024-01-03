@@ -67,5 +67,6 @@ public class SettingManager : Singleton<SettingManager>
         Debug.Log("게임누름");
         inGamePanel.SetActive(false);
         esc = !esc;
+        UIManager.Instance.ChangeScene("Game");
     }
 }
