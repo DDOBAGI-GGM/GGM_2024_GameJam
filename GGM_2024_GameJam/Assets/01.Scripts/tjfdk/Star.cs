@@ -14,7 +14,6 @@ public class Star : MonoBehaviour, IReset
     {
         if (isInteraction)
         {
-            this.gameObject.SetActive(true);
             isCollision = false;
             isInteraction = false;
         }
@@ -23,7 +22,6 @@ public class Star : MonoBehaviour, IReset
     private void Update()
     {
         Ray();
-        Size();
     }
 
     private void Ray()
@@ -32,15 +30,13 @@ public class Star : MonoBehaviour, IReset
 
         if (colliders.Length > 0)
         {
-            if (!isCollision)
+            if (!isCollision && isInteraction == false)
             {
                 isCollision = true;
 
                 foreach (Collider collider in colliders)
                 {
-                    StageManager.Instance.GetDust(gameObject);
-                    StageManager.Instance.GetStar(gameObject);
-                    this.gameObject.SetActive(false);
+                    StageManager.Instance.GetStar();
                     isInteraction = true;
                 }
             }
@@ -52,12 +48,6 @@ public class Star : MonoBehaviour, IReset
                 isCollision = false;
             }
         }
-    }
-
-    private void Size()
-    {
-        transform.DOScale(new Vector3(2f, 2f, 2f), 0.5f).OnComplete(() 
-            => { transform.DOScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f); });
     }
 
     private void OnDrawGizmos()

@@ -36,6 +36,7 @@ public class StageManager : Singleton<StageManager>
 
     [Header("Clear")]
     [SerializeField] private bool isClear = false;
+    [HideInInspector] public bool IsClear => isClear;
     [SerializeField] private bool isReset = false;
 
     private void Awake()
@@ -62,12 +63,12 @@ public class StageManager : Singleton<StageManager>
             isClear = true;
     }
 
-    public void GetStar(GameObject star)
+    public void GetStar()
     {
         starCnt++;
     }
 
-    public void GetDust(GameObject dust)
+    public void GetDust()
     {
         dustCnt++;
     }   

@@ -188,19 +188,4 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(-90, 0, 0);
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("test1"))
-        {
-            Debug.Log("ddddddddddd");
-            transform.SetParent(other.transform);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log("tqkf");
-        transform.SetParent(null);
-    }
 }
