@@ -81,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         StopImmediately();
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         StageManager.Instance.ReSet();
+        IsDead = !IsDead;
     }
 
     private void AnimatorControl()
