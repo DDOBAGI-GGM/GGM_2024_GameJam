@@ -28,16 +28,6 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float _3DY, _2DY, orthographicSize = 8.5f;
     [SerializeField] bool test = false;
 
-    public Camera Cam
-    {
-        get
-        {
-            if (_cam == null)
-                _cam = Camera.main;
-            return _cam;
-        }
-    }
-
     private Vector3 _2DGravity = new Vector3(0, 0, -9.8f);
     private Vector3 _3DGravity = new Vector3(0, 0, 0);
 
@@ -82,56 +72,6 @@ public class GameManager : Singleton<GameManager>
         else
         {
             Physics.gravity = _3DGravity;
-        }
-    }
-
-    private void CamAngleChange()
-    {
-        if (Is3D == false)
-        {
-            #region 레거시 카메라
-            /* Cam.transform.DOMoveY(_3DY, 1f); //= new Vector3(0, 30, 0);
-             //Cam.transform.DOMoveY(26, 1f); //= new Vector3(0, 30, 0);
-             Cam.transform.DORotate(new Vector3(0, 0, 0), 1f); //= Quaternion.Euler(90, 0, 0);
-             _light.transform.rotation = Quaternion.Euler(10, -20, 0); //new Vector3(140, 0, 0)
-            Cam.orthographic = true;
-            Cam.orthographicSize = orthographicSize;*/
-            #endregion
-
-            #region vCam 1
-            _2DCam.transform.DOMoveY(_2DY, 1f);
-            _2DCam.transform.DORotate(new Vector3(0, 0, 0), 0.5f);
-            _2DCam.m_Lens.OrthographicSize = 5;
-            //_confiner.enabled = true;
-            #endregion
-
-            _2DCam.Priority = 10;
-            _3DCam.Priority = 0;
-        }
-        else
-        {
-            #region 레거시 카메라
-            /*Cam.transform.DOMoveY(_2DY, 1f); //= new Vector3(0, 25, -15);
-            //Cam.transform.DOMoveY(-13f, 1f); //= new Vector3(0, 25, -15);
-            Cam.transform.DORotate(new Vector3(-45, 0, 0), 1f); //= Quaternion.Euler(65, 0, 0);
-            _light.transform.rotation = Quaternion.Euler(-10, 30, 0); //new Vector3(130, 30, 0)*/
-
-            /*Cam.orthographic = false;
-            if (test)
-            {
-                Cam.fieldOfView = 13;
-            }*/
-            #endregion
-
-            #region VCam 1
-            _2DCam.transform.DOMoveY(_3DY, 1f);
-            _2DCam.transform.DORotate(new Vector3(-25, 0, 0), 0.5f);
-            _2DCam.m_Lens.OrthographicSize = 9;
-            //_confiner.enabled = false;
-            #endregion
-
-            _2DCam.Priority = 0;
-            _3DCam.Priority = 10;
         }
     }
 
