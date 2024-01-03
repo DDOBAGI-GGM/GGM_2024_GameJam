@@ -33,15 +33,14 @@ public class Supporter : MonoBehaviour
         if (chase && GameManager.Instance.Is3D)
         {
             agent.SetDestination(target.position);
-            Debug.Log(agent.remainingDistance);
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                animator.SetBool("IsMove", false);
-            }
-            else
-            {
-                animator.SetBool("IsMove", true);
-            }
+        }
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            animator.SetBool("IsMove", false);
+        }
+        else
+        {
+            animator.SetBool("IsMove", true);
         }
     }
 
