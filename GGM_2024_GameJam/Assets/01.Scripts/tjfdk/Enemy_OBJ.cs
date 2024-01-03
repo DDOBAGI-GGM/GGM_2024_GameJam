@@ -1,13 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Enemy_OBJ : MonoBehaviour, IReset
 {
-    Rigidbody rb;
-
     [Header("Ray")]
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
@@ -17,20 +16,20 @@ public class Enemy_OBJ : MonoBehaviour, IReset
     [SerializeField] private float speed;
     private int idx = 0;
 
-    private Transform originPos;
     private bool isCollision = false;
+
+    [Header("Reset")]
+    [SerializeField] private Vector3 originPos;
+    [SerializeField] private bool isInteraction = false;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        originPos = transform;
+        originPos = transform.position;
     }
 
     public void Reset()
     {
-        transform.position = originPos.position;
-        isCollision = false;
-        rb.velocity = Vector3.zero;
+        transform.position = originPos;
     }
 
     private void Update()
@@ -51,7 +50,9 @@ public class Enemy_OBJ : MonoBehaviour, IReset
 
                 foreach (Collider collider in colliders)
                 {
+                    Debug.Log("ddddddddddddddddddddd" + colliders.Length);
                     collider.transform.GetComponent<PlayerMovement>().IsDead = true;
+                    Debug.Log("충돌계속...");
                 }
             }
         }
@@ -68,11 +69,11 @@ public class Enemy_OBJ : MonoBehaviour, IReset
     {
         Vector3 target = points[idx].position;
         Vector3 dir = (target - transform.position).normalized;
-        rb.velocity = dir * speed;
+        transform.Translate(dir * speed * Time.deltaTime);
 
         float distance = Vector3.Distance(transform.position, target);
 
-        if (distance < 0.1f)
+        if (distance < 1f)
             idx = (idx + 1) % points.Length;
     }
 
