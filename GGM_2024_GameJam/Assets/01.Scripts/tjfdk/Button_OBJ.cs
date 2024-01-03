@@ -25,11 +25,13 @@ public class Button_OBJ : MonoBehaviour, IReset
     [SerializeField] private bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
+    private Transform body;
     private bool isCollision = false;
 
     private void Awake()
     {
-        renderer = GetComponent<MeshRenderer>();
+        body = transform.GetChild(0).GetComponent<Transform>();
+        renderer = body.GetComponent<MeshRenderer>();
     }
 
     public void Reset()
@@ -55,8 +57,8 @@ public class Button_OBJ : MonoBehaviour, IReset
                 foreach (Collider collider in colliders)
                 {
                     isDown = true;
-                    transform.DOKill();
-                    transform.DOLocalMoveY(downPos, 0.5f);
+                    body.DOKill();
+                    body.DOLocalMoveY(downPos, 0.5f);
                     renderer.material = downColor;
                 }
             }
@@ -67,8 +69,8 @@ public class Button_OBJ : MonoBehaviour, IReset
             {
                 isDown = false;
                 isCollision = false;
-                transform.DOKill();
-                transform.DOLocalMoveY(upPos, 0.5f);
+                body.DOKill();
+                body.DOLocalMoveY(upPos, 0.5f);
                 renderer.material = upColor;
             }
         }
