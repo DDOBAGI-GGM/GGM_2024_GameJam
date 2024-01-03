@@ -150,6 +150,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lineRenderer: {fileID: 717595159553452399}
+  _mapLayerMask:
+    serializedVersion: 2
+    m_Bits: 448
+  _playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &3680861203760420942
 GameObject:
   m_ObjectHideFlags: 0
