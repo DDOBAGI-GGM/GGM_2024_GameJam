@@ -51,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
         _playerInput.OnMovement += SetMovement;
         _playerInput.OnJump += Jump;
 
+    }
+
+    private void Start()
+    {
         originPos = transform.position;
     }
 
@@ -85,10 +89,10 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerDead()
     {
         //StopImmediately();
-        IsDead = false;
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
-        StageManager.Instance.ReSet();
         transform.position = originPos;
+        IsDead = false;
+        StageManager.Instance.ReSet();
     }
 
     private void AnimatorControl()

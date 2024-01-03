@@ -22,6 +22,7 @@ public class Button_OBJ : MonoBehaviour, IReset
     [SerializeField] private Material downColor;
 
     [Header("Interactiond")]
+    [SerializeField] private List<GameObject> objs = new List<GameObject>();
     [SerializeField] private bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
@@ -42,6 +43,17 @@ public class Button_OBJ : MonoBehaviour, IReset
     private void Update()
     {
         Ray();
+
+        if (isDown)
+        {
+            foreach (GameObject obj in objs)
+                obj.SetActive(true);
+        }
+        else
+        {
+            foreach (GameObject obj in objs)
+                obj.SetActive(false);
+        }
     }
 
     private void Ray()
