@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _rootTrm;
     [SerializeField] private float _gravityMultiplier = 4f;
     [SerializeField] private GameObject _visual;
+    [SerializeField] private GameObject _Crown;
     [SerializeField] float zPos = -2.08f;
     [SerializeField] private ParticleSystem _deadParticle;
 
@@ -136,11 +137,23 @@ public class PlayerMovement : MonoBehaviour
         _movementVelocity = (_rootTrm.right * _inputDirection.x) * (_moveSpeed * Time.fixedDeltaTime);
 
         if (_inputDirection.x > 0)
+        {
             _visual.transform.rotation = Quaternion.Euler(0, 90, 0);
+            _Crown.transform.rotation = Quaternion.Euler(0, 0, -15);
+            _Crown.transform.position = transform.position + new Vector3(0.2f, 0.554f, 0);
+        }
         else if (_inputDirection.x < 0)
+        {
             _visual.transform.rotation = Quaternion.Euler(0, -90, 0);
+            _Crown.transform.rotation = Quaternion.Euler(0, 0, 15);
+            _Crown.transform.position = transform.position +  new Vector3(-0.2f, 0.554f, 0);
+        }
         else
+        {
             _visual.transform.rotation = Quaternion.Euler(0, 180, 0);
+            _Crown.transform.rotation = Quaternion.Euler(0, 0, 0);
+            _Crown.transform.position = transform.position + new Vector3(0, 0.554f, 0);
+        }
     }
 
     // ì¦‰ì‹œ ?•ì?

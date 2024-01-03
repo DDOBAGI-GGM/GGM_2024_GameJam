@@ -334,6 +334,7 @@ MonoBehaviour:
   _rootTrm: {fileID: 2889439679076784577}
   _gravityMultiplier: 1
   _visual: {fileID: 49223900469597628}
+  _Crown: {fileID: 3687621890796636793}
   zPos: -2.08
   _deadParticle: {fileID: 695506783536675236, guid: 526ba324f370fd34ca7e7a83878fb05a,
     type: 3}
