@@ -6,7 +6,15 @@ public class GameManager : Singleton<GameManager>
     private PlayerMovement _player;
     public PlayerMovement PlayerMovement { get { return _player; } private set { } }
     private Camera _cam;
-    private Light _light;
+    private Light _light; 
+    
+    private bool _canConvert = true;
+    public bool CanConvert
+    {
+        get => _canConvert;
+        set => _canConvert = value;
+    }
+
 
     // 이게 지금 3D인지 2D인지 확인해주는 불변수임
     [HideInInspector] public bool Is3D = false;
@@ -41,7 +49,7 @@ public class GameManager : Singleton<GameManager>
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K) && CanConvert)
         {
             Debug.Log("시점변경");
             Is3D = !Is3D;
