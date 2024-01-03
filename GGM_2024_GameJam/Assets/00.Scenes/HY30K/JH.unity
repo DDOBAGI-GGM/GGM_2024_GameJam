@@ -273,6 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Is3D: 0
+  _3DY: 26
+  _2DY: 0
+  orthographicSize: 8.5
+  test: 0
 --- !u!1 &126939185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,6 +1995,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235690726447546851, guid: 46fa27c6191c0884b835a8912a3d159d,
+        type: 3}
+      propertyPath: zPos
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5179510631933775390, guid: 46fa27c6191c0884b835a8912a3d159d,
         type: 3}
