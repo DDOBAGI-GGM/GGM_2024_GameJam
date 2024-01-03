@@ -1,29 +1,29 @@
 using UnityEngine;
 
-public class Star : MonoBehaviour
+public class Star : MonoBehaviour, IReset
 {
     [SerializeField] private float distance;
     [SerializeField] private LayerMask layer;
     private bool isCollision = false;
 
-    public Transform testPos;
+    [Header("Reset")]
+    [SerializeField] private bool isInteraction = false;
 
-    private void Awake()
+    public void Reset()
     {
-        testPos = transform;
-    }
-
-    private void Start()
-    {
-        this.gameObject.SetActive(true);
-        transform.position = testPos.position;
-        isCollision = false;
+        if (isInteraction)
+        {
+            this.gameObject.SetActive(true);
+            isCollision = false;
+            isInteraction = false;
+        }
     }
 
     private void Update()
     {
         Ray();
     }
+
     private void Ray()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, distance, layer);
@@ -33,13 +33,13 @@ public class Star : MonoBehaviour
             if (!isCollision)
             {
                 isCollision = true;
-                Debug.Log("µé¾î¿È");
 
                 foreach (Collider collider in colliders)
                 {
                     StageManager.Instance.GetDust(gameObject);
                     StageManager.Instance.GetStar(gameObject);
                     this.gameObject.SetActive(false);
+                    isInteraction = true;
                 }
             }
         }
@@ -48,7 +48,6 @@ public class Star : MonoBehaviour
             if (isCollision)
             {
                 isCollision = false;
-                Debug.Log("³ª°¨");
             }
         }
     }

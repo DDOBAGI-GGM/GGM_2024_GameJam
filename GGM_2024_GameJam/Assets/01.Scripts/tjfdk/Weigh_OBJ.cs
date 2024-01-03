@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class Weigh_OBJ : MonoBehaviour
+public class Weigh_OBJ : MonoBehaviour, IReset
 {
+    private MeshRenderer renderer;
+
     [Header("Move")]
     [SerializeField] private Transform[] points;
     [SerializeField] private float speed;
@@ -16,27 +17,29 @@ public class Weigh_OBJ : MonoBehaviour
     [SerializeField] private LayerMask layer;
     private bool isCollision = false;
 
-    [Header("Position")]
-    [SerializeField] private float upPos;
-    [SerializeField] private float downPos;
-
-    [Header("Color")]
-    [SerializeField] private Material upColor;
-    [SerializeField] private Material downColor;
-
     [Header("Count")]
     [SerializeField] private int cnt;
 
-    private MeshRenderer renderer;
-    private Transform btn;
-
+    public PlayerMovement player;
     public bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
+    [Header("Reset")]
+    [SerializeField] private Vector3 originPos;
+    [SerializeField] private bool isInteraction = false;
+
     private void Awake()
     {
-        btn = this.transform.GetChild(0).GetComponent<Transform>();
-        renderer = btn.GetComponent<MeshRenderer>();
+        originPos = transform.position;
+    }
+
+    public void Reset()
+    {
+        if (isInteraction)
+        {
+            transform.position = originPos;
+            isInteraction = false;
+        }
     }
 
     private void Update()
@@ -55,7 +58,7 @@ public class Weigh_OBJ : MonoBehaviour
 
             float distance = Vector3.Distance(transform.position, target);
 
-            if (distance < 0.1f)
+            if (distance < 0.5f)
                 idx = (idx + 1) % points.Length;
         }
         else
@@ -81,11 +84,6 @@ public class Weigh_OBJ : MonoBehaviour
                     if (cnt == 0)
                     {
                         isDown = true;
-                        btn.DOKill();
-                        btn.DOLocalMoveY(downPos, 0.5f);
-                        renderer.material = downColor;
-
-                        collider.transform.SetParent(btn);
                     }
                 }
             }
@@ -101,11 +99,7 @@ public class Weigh_OBJ : MonoBehaviour
                 if (cnt != 0)
                 {
                     isDown = false;
-                    btn.DOKill();
-                    btn.DOLocalMoveY(upPos, 0.5f);
-                    renderer.material = upColor;
-
-                    btn.GetChild(0).SetParent(null);
+                    isInteraction = true;
                 }
             }
         }

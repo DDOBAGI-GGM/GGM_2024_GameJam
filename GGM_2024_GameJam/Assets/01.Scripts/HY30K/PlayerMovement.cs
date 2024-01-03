@@ -34,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 MovementVelocity => _movementVelocity;
 
     private bool _activeMove = true;
+
+    public Vector3 originPos;
+
     public bool ActiveMove
     {
         get => _activeMove;
@@ -47,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
         _playerInput.OnJump += Jump;
+
+        originPos = transform.position;
     }
 
     private void FixedUpdate()
@@ -54,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsDead)
         {
             PlayerDead();
+            //IsDead = false;
         }
 
         //키보드로 움직일때만 이렇게 움직이고
@@ -70,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
         Move();
         AnimatorControl();
-        PlayerRotate();
+        PlayerRotate(); 
 
         //float z = Math.Clamp(transform.position.z, -1.35f, -1.30f);
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, zPos);
@@ -78,10 +84,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerDead()
     {
-        StopImmediately();
+        //StopImmediately();
+        IsDead = false;
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         StageManager.Instance.ReSet();
-        IsDead = !IsDead;
+        transform.position = originPos;
     }
 
     private void AnimatorControl()
@@ -102,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void SetMovement(Vector2 vector)
+    public void SetMovement(Vector2 vector)
     {
         _inputDirection = vector;
     }
@@ -176,5 +183,20 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(-90, 0, 0);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("test1"))
+        {
+            Debug.Log("ddddddddddd");
+            transform.SetParent(other.transform);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("tqkf");
+        transform.SetParent(null);
     }
 }

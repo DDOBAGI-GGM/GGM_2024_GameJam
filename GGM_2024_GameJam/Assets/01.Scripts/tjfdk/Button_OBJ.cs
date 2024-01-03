@@ -5,8 +5,14 @@ using System.Diagnostics.SymbolStore;
 using UnityEngine;
 using DG.Tweening;
 
-public class Button_OBJ : MonoBehaviour
+public class Button_OBJ : MonoBehaviour, IReset
 {
+    private MeshRenderer renderer;
+
+    [Header("Ray")]
+    [SerializeField] private float distance;
+    [SerializeField] private LayerMask layer;
+
     [Header("Position")]
     [SerializeField] private float upPos;
     [SerializeField] private float downPos; 
@@ -15,97 +21,62 @@ public class Button_OBJ : MonoBehaviour
     [SerializeField] private Material upColor;
     [SerializeField] private Material downColor;
 
-    private MeshRenderer renderer;
-    private bool isDown = false;
+    [Header("Interactiond")]
+    [SerializeField] private bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
-    [SerializeField] private LayerMask supporterLayerMask;
-    private RaycastHit hit;
+    private bool isCollision = false;
 
     private void Awake()
     {
         renderer = GetComponent<MeshRenderer>();
     }
 
-    /*private void OnCollisionEnter(Collision collision)
+    public void Reset()
     {
-        if (collision.transform.CompareTag("test1"))
-        {
-            isDown = true;
-            transform.DOKill();
-            transform.DOMoveY(downPos, 0.5f);
-            renderer.material = downColor;
-        }
+        isDown = false;
     }
-
-    private void OnCollisionExit(Collision collision)   
-    {
-        if (collision.transform.CompareTag("test1"))
-        {
-            isDown = false;
-            transform.DOKill();
-            transform.DOMoveY(upPos, 0.5f);
-            renderer.material = upColor;
-        }
-    }*/
 
     private void Update()
     {
-        /*   Debug.DrawRay(transform.position, new Vector3(0, 0, -2), Color.black);
-           //     if (Physics.SphereCast(transform.position, 1f, new Vector3(0, 0, -2), out hit, 2, supporterLayerMask))
-           bool isHit = Physics.SphereCast(new Vector2, 1f, Vector3.up, out hit, 2f);
-           if (isHit)
-           {
+        Ray();
+    }
 
-           }*/
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
-        bool isHit = Physics.SphereCast(pos, 1f, Vector3.back, out hit, 2f, supporterLayerMask);
+    private void Ray()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, distance, layer);
 
-        if (isHit)
+        if (colliders.Length > 0)
+        {
+            if (!isCollision)
             {
-            isDown = true;
-            transform.DOLocalMoveY(downPos, 0.5f);
-            renderer.material = downColor;
+                isCollision = true;
+
+                foreach (Collider collider in colliders)
+                {
+                    isDown = true;
+                    transform.DOKill();
+                    transform.DOLocalMoveY(downPos, 0.5f);
+                    renderer.material = downColor;
+                }
+            }
         }
         else
         {
-            isDown = false;
-            transform.DOLocalMoveY(upPos, 0.5f);
-            renderer.material = upColor;
+            if (isCollision)
+            {
+                isDown = false;
+                isCollision = false;
+                transform.DOKill();
+                transform.DOLocalMoveY(upPos, 0.5f);
+                renderer.material = upColor;
+            }
         }
     }
-    
-    /*
 
     private void OnDrawGizmos()
     {
-  *//*      if (UnityEditor.EditorApplication.isPlaying)
-        {
-            Gizmos.color = Color.red;
-            if (Physics.SphereCast(transform.position, 1f, transform.forward, out hit, 2, supporterLayerMask));
-            {
-                Gizmos.color = Color.yellow;
-            }
-            Gizmos.DrawWireSphere(transform.position + transform.up, 1);
-            Gizmos.color = Color.white;
-        }*//*
-
-
-       // Debug.DrawRay(transform.position, new Vector3(0, 0, -2), Color.black);
-        //     if (Physics.SphereCast(transform.position, 1f, new Vector3(0, 0, -2), out hit, 2, supporterLayerMask))
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
-        bool isHit = Physics.SphereCast(pos, 1f, Vector3.back, out hit, 2f);
-        if (isHit)
-        {
-            Debug.Log(hit.collider.gameObject.name);
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(pos, transform.up * hit.distance);
-            Gizmos.DrawWireSphere(pos + transform.up * hit.distance, 1);
-        }
-        else
-        {
-            Gizmos.color= Color.green;
-            Gizmos.DrawRay(pos, transform.up);
-        }
-    }*/
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, distance);
+    }
 }
