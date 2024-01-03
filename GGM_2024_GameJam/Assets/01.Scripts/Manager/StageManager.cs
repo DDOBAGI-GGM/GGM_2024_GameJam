@@ -119,7 +119,7 @@ public class StageManager : Singleton<StageManager>
             starCnt = 0;
         }
 
-        ReGenerate();
+        //ReGenerate();
     }
 
     void ReGenerate()
