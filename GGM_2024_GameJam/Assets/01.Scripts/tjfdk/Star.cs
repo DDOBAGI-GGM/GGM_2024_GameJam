@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Star : MonoBehaviour
 {
@@ -9,25 +6,22 @@ public class Star : MonoBehaviour
     [SerializeField] private LayerMask layer;
     private bool isCollision = false;
 
+    public Transform testPos;
+
+    private void Awake()
+    {
+        testPos = transform;
+    }
+
+    private void Start()
+    {
+        this.gameObject.SetActive(true);
+        transform.position = testPos.position;
+        isCollision = false;
+    }
+
     private void Update()
     {
-        //Collider[] colliders = Physics.OverlapSphere(transform.position, distance);
-
-        //foreach (Collider collider in colliders)
-        //{
-        //    if (collider.CompareTag("test1"))
-        //    {
-        //        //if (StageManager.Instance.StarCnt < StageManager.Instance.DustCnt)
-        //        //{
-        //            StageManager.Instance.GetDust(gameObject);
-        //            StageManager.Instance.GetStar(gameObject);
-        //        this.gameObject.SetActive(false);
-        //        //Destroy(this.gameObject);
-        //        //StageManager.Instance.GetStar();
-        //        //}
-        //    }
-        //}
-
         Ray();
     }
     private void Ray()
