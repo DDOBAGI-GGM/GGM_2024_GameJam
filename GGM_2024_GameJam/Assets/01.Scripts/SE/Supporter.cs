@@ -14,6 +14,9 @@ public class Supporter : MonoBehaviour
 
     [SerializeField] private bool chase = false;
 
+    private int followNum = 0;
+    public int FollowNum { get { return followNum; } set {  followNum = value; } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,7 @@ public class Supporter : MonoBehaviour
     {
         target = _target;
         chase = true;
+        agent.stoppingDistance = 2.5f;
     }
 
     // Update is called once per frame
@@ -47,6 +51,7 @@ public class Supporter : MonoBehaviour
     public void UseMe(Vector3 pos)
     {
         chase = false;
+        agent.stoppingDistance = 0;
         agent.SetDestination(pos);
     }
 }
