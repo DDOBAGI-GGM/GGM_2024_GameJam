@@ -25,7 +25,7 @@ namespace Collections.Shaders.CircleTransition
 
         private void Start()
         {
-            DrawBlackScreen();
+            OpenBlackScreen();
         }
 
         private void Update()
