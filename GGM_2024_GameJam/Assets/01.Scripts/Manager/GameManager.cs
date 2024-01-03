@@ -11,6 +11,8 @@ public class GameManager : Singleton<GameManager>
     private CinemachineVirtualCamera _2DCam;
     private CinemachineVirtualCamera _3DCam;
 
+  //  [SerializeField] private PlayerSupporter _playerSupporter;      // 플레이어 서포터로 함. ㅇㅇ
+
     private float timeSinceLastSwitch = 0f;
     [SerializeField] private float switchCooldown = 1f;
 
@@ -58,6 +60,8 @@ public class GameManager : Singleton<GameManager>
             GravityConvert();
             SwitchCamera();
             timeSinceLastSwitch = 0f; // Reset the cooldown timer
+
+           // _playerSupporter.ChangeState(Is3D);
         }
         // 이거 위에 이프문 안으로 넣어두기!
         //Cam.transform.DOMoveX(_player.transform.position.x, 2f);

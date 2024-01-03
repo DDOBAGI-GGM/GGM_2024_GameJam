@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class PlayerSupporter : MonoBehaviour
 {
     [SerializeField] public List<Supporter> supportersList = new List<Supporter>();     // 나에게 있는 지지자들
-    private Queue<Supporter> supportersQueue = new Queue<Supporter>();
+    //private Queue<Supporter> supportersQueue = new Queue<Supporter>();
 
     [SerializeField] private GameObject supporterEdgePrefab;            // 배치 가능하다고 표시해줄 프리텝
     private LineRenderer lineRenderer;
@@ -39,13 +40,15 @@ public class PlayerSupporter : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && GameManager.Instance.Is3D)       // 3D 여야 함.
             {
                 var supporter = hit.collider.GetComponent<Supporter>();
-                if (supporter != null && !supportersQueue.Contains(supporter))      // 큐에 없어야행
+                //if (supporter != null && !supportersQueue.Contains(supporter))      // 큐에 없어야행
+                if (supporter != null && !supportersList.Contains(supporter))      // 리스트에 없어야행
                 {
                     supporter.ChaseStart(lastFollow);
                     lastFollow = supporter.transform;
-                    supportersQueue.Enqueue(supporter);
+                    //supportersQueue.Enqueue(supporter);
                     supportersList.Add(supporter);
-                    supporter.FollowNum = supportersQueue.Count;
+                    //supporter.FollowNum = supportersQueue.Count;
+                    supporter.FollowNum = supportersList.Count;
                     CreateSupporterEdge();
                 }
                 return;     // 뒤에있는거 작동 ㄴㄴ
@@ -55,45 +58,51 @@ public class PlayerSupporter : MonoBehaviour
         // 지지자 방출
         if (Input.GetKeyDown(KeyCode.E) && GameManager.Instance.Is3D)      // 3D 일때
         {
-            int xOffset = 2;
-            int yOffset = 2;        // 이 친구들 잘 사용하기!
-            while (supportersQueue.Count > 0)
-            {
-                supportersList.Remove(supportersQueue.Peek());
-                supporterEdgeList.Remove(supportersQueue.Peek().gameObject);
-                supportersQueue.Peek().UseMe(lineRenderer.GetPosition(supportersQueue.Peek().FollowNum));      // 서포터의 팔로우 넘버 사용해서 바꾸어 주기
-                supportersQueue.Dequeue();
-                xOffset++; yOffset++;
-            }
-            xOffset = 0; yOffset = 0;
-            lastFollow = transform;
+            /*          while (supportersQueue.Count > 0)
+                      {
+                          supportersList.Remove(supportersQueue.Peek());
+                          supporterEdgeList.Remove(supportersQueue.Peek().gameObject);
+                          supportersQueue.Peek().UseMe(lineRenderer.GetPosition(supportersQueue.Peek().FollowNum));      // 서포터의 팔로우 넘버 사용해서 바꾸어 주기
+                          supportersQueue.Dequeue();
+                      }*/
+
+            //for (int i = 0; i < supportersList.Count; i++)
+            //{
+            //    supportersList[i].UseMe(lineRenderer.GetPosition(supportersList[i].FollowNum));
+            //}
+
+            //lastFollow = transform;
+
             for (int i = 0; i < supporterEdgeList.Count; i++)
             {
-                Destroy(supporterEdgeList[i].gameObject);
+                supportersList[i].UseMe(lineRenderer.GetPosition(supportersList[i].FollowNum));
+                supporterEdgeList[i].gameObject.SetActive(false);
             }
-            lineRenderer.positionCount = 1;     // 방출했으니까 이제 없어!
-            supporterEdgeList.Clear();
+            lineRenderer.gameObject.SetActive(false);
         }
 
         // 지지자와 라인렌더러의 위치 정해주기
-        if (supportersQueue.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
+        //if (supportersQueue.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
+        if (supportersList.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
         {
             if (!is_showEdge)       // 지금 그려주는 것이 처음이면
             {
                 lineRenderer.gameObject.SetActive(true);
-                foreach (var supporter in supporterEdgeList)
+
+                for (int i = 0; i < supporterEdgeList.Count; i++)
                 {
-                    supporter.SetActive(true);
+                    supportersList[i].ChaseStart(supportersList[i].Target);
+                    supporterEdgeList[i].gameObject.SetActive(true);
                 }
                 is_showEdge = true;
             }
+
 
             Vector3 dir = GameManager.Instance.PlayerMovement.GetComponent<PlayerInput>().Move.normalized;     // 노멀라이즈하고
 
             if (Physics.Raycast(transform.position, dir, out RaycastHit hit, (lineRenderer.positionCount - 1 * 1.5f) + 2.5f, WallOrObstacleLayer))            // 벽에 닿았다면 
             {
                 Vector3 pos = hit.point;
-                Debug.Log(pos);
                 if (dir.x != 0) pos.x += dir.x * -1;
                 if (dir.y != 0) pos.y += dir.y * -1;
 
@@ -131,24 +140,18 @@ public class PlayerSupporter : MonoBehaviour
         }
         else
         {
-            if (!GameManager.Instance.Is3D)
+            if (!GameManager.Instance.Is3D)         // 2D 일 때
             {
-                lineRenderer.gameObject.SetActive(false);
-                foreach (var supporter in supporterEdgeList)
-                {
-                    supporter.SetActive(false);
-                }
                 is_showEdge = false;
             }
         }
-
-        // 2D가 되었을 때
     }
 
     private void CreateSupporterEdge()      // 생성하고 추가만 해줌.
     {
         Quaternion rotation = Quaternion.Euler(-90f, 90f, -90f);
-        if (supportersQueue.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
+        //if (supportersQueue.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
+        if (supportersList.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
         {
             GameObject supporterEdge = Instantiate(supporterEdgePrefab, transform.position, rotation, transform);
             supporterEdge.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
@@ -196,4 +199,16 @@ public class PlayerSupporter : MonoBehaviour
 
         }
     }
+
+/*    public void ChangeState(bool is3D)
+    {
+        if (is3D)
+        {
+            for (int i = 0; i < supportersList.Count; i++)
+            {
+                supportersList[i].ChaseStart(lastFollow);
+                CreateSupporterEdge();
+            }
+        }
+    }*/
 }
