@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.PlayerSettings;
 
-public class Supporter : MonoBehaviour
+public class Supporter : MonoBehaviour, IReset
 {
     [TextArea] private string description;
 
@@ -18,10 +19,14 @@ public class Supporter : MonoBehaviour
     public int FollowNum { get { return followNum; } set {  followNum = value; } }
 
     // Start is called before the first frame update
+
+    private Transform orginPos;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
+        orginPos = gameObject.transform;
     }
 
     public void ChaseStart(Transform _target)
@@ -53,5 +58,14 @@ public class Supporter : MonoBehaviour
         chase = false;
         agent.stoppingDistance = 0;
         agent.SetDestination(pos);
+    }
+
+    public void Reset()
+    {
+        chase = false;
+        //agent.isStopped = true;       //∏ÿ√„¿∏∑Œ «ÿ¡÷±‚
+        agent.stoppingDistance = 2.5f;
+        agent.SetDestination(orginPos.position);
+        transform.position = orginPos.position;
     }
 }
