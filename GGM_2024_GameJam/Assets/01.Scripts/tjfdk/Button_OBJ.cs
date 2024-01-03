@@ -21,22 +21,20 @@ public class Button_OBJ : MonoBehaviour, IReset
     [SerializeField] private Material upColor;
     [SerializeField] private Material downColor;
 
-    private bool isDown = false;
+    [Header("Interactiond")]
+    [SerializeField] private bool isDown = false;
     public bool IsDown { get { return isDown; } }
 
-    private Transform originPos;
     private bool isCollision = false;
 
     private void Awake()
     {
         renderer = GetComponent<MeshRenderer>();
-        originPos = transform;
     }
 
     public void Reset()
     {
-        transform.position = originPos.position;
-        isCollision = false;
+        isDown = false;
     }
 
     private void Update()
@@ -68,10 +66,17 @@ public class Button_OBJ : MonoBehaviour, IReset
             if (isCollision)
             {
                 isDown = false;
+                isCollision = false;
                 transform.DOKill();
                 transform.DOLocalMoveY(upPos, 0.5f);
                 renderer.material = upColor;
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, distance);
     }
 }

@@ -34,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 MovementVelocity => _movementVelocity;
 
     private bool _activeMove = true;
+
+    public Vector3 originPos;
+
     public bool ActiveMove
     {
         get => _activeMove;
@@ -47,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
         _playerInput.OnJump += Jump;
+
+        originPos = transform.position;
     }
 
     private void FixedUpdate()
@@ -54,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsDead)
         {
             PlayerDead();
+            //IsDead = false;
         }
 
         //키보드로 움직일때만 이렇게 움직이고
@@ -78,10 +84,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerDead()
     {
-        StopImmediately();
+        //StopImmediately();
+        IsDead = false;
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         StageManager.Instance.ReSet();
-        IsDead = !IsDead;
+        transform.position = originPos;
     }
 
     private void AnimatorControl()
