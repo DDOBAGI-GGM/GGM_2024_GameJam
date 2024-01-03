@@ -28,16 +28,9 @@ public class FollowXOnly : MonoBehaviour
         // 대상의 현재 위치를 가져와서 카메라의 위치를 업데이트합니다.
         if (target != null)
         {
-            if (GameManager.Instance.Is3D)
-            {
-                virtualCamera.Follow = null;
-                Vector3 newPosition = new Vector3(target.position.x, transform.position.y, transform.position.z);
-                transform.position = newPosition;
-            }
-            else
-            {
-                virtualCamera.Follow = target;
-            }
+            virtualCamera.Follow = null;
+            Vector3 newPosition = new Vector3(target.position.x, transform.position.y, transform.position.z);
+            transform.position = newPosition;
         }
     }
 }
