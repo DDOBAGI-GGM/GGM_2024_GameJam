@@ -255,6 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 112843415}
   - component: {fileID: 112843418}
+  - component: {fileID: 112843419}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -293,6 +294,30 @@ MonoBehaviour:
   Is3D: 0
   _3DY: 15
   _2DY: 2.25
+--- !u!114 &112843419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112843414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58661e19b2cef44c9a830c53dcd8e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageValue:
+  - reStartPos: {fileID: 8532294366641568324}
+    pointCnt: 1
+    obj:
+    - {fileID: 1004921351}
+  currentStageMax: 0
+  currentStage: 0
+  beforeStage: 0
+  dustCnt: 0
+  starCnt: 0
+  isClear: 0
+  isReset: 0
 --- !u!1 &126939185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,6 +1401,12 @@ Transform:
   - {fileID: 1548458231}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
+--- !u!1 &1004921351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7308231405277045792, guid: 1844094a43e244745879b1c20fa9a391,
+    type: 3}
+  m_PrefabInstance: {fileID: 1067347622}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1067347622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5046,7 +5077,6 @@ MonoBehaviour:
   zPos: -2.08
   _deadParticle: {fileID: 0}
   IsDead: 0
-  originPos: {x: 0, y: 0, z: 0}
 --- !u!4 &8324848191807247975
 Transform:
   m_ObjectHideFlags: 0
