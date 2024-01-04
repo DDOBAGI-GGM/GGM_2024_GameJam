@@ -90,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         CircleTransition.Instance.CloseBlackScreen();
         StageManager.Instance.ReSet();
+
         
         StartCoroutine(DeadfalseCoroutine());
     }
