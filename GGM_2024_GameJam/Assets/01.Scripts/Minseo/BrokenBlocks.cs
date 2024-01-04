@@ -6,7 +6,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 using Unity.VisualScripting;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
-public class BrokenBlocks : MonoBehaviour, IReset
+public class BrokenBlocks : MonoBehaviour//, IReset
 {
     [SerializeField] private float delay = 1;
 
@@ -20,10 +20,10 @@ public class BrokenBlocks : MonoBehaviour, IReset
         originalPosition = transform.position;
     }
 
-    public void Reset()
-    {
-        isBroken = true;
-    }
+    //public void Reset()
+    //{
+    //    isBroken = true;
+    //}
 
     private void Update()
     {
@@ -36,7 +36,7 @@ public class BrokenBlocks : MonoBehaviour, IReset
     private void Ray()
     {
         RaycastHit hit;
-        bool isHit = Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.up, out hit, transform.rotation, 0.1f);
+        bool isHit = Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.up, out hit, transform.rotation, 0.2f);
 
         Debug.DrawRay(transform.position, transform.forward * 1f, Color.red);
 
