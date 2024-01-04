@@ -48,7 +48,8 @@ public class Enemy_OBJ : MonoBehaviour, IReset
 
                 foreach (Collider collider in colliders)
                 {
-                    collider.transform.GetComponent<PlayerMovement>().IsDead = true;
+                    if (GameManager.Instance.cannotAttack == false)
+                        collider.transform.GetComponent<PlayerMovement>().IsDead = true;
                 }
             }
         }
