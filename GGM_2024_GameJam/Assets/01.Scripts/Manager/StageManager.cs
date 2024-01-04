@@ -42,7 +42,7 @@ public class StageManager : Singleton<StageManager>
     [HideInInspector] public bool IsClear => isClear;
     [SerializeField] private bool isReset = false;
 
-    private void Awake()
+    public override void Awake()
     {
         base.Awake();
     }

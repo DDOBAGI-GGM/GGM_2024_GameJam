@@ -16,21 +16,40 @@ public class UIManager : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private Ease easingFunc;
 
+    private Sequence _sequenceFadeInOut;
+
     public static UIManager Instance;
 
     private void Awake()
     {
         Instance = this;
+        fadePanel.gameObject.SetActive(true);
     }
 
     private void Start()
     {
-        fadePanel.gameObject.SetActive(true);
+/*        Color alpha = fadePanel.color;
+        alpha.a = 1;
+        fadePanel.color = alpha;*/
+
         fadePanel.DOFade(0, duration).SetEase(easingFunc).OnComplete(() => fadePanel.gameObject.SetActive(false));
 
         imageIdx = 0;
         if (cutSceneViewer)
             PlayCutScene();
+
+        _sequenceFadeInOut = DOTween.Sequence()
+            .SetAutoKill(false)
+            .OnRewind(() =>
+            {
+                fadePanel.gameObject.SetActive(true);
+            })
+            .Append(fadePanel.DOFade(1, 1))
+            .Append(fadePanel.DOFade(0, 1))
+            .OnComplete(() =>
+            {
+                fadePanel.gameObject.SetActive(false);
+            });
     }
     public void ChangeScene(string sceneName)
     {
@@ -45,6 +64,12 @@ public class UIManager : MonoBehaviour
         else
             ChangeScene(sceneName);
 
+        FadeInOut();
+    }
+
+    private void FadeInOut()
+    {
+        _sequenceFadeInOut.Restart();
         imageIdx++;
     }
 }
