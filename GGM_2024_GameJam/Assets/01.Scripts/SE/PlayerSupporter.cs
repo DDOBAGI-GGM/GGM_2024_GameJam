@@ -18,7 +18,7 @@ public class PlayerSupporter : MonoBehaviour
     private RaycastHit hit;
 
     private PlayerInput _playerInput;
-    private Transform lastFollow, lastlastFollow;
+    private Transform lastFollow;
 
     private bool reverse = false;
 
@@ -29,7 +29,6 @@ public class PlayerSupporter : MonoBehaviour
         _playerInput = GameManager.Instance.PlayerMovement.gameObject.GetComponent<PlayerInput>();
         lineRenderer = GetComponentInChildren<LineRenderer>();
         lastFollow = transform;
-        lastlastFollow = transform;
         Instance = this;
     }
 
@@ -255,6 +254,18 @@ public class PlayerSupporter : MonoBehaviour
         if (supportersList.Count <= 0) lastFollow = transform;      // 만약에 0이면
 
         lineRenderer.positionCount = supportersList.Count + 1;
+    }
+
+    public void TutorialReSet()
+    {
+        for (int i = 0; i < supportersList.Count; i++)
+        {
+            Destroy(supportersList[i].gameObject);
+            Destroy(supporterEdgeList[i].gameObject);
+        }
+        supportersList.Clear();
+        supporterEdgeList.Clear();
+        lastFollow = transform;
     }
 
 }

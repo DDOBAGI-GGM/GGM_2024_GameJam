@@ -9,6 +9,19 @@ public class Gate : MonoBehaviour
     private bool isChecking = false;
     private bool isTuto = true;
 
+    public static Gate Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public bool IsTuto
+    {
+        get => isTuto;
+        set => isTuto = value;
+    }
+
     private void Start()
     {
         isTuto = true;
@@ -27,7 +40,7 @@ public class Gate : MonoBehaviour
             {
                 //PlayerStar.Instance.UseStar();
 
-                    StageManager.Instance.NextStage();
+                StageManager.Instance.NextStage();
 
                 foreach (GameObject obj in _walls)
                 {
@@ -40,22 +53,6 @@ public class Gate : MonoBehaviour
                 }
 
                 isChecking = true;
-            }
-
-            if (isTuto)
-            {
-                foreach (GameObject obj in _walls)
-                {
-                    obj.gameObject.transform.DOScaleY(0, 2f);
-                }
-
-                foreach (GameObject obj in _bridges)
-                {
-                    obj.SetActive(true);
-                }
-
-                isChecking = true;
-                isTuto = false;
             }
         }
     }

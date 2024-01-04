@@ -8,12 +8,13 @@ public class SceneMove : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        CircleTransition.Instance.CloseBlackScreen();
-        Invoke("MoveScene", 1f);
-    }
-
-    void MoveScene()
-    {
-        SceneManager.LoadScene("Game");
+        if (other.CompareTag("Player"))
+        {
+            var supporter = other.gameObject.GetComponent<PlayerSupporter>();
+            if (supporter != null)
+            {
+                supporter.TutorialReSet();
+            }
+        }
     }
 }
