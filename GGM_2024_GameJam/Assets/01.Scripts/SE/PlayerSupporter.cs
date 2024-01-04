@@ -43,6 +43,7 @@ public class PlayerSupporter : MonoBehaviour
                 //if (supporter != null && !supportersQueue.Contains(supporter))      // 큐에 없어야행
                 if (supporter != null && !supportersList.Contains(supporter))      // 리스트에 없어야행
                 {
+                    Debug.Log(supporter);
                     supporter.ChaseStart(lastFollow);
                     lastFollow = supporter.transform;
                     //supportersQueue.Enqueue(supporter);
