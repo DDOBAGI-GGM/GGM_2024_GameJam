@@ -7,6 +7,7 @@ TagManager:
   - test1
   - test2
   - Map
+  - GravityBlock
   layers:
   - Default
   - TransparentFX
