@@ -209,7 +209,14 @@ public class PlayerSupporter : MonoBehaviour
                     supportersList.Remove(supportersList[i]);
                     Destroy(supporterEdgeList[i].gameObject);
                     supporterEdgeList.Remove(supporterEdgeList[i]);
-                    lastFollow = supportersList[i - 1].transform;
+                    if ( i - 1 >= 0)
+                    {
+                        lastFollow = supportersList[i - 1].transform;
+                    }
+                    else
+                    {
+                        lastFollow = transform;
+                    }
                 }
             }
         }
