@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float _3DY, _2DY;
     //[SerializeField] bool test = false;
 
-    private Vector3 _2DGravity = new Vector3(0, 0, -9.8f);
+    private Vector3 _2DGravity = new Vector3(0, -9.8f, 0);
     private Vector3 _3DGravity = new Vector3(0, 0, 0);
 
     public override void Awake()
