@@ -10,6 +10,7 @@ public class SceneMove : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("튜토 따까리 초기화");
             var supporter = other.gameObject.GetComponent<PlayerSupporter>();
             if (supporter != null)
             {
