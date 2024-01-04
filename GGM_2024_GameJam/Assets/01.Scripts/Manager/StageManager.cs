@@ -42,7 +42,7 @@ public class StageManager : Singleton<StageManager>
     [HideInInspector] public bool IsClear => isClear;
     [SerializeField] private bool isReset = false;
 
-    private void Awake()
+    public override void Awake()
     {
         base.Awake();
     }
@@ -81,7 +81,7 @@ public class StageManager : Singleton<StageManager>
             currentStage += 1;
 
             if (currentStage >= stageValue.Count)
-                UIManager.Instance.ChangeScene("Clear");
+                UIManager.Instance?.ChangeScene("Clear");
             else
             {
                 isClear = false;
