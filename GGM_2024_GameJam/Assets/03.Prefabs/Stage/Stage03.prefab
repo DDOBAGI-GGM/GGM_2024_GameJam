@@ -2781,6 +2781,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weigh
       objectReference: {fileID: 0}
+    - target: {fileID: 5204804816118172529, guid: 22b8325085046a9478cd1e1153698dba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204804816118172529, guid: 22b8325085046a9478cd1e1153698dba,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204804816118172529, guid: 22b8325085046a9478cd1e1153698dba,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7571754877954264692, guid: 22b8325085046a9478cd1e1153698dba,
         type: 3}
       propertyPath: m_LocalPosition.x
