@@ -267,6 +267,7 @@ public class PlayerMovement : MonoBehaviour
                 forceDir.z = 0;
                 forceDir.Normalize();
 
+                Debug.Log("df");
                 _rigidbody.AddForceAtPosition(forceDir * pushForce, transform.position, ForceMode.Impulse);
             }
         }

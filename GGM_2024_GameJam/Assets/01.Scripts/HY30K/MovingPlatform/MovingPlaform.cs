@@ -71,7 +71,7 @@ public class MovingPlaform : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         _player.OnPlatform = true;
-        if (GetTargetCount() == _Cnt)
+        if (GetTargetCount() >= _Cnt)
             other.transform.SetParent(transform);
     }
 

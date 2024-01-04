@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 8
   _rotateSpeed: 10
-  _gravity: -2.5
+  _gravity: -2
   _jumpPower: 0.6
   _rootTrm: {fileID: 2889439679076784577}
   _gravityMultiplier: 1
@@ -306,6 +306,7 @@ MonoBehaviour:
   zPos: -0.8
   IsDead: 0
   isOneDead: 0
+  pushForce: 5
 --- !u!114 &6879654371389328216
 MonoBehaviour:
   m_ObjectHideFlags: 0
