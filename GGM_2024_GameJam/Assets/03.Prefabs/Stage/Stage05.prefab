@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 5877736077346107320}
   - component: {fileID: 5896750677055876900}
   - component: {fileID: 2322411747333230788}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 646215924659701186}
   - component: {fileID: 4103389733802742665}
   - component: {fileID: 4376110118779718740}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2471,7 +2471,7 @@ GameObject:
   - component: {fileID: 963293296167757634}
   - component: {fileID: 6022307640024478768}
   - component: {fileID: 8260097723314751392}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4415,7 +4415,7 @@ PrefabInstance:
     - target: {fileID: 6307734252544699815, guid: 1844094a43e244745879b1c20fa9a391,
         type: 3}
       propertyPath: stage
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7308231405277045792, guid: 1844094a43e244745879b1c20fa9a391,
         type: 3}

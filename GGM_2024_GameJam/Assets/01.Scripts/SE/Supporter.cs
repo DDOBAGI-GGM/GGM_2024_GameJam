@@ -62,6 +62,7 @@ public class Supporter : MonoBehaviour, IReset
         {
             agent.SetDestination(target.position);
         }
+
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             animator.SetBool("IsMove", false);
@@ -83,7 +84,7 @@ public class Supporter : MonoBehaviour, IReset
     {
         if (firstGetMe)
         {
-            Debug.Log("¼­Æ÷ÅÍ ÃÊ±âÈ­");
+            Debug.Log("¼­Æ÷ÅÍ ÃÊ±âÈ­" + gameObject.name);
             target = null;
             chase = false;      // iì§€ë§?
             //agent.isStopped = true;       //ë©ˆì¶¤?¼ë¡œ ?´ì£¼ê¸?
