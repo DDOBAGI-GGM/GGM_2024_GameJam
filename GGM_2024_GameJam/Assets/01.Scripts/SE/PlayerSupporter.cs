@@ -8,11 +8,11 @@ public class PlayerSupporter : MonoBehaviour
     [SerializeField] public List<Supporter> supportersList = new List<Supporter>();     // 나에게 있는 지지자들
     //private Queue<Supporter> supportersQueue = new Queue<Supporter>();
 
-    [SerializeField] private GameObject supporterEdgePrefab;            // 배치 가능하다고 표시해줄 프리텝
-    private LineRenderer lineRenderer;
-    [SerializeField] private List<GameObject> supporterEdgeList = new List<GameObject>();
-    [SerializeField] private LayerMask WallOrObstacleLayer;
-    private bool is_showEdge = false;
+    //[SerializeField] private GameObject supporterEdgePrefab;            // 배치 가능하다고 표시해줄 프리텝
+    //private LineRenderer lineRenderer;
+    //[SerializeField] private List<GameObject> supporterEdgeList = new List<GameObject>();
+    //[SerializeField] private LayerMask WallOrObstacleLayer;
+    //private bool is_showEdge = false;
 
     [SerializeField] private LayerMask supporterLayer;
     private RaycastHit hit;
@@ -25,7 +25,7 @@ public class PlayerSupporter : MonoBehaviour
     private void Start()
     {
         _playerInput = GameManager.Instance.PlayerMovement.gameObject.GetComponent<PlayerInput>();
-        lineRenderer = GetComponentInChildren<LineRenderer>();
+       // lineRenderer = GetComponentInChildren<LineRenderer>();
         lastFollow = transform;
     }
 
@@ -49,22 +49,37 @@ public class PlayerSupporter : MonoBehaviour
                     supportersList.Add(supporter);
                     //supporter.FollowNum = supportersQueue.Count;
                     supporter.FollowNum = supportersList.Count;
-                    CreateSupporterEdge();
+                    //CreateSupporterEdge();
                 }
                 return;     // 뒤에있는거 작동 ㄴㄴ
             }
         }
 
+
+        for (int i = 0; i < supportersList.Count; i++)
+        {
+            if (GameManager.Instance.Is3D)
+            {
+                supportersList[i].ChaseStart(supportersList[i].Target);
+            }
+            else
+            {
+                supportersList[i].UseMe(supportersList[i].transform.position);
+            }
+        }
+
+
         // 지지자 방출
+       /*
         if (Input.GetKeyDown(KeyCode.E) && GameManager.Instance.Is3D)      // 3D 일때
         {
-            /*          while (supportersQueue.Count > 0)
-                      {
-                          supportersList.Remove(supportersQueue.Peek());
-                          supporterEdgeList.Remove(supportersQueue.Peek().gameObject);
-                          supportersQueue.Peek().UseMe(lineRenderer.GetPosition(supportersQueue.Peek().FollowNum));      // 서포터의 팔로우 넘버 사용해서 바꾸어 주기
-                          supportersQueue.Dequeue();
-                      }*/
+            //while (supportersQueue.Count > 0)
+            //    {
+            //        supportersList.Remove(supportersQueue.Peek());
+            //        supporterEdgeList.Remove(supportersQueue.Peek().gameObject);
+            //        supportersQueue.Peek().UseMe(lineRenderer.GetPosition(supportersQueue.Peek().FollowNum));      // 서포터의 팔로우 넘버 사용해서 바꾸어 주기
+            //        supportersQueue.Dequeue();
+            //    }
 
             //for (int i = 0; i < supportersList.Count; i++)
             //{
@@ -80,10 +95,11 @@ public class PlayerSupporter : MonoBehaviour
             }
             lineRenderer.gameObject.SetActive(false);
         }
+    */
 
         // 지지자와 라인렌더러의 위치 정해주기
         //if (supportersQueue.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
-        if (supportersList.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
+    /*    if (supportersList.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
         {
             if (!is_showEdge)       // 지금 그려주는 것이 처음이면
             {
@@ -148,10 +164,10 @@ public class PlayerSupporter : MonoBehaviour
                     supporterEdgeList[i].gameObject.SetActive(false);
                 }
             }
-        }
+        }*/
     }
 
-    private void CreateSupporterEdge()      // 생성하고 추가만 해줌.
+/*    private void CreateSupporterEdge()      // 생성하고 추가만 해줌.
     {
         Quaternion rotation = Quaternion.Euler(-90f, 90f, -90f);
         //if (supportersQueue.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
@@ -163,7 +179,7 @@ public class PlayerSupporter : MonoBehaviour
         }
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, transform.position);
-    }
+    }*/
 
     private void OnDrawGizmos()
     {

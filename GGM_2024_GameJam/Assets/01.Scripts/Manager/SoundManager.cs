@@ -19,7 +19,7 @@ public class SoundManager : Singleton<SoundManager>
 
     private void Start()
     {
-        PlayBGM("BGM");
+        PlayBGM("intro");
     }
 
     public void PlayBGM(string name) // BGM 실행
@@ -34,6 +34,7 @@ public class SoundManager : Singleton<SoundManager>
                 return;
             }
         }
+        Debug.LogError("배경음악 사운드 이름 잘못부름!");
     }
 
     public void PlaySFX(string name)
@@ -46,6 +47,7 @@ public class SoundManager : Singleton<SoundManager>
                 return;
             }
         }
+        Debug.LogError("이펙트 사운드 이름 잘못부름!");
     }
 
 

@@ -10,6 +10,11 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);      // 바로 씬 넘어감
     }
 
+    public void OnPlayButtonSound()     // 연결해뒀으니 수정 하지 말기
+    {
+        SoundManager.Instance.PlaySFX("button");
+    }
+
     public void OnExit()
     {
         Debug.Log("나가기 누름!");
