@@ -366,35 +366,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3015b7eea383f64d8b81f965cc466e7, type: 3}
---- !u!1 &270789044 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 49223900469597628, guid: 46fa27c6191c0884b835a8912a3d159d,
-    type: 3}
-  m_PrefabInstance: {fileID: 926893257}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &270789045
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270789044}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &596459817
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,8 +611,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startdelay: 2
   speed: 5
+  numToSubtract: 0
   isStart: 0
-  enemyPos: []
+  player: {fileID: 0}
 --- !u!65 &849955522
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -842,11 +814,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1909740581958373937, guid: 46fa27c6191c0884b835a8912a3d159d, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 49223900469597628, guid: 46fa27c6191c0884b835a8912a3d159d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 270789045}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46fa27c6191c0884b835a8912a3d159d, type: 3}
 --- !u!1 &1106133258
 GameObject:
@@ -1146,9 +1114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 2
-  _playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
   isBroken: 0
 --- !u!54 &1204488114
 Rigidbody:
@@ -1312,11 +1277,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd67a2239055aa47b90493f89cb4ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  switchCooldown: 1
   Is3D: 0
   _3DY: 26
   _2DY: -14
-  orthographicSize: 8.5
-  test: 1
 --- !u!4 &1550800051
 Transform:
   m_ObjectHideFlags: 0
@@ -1479,11 +1443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd67a2239055aa47b90493f89cb4ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  switchCooldown: 1
   Is3D: 0
   _3DY: 0
   _2DY: 0
-  orthographicSize: 8.5
-  test: 0
 --- !u!4 &1858837729
 Transform:
   m_ObjectHideFlags: 0

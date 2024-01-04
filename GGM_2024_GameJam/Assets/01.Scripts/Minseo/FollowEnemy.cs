@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,13 +10,15 @@ public class FollowEnemy : MonoBehaviour
 
     [SerializeField] private bool isStart = false;
 
-    private Vector3 originalPosition;
+    [SerializeField] private GameObject player;
 
     private Rigidbody _rigidbody;
+    private PlayerMovement _playerMovement;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _playerMovement = FindObjectOfType<PlayerMovement>();
 
         Invoke("StartTracking", startdelay);
     }
@@ -27,21 +29,26 @@ public class FollowEnemy : MonoBehaviour
         {
             _rigidbody.velocity = Vector3.right * speed;
         }
-
     }
 
-    private void StartTracking()
+    public void StartTracking()
     {
         isStart = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.transform.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
-            originalPosition = transform.position;
-
-            transform.position = originalPosition + new Vector3(-numToSubtract, 0, 0);
+            isStart = false;
+            _playerMovement.IsDead = true;
+            Debug.Log("플레이어 충돌");
         }
+    }
+
+    public void PlayerDead()
+    {
+        transform.position = player.transform.position + new Vector3(-numToSubtract, 0, 0);
+        isStart = true;
     }
 }

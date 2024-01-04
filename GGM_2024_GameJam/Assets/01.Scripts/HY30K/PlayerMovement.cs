@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     protected bool _facingRight = true;
     private PlayerInput _playerInput;
     private Animator _animator;
+    private FollowEnemy _followEnemy;
 
     private CharacterController _characterController;
     public bool IsGround
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator = gameObject.GetComponentInChildren<Animator>();
         _characterController = GetComponent<CharacterController>();
+        _followEnemy = FindObjectOfType<FollowEnemy>();
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
         _playerInput.OnJump += Jump;
@@ -60,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerDead();
         }
 
-        //?�보?�로 ?�직일?�만 ?�렇�??�직이�?
+        //?�보?�로 ?�직??�만 ?�렇�??�직?��?
         if (IsDead == false)
         {
             if (_activeMove && GameManager.Instance.Is3D)
@@ -72,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
                 CalulatePlayer2DMovement();
             }
             if (!GameManager.Instance.Is3D)
-                ApplyGravity(); //중력 ?�용 (2D?�때�?
+                ApplyGravity(); //중력 ?�용 (2D?�때�?
 
             Move();
             AnimatorControl();
@@ -84,13 +86,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerDead()
     {
-        SoundManager.Instance.PlaySFX("die");
+        SoundManager.Instance?.PlaySFX("die");
 
         transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         CircleTransition.Instance.CloseBlackScreen();
         StageManager.Instance.ReSet();
-        
+        _followEnemy.PlayerDead();
+
+
         StartCoroutine(DeadfalseCoroutine());
     }
 

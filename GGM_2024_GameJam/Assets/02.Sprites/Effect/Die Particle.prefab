@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 695506783536675237}
   - component: {fileID: 695506783536675236}
   - component: {fileID: 695506783536675239}
+  - component: {fileID: -4723721771807002686}
   m_Layer: 0
   m_Name: Die Particle
   m_TagString: Untagged
@@ -116,7 +117,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
+      scalar: 0.5
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
@@ -226,8 +227,8 @@ ParticleSystem:
       maxColor: {r: 0.8962264, g: 0.6618143, b: 0.063412234, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
+        key0: {r: 0.98475003, g: 1, b: 0, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -870,7 +871,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4887,3 +4888,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-4723721771807002686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695506783536675238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ab10fa3a6e6bc4ab442d7fd0da5108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0.5

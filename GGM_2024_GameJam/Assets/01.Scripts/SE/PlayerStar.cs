@@ -9,6 +9,7 @@ public class PlayerStar : MonoBehaviour
     private int nowStarCount = 0;
 
     [SerializeField] private float starSize = 0.75f;
+    [SerializeField] private GameObject bombParticle;        // 별 터지는 이펙트
 
     public static PlayerStar Instance;
 
@@ -31,6 +32,7 @@ public class PlayerStar : MonoBehaviour
     {
         for (int i = 0; i < starList.Count; i++)
         {
+            Instantiate(bombParticle, starList[i].transform.position, Quaternion.identity);
             Destroy(starList[i].gameObject);
         }
         starList.Clear();
