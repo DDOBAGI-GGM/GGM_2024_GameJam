@@ -16,6 +16,7 @@ public class SceneMove : MonoBehaviour
                 _wall.transform.DOScaleY(1, 2f);
             }
 
+            StageManager.Instance.NextStage();
             StageManager.Instance.DustCntClear();
         }
     }
