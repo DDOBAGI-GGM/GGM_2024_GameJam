@@ -114,7 +114,7 @@ public class StageManager : Singleton<StageManager>
         foreach (var stage in stageValue[currentStage].obj)
         {
             IReset reset = stage.GetComponent<IReset>();
-            reset.Reset();
+            reset?.Reset();
         }
 
         PlayerSupporter.Instance.ReStart();

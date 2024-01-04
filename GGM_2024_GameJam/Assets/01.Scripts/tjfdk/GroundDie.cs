@@ -10,6 +10,7 @@ public class GroundDie : MonoBehaviour
         Debug.Log(other.transform.name);
             other.transform.GetComponent<PlayerMovement>().IsDead = true;
             other.transform.GetComponent<PlayerMovement>().ResetPosition();
+            GameManager.Instance.CanConvert = true;
         }
     }
 }

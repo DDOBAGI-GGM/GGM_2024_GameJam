@@ -100,7 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc8528842d6a044ba6f65caa596d78d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walls: []
+  _walls:
+  - {fileID: 2002680487900178286}
+  - {fileID: 0}
+  - {fileID: 0}
   _bridges: []
 --- !u!1 &2002680487900178286
 GameObject:

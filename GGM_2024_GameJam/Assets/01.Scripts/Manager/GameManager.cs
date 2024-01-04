@@ -53,6 +53,11 @@ public class GameManager : Singleton<GameManager>
     {
         timeSinceLastSwitch += Time.deltaTime;
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log($"큐키를 누름. {CanConvert}");
+        }
+
         if (Input.GetKeyDown(KeyCode.Q) && CanConvert && !_player.OnPlatform && timeSinceLastSwitch >= switchCooldown)
         {
             Debug.Log("시점변경");
