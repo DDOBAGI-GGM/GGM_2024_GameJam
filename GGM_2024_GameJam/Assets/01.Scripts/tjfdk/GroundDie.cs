@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GroundDie : MonoBehaviour
 {
-
     private void OnTriggerEnter(Collider other) {
         Debug.Log(other.transform.name);
         if (other.transform.CompareTag("Player"))
