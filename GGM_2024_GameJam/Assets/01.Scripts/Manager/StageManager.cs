@@ -93,6 +93,7 @@ public class StageManager : Singleton<StageManager>
             else
             {
                 isClear = false;
+                starCnt = 0;
                 currentStageMax = stageValue[currentStage].pointCnt;
             }
         }
