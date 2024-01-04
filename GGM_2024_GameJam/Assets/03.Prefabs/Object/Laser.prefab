@@ -152,7 +152,7 @@ MonoBehaviour:
   _lineRenderer: {fileID: 717595159553452399}
   _mapLayerMask:
     serializedVersion: 2
-    m_Bits: 448
+    m_Bits: 4416
   _playerLayerMask:
     serializedVersion: 2
     m_Bits: 512

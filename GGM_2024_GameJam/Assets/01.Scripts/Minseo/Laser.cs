@@ -32,6 +32,8 @@ public class Laser : MonoBehaviour
             _lineRenderer.SetPosition(1, transform.position + transform.forward * 25f);
         }
 
+        Debug.DrawRay(transform.position, transform.forward * lineDis, Color.yellow);
+
         if (Physics.Raycast(transform.position, transform.forward, out hit, lineDis, _playerLayerMask))
         {
             Debug.LogError("·¹ÀÌÀú¶û ÇÃ·¹ÀÌ¾î¶û ´êÀ½");
