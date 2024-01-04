@@ -70,7 +70,7 @@ public class Enemy_OBJ : MonoBehaviour, IReset
 
         float distance = Vector3.Distance(transform.position, target);
 
-        if (distance < 1f)
+        if (distance < 0.1f)
             idx = (idx + 1) % points.Length;
     }
 
