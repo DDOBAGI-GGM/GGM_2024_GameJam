@@ -89,9 +89,9 @@ public class PlayerMovement : MonoBehaviour
         //SoundManager.Instance.PlaySFX("die");
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         CircleTransition.Instance.CloseBlackScreen();
-        Invoke("ResetPosition", 1f);
+        Invoke("ResetPosition", 0.6f);
         StageManager.Instance.ReSet();
-        _followEnemy.PlayerDead();
+        //_followEnemy.PlayerDead();
 
         StartCoroutine(DeadfalseCoroutine());
     }
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DeadfalseCoroutine()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.7f);
         CircleTransition.Instance.OpenBlackScreen();
         IsDead = false;
     }
