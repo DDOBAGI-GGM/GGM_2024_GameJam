@@ -1,3 +1,4 @@
+using Collections.Shaders.CircleTransition;
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -85,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
+        CircleTransition.Instance.CloseBlackScreen();
         StageManager.Instance.ReSet();
         
         StartCoroutine(DeadfalseCoroutine());
@@ -94,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         IsDead = false;
+        CircleTransition.Instance.OpenBlackScreen();
     }
 
     private void AnimatorControl()

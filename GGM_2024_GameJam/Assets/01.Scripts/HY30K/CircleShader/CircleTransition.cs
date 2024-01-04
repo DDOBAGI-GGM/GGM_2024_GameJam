@@ -40,11 +40,6 @@ namespace Collections.Shaders.CircleTransition
             {
                 CloseBlackScreen();
             }
-
-            if (StageManager.Instance.IsClear)
-            {
-                CloseBlackScreen();
-            }
         }
 
         public void OpenBlackScreen()
