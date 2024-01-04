@@ -30,14 +30,18 @@ public class Star : MonoBehaviour, IReset
 
         if (colliders.Length > 0)
         {
-            if (!isCollision && isInteraction == false)
+            if (!isCollision)
             {
                 isCollision = true;
 
                 foreach (Collider collider in colliders)
                 {
-                    StageManager.Instance.GetStar();
                     isInteraction = true;
+                    if (StageManager.Instance.GetStar())
+                    {
+                        Debug.Log("¾òÀ½");
+                        PlayerStar.Instance.StarAdd(this.transform);
+                    }
                 }
             }
         }

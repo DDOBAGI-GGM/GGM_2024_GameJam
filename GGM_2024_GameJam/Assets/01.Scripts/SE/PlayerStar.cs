@@ -8,10 +8,13 @@ public class PlayerStar : MonoBehaviour
     private List<GameObject> starList = new List<GameObject>();
     private int nowStarCount = 0;
 
-    [SerializeField] private float starSize = 1;
+    [SerializeField] private float starSize = 0.75f;
+
+    public static PlayerStar Instance;
 
     private void Awake()
     {
+        Instance = this;
         playerSupporter = GetComponent<PlayerSupporter>();
     }
 

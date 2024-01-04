@@ -66,10 +66,14 @@ public class StageManager : Singleton<StageManager>
             isClear = true;
     }
 
-    public void GetStar()
+    public bool GetStar()
     {
         if (starCnt + 1 <= dustCnt)
+        {
             starCnt++;
+            return true;
+        }
+        return false;
     }
 
     public void GetDust()
