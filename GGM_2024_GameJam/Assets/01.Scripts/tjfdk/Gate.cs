@@ -1,24 +1,25 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using DG.Tweening;
 
 public class Gate : MonoBehaviour
 {
     private Transform bridge;
+    private GameObject _gate;
     private bool isChecking = false;
 
-    [SerializeField] private List<Transform> walls;
+    [SerializeField] private List<GameObject> walls;
 
     private void Awake()
     {
         bridge = transform.GetChild(0).GetComponent<Transform>();
         bridge.gameObject.SetActive(false);
+        _gate = transform.GetChild(1).GetComponent<GameObject>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && isChecking == false && GameManager.Instance.Is3D)         // 3D ÀÏ¶§¸¸ °¨ÁöÇÔ.
+        if (other.CompareTag("Player") && isChecking == false && GameManager.Instance.Is3D)         // 3D ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
         {
             if (StageManager.Instance.IsClear)
             {
@@ -28,8 +29,8 @@ public class Gate : MonoBehaviour
 
                 PlayerStar.Instance.UseStar();
 
-                foreach (Transform obj in walls)
-                    obj.gameObject.SetActive(false);
+                foreach (GameObject obj in walls)
+                    obj.gameObject.transform.DOScaleZ(0, 2f);
             }
         }
     }
