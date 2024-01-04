@@ -39,6 +39,7 @@ public class Star : MonoBehaviour, IReset
                     isInteraction = true;
                     if (StageManager.Instance.GetStar())
                     {
+                        SoundManager.Instance.PlaySFX("star");
                         Debug.Log("¾òÀ½");
                         PlayerStar.Instance.StarAdd(this.transform);
                     }

@@ -84,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerDead()
     {
+        SoundManager.Instance.PlaySFX("die");
+
         transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         CircleTransition.Instance.CloseBlackScreen();
