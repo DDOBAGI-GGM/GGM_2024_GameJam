@@ -52,6 +52,7 @@ public class MovingPlaform : MonoBehaviour
     private int GetTargetCount()
     {
         Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(5, 5, 5), transform.rotation, _layerMask);
+        Debug.Log(colliders.Length);
         return colliders.Length;
     }
 
