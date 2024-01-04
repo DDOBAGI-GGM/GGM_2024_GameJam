@@ -5,12 +5,15 @@ using DG.Tweening;
 public class Gate : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _walls;
-    [SerializeField] private List<GameObject>_bridges;
+    [SerializeField] private List<GameObject> _bridges;
     private bool isChecking = false;
+    private bool isTuto = true;
 
     private void Start()
     {
-        for (int i  = 0; i < _bridges.Count; i++)
+        isTuto = true;
+
+        for (int i = 0; i < _bridges.Count; i++)
         {
             _bridges[i].SetActive(false);
         }
@@ -24,7 +27,7 @@ public class Gate : MonoBehaviour
             {
                 //PlayerStar.Instance.UseStar();
 
-                StageManager.Instance.NextStage();
+                    StageManager.Instance.NextStage();
 
                 foreach (GameObject obj in _walls)
                 {
@@ -37,6 +40,22 @@ public class Gate : MonoBehaviour
                 }
 
                 isChecking = true;
+            }
+
+            if (isTuto)
+            {
+                foreach (GameObject obj in _walls)
+                {
+                    obj.gameObject.transform.DOScaleY(0, 2f);
+                }
+
+                foreach (GameObject obj in _bridges)
+                {
+                    obj.SetActive(true);
+                }
+
+                isChecking = true;
+                isTuto = false;
             }
         }
     }
