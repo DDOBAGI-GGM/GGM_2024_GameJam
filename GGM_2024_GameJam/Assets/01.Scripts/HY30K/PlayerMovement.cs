@@ -28,10 +28,6 @@ public class PlayerMovement : MonoBehaviour
     private FollowEnemy _followEnemy;
 
     private CharacterController _characterController;
-    public bool IsGround
-    {
-        get => _characterController.isGrounded;
-    }
 
     private Vector2 _inputDirection;
     private Vector3 _movementVelocity;
@@ -219,7 +215,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (IsGround && _verticalVelocity < 0)  //?ï¿½ì?��?ì°©ï¿½? ?ï¿½í?œ
+        if (_characterController.isGrounded && _verticalVelocity < 0)  //?ï¿½ì?��?ì°©ï¿½? ?ï¿½í?œ
         {
             _verticalVelocity = -0.1f;
         }
@@ -238,7 +234,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (!IsGround) return;
+        if (!_characterController.isGrounded) return;
         if (!GameManager.Instance.Is3D)
         {
             _verticalVelocity += _jumpPower;
