@@ -377,7 +377,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bd1025d39ed94b4eaa9521cbe8a0a1d, type: 2}
+  - {fileID: 2100000, guid: 03ac7e833bd357f40b06cf464f4b0f11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1181,7 +1181,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bd1025d39ed94b4eaa9521cbe8a0a1d, type: 2}
+  - {fileID: 2100000, guid: 03ac7e833bd357f40b06cf464f4b0f11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1391,7 +1391,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bd1025d39ed94b4eaa9521cbe8a0a1d, type: 2}
+  - {fileID: 2100000, guid: 03ac7e833bd357f40b06cf464f4b0f11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2600,7 +2600,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bd1025d39ed94b4eaa9521cbe8a0a1d, type: 2}
+  - {fileID: 2100000, guid: 03ac7e833bd357f40b06cf464f4b0f11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3900,7 +3900,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bd1025d39ed94b4eaa9521cbe8a0a1d, type: 2}
+  - {fileID: 2100000, guid: 03ac7e833bd357f40b06cf464f4b0f11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6179,6 +6179,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gate
       objectReference: {fileID: 0}
+    - target: {fileID: 1680960771864294421, guid: 81a059e9718efae4ab625bc6020ed615,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 03ac7e833bd357f40b06cf464f4b0f11, type: 2}
     - target: {fileID: 6299606915872732659, guid: 81a059e9718efae4ab625bc6020ed615,
         type: 3}
       propertyPath: m_LocalPosition.x
