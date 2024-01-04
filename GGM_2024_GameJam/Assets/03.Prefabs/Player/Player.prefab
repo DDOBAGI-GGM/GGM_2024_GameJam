@@ -364,6 +364,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   supportersList: []
+  supporterEdgePrefab: {fileID: 1051593538159451235, guid: 21db1e863b228e34d9a25bbd6149fb8d,
+    type: 3}
+  supporterEdgeList: []
+  WallOrObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 320
   supporterLayer:
     serializedVersion: 2
     m_Bits: 128
