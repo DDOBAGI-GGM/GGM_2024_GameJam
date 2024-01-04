@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool Is3D = false;
 
     [SerializeField] private float _3DY, _2DY;
-    //[SerializeField] bool test = false;
+    public bool cannotAttack = false;
 
     private Vector3 _2DGravity = new Vector3(0, -9.8f, 0);
     private Vector3 _3DGravity = new Vector3(0, 0, 0);
@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Key();
+
         timeSinceLastSwitch += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Q) && CanConvert && !_player.OnPlatform && timeSinceLastSwitch >= switchCooldown)
@@ -66,6 +68,15 @@ public class GameManager : MonoBehaviour
         }
         // 이거 위에 이프문 안으로 넣어두기!
         //Cam.transform.DOMoveX(_player.transform.position.x, 2f);
+    }
+
+    void Key()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+            _player.IsDead = true;
+
+        if (Input.GetKeyDown(KeyCode.T))
+            cannotAttack = !cannotAttack;
     }
 
     public void GravityConvert()
