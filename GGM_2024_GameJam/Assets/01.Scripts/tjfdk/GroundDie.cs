@@ -6,10 +6,11 @@ public class GroundDie : MonoBehaviour
 {
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log(other.transform.name);
         if (other.transform.CompareTag("Player"))
         {
+        Debug.Log(other.transform.name);
             other.transform.GetComponent<PlayerMovement>().IsDead = true;
+            other.transform.GetComponent<PlayerMovement>().ResetPosition();
         }
     }
 }

@@ -39,7 +39,7 @@ public class Button_OBJ : MonoBehaviour, IReset
 
     public void Reset()
     {
-        for (int i = 0; i < objActive.Count; i++)
+        for (int i = 0; i < objActive.Count - 1; i++)
             objs[i].SetActive(objActive[i]);
     }
 
