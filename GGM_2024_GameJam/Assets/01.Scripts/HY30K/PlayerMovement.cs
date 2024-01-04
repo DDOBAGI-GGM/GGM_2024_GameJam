@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         StageManager.Instance.ReSet();
+
         
         StartCoroutine(DeadfalseCoroutine());
     }
