@@ -50,6 +50,12 @@ public class SettingManager : Singleton<SettingManager>
         {
             settingBackBtn.onClick.AddListener(() => { IntroInit.Instance.SettingCancel(); });          // 이건 인트로일때만 아니니
         }
+
+        if (SceneManager.GetActiveScene().name == "Clear")
+        {
+            Debug.Log("클리어 소리 재생됨.");
+            SoundManager.Instance.PlaySFX("clear");
+        }
     }
 
     private void Update()
