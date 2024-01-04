@@ -22,7 +22,7 @@ public class Gate : MonoBehaviour
         {
             if (StageManager.Instance.IsClear)
             {
-                PlayerStar.Instance.UseStar();
+                //PlayerStar.Instance.UseStar();
 
                 StageManager.Instance.NextStage();
 

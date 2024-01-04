@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerDead();
         }
 
-        //?�보?�로 ?�직??�만 ?�렇�??�직?��?
+        //?ï¿½ë³´?ï¿½ë¡œ ?ï¿½ì§??ï¿½ë§Œ ?ï¿½ë ‡ï¿??ï¿½ì§?´ï¿½?
         if (IsDead == false || _onPlatform == false)
         {
             if (_activeMove && GameManager.Instance.Is3D)
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
                 CalulatePlayer2DMovement();
             }
             if (!GameManager.Instance.Is3D)
-                ApplyGravity(); //중력 ?�용 (2D?�때�?
+                ApplyGravity(); //ì¤‘ë ¥ ?ï¿½ìš© (2D?ï¿½ë•Œï¿?
 
             Move();
             AnimatorControl();
@@ -175,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // 즉시 ?��?
+    // ì¦‰ì‹œ ?ï¿½ï¿½?
     public void StopImmediately()
     {
         _movementVelocity = Vector3.zero;
@@ -183,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (IsGround && _verticalVelocity < 0)  //?�에 착�? ?�태
+        if (IsGround && _verticalVelocity < 0)  //?ï¿½ì— ì°©ï¿½? ?ï¿½íƒœ
         {
             _verticalVelocity = -0.1f;
         }

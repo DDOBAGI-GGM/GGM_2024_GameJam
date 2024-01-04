@@ -24,7 +24,9 @@ public class Supporter : MonoBehaviour, IReset
     [SerializeField] private bool is_tutorial = false;
 
 
-    private Transform orginPos;
+    [SerializeField] private Vector3 orginPos;
+    [SerializeField] private bool isInteraction = false;
+    public bool IsInteraction { get { return isInteraction;} set { isInteraction = value; } }
 
     void Start()
     {
@@ -75,10 +77,16 @@ public class Supporter : MonoBehaviour, IReset
 
     public void Reset()
     {
-        target = null;
-        chase = false;      // ¦iÁö¸¶
-        //agent.isStopped = true;       //¸ØÃãÀ¸·Î ÇØÁÖ±â
-        agent.SetDestination(orginPos.position);        // º»·¡ Æ÷Áö¼ÇÀ¸·Î ¼³Á¤ÇØ¼­ ¸ØÁÖ°Ô
-        transform.position = orginPos.position;     // º»·¡ Æ÷Áö¼ÇÀ¸·Î ÀÌµ¿
+        if (isInteraction)
+        {
+            Debug.Log("ì§€ì§€ì ì´ˆê¸°í™”");
+            isInteraction = false;
+            target = null;
+            chase = false;      // iì§€ë§ˆ
+           // agent.isStopped = true;       //ë©ˆì¶¤ìœ¼ë¡œ í•´ì£¼ê¸°
+            agent.SetDestination(orginPos);        // ë³¸ë˜ í¬ì§€ì…˜ìœ¼ë¡œ ì„¤ì •í•´ì„œ ë©ˆì£¼ê²Œ
+            transform.position = orginPos;     // ë³¸ë˜ í¬ì§€ì…˜ìœ¼ë¡œ ì´ë™
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }

@@ -47,6 +47,7 @@ public class PlayerSupporter : MonoBehaviour
                 if (supporter != null && !supportersList.Contains(supporter))      // 리스트에 없어야행
                 {
                     supporter.ChaseStart(lastFollow);
+                    supporter.IsInteraction = true;
                     lastFollow = supporter.transform;
                     //supportersQueue.Enqueue(supporter);
                     supportersList.Add(supporter);
@@ -236,7 +237,11 @@ public class PlayerSupporter : MonoBehaviour
 
     public void ReStart()
     {
-        supportersList.Clear();
+        //supportersList.Clear();
+        Debug.Log(supportersList.Count);
+        Debug.Log(supportersList[supportersList.Count - 1].IsInteraction);
+        if (supportersList[supportersList.Count - 1].IsInteraction)
+            supportersList.Remove(supportersList[supportersList.Count - 1]);
         for (int i = 0; i < supporterEdgeList.Count; i++)
         {
             Destroy(supporterEdgeList[i].gameObject);
