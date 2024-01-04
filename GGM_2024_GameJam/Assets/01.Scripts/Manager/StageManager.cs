@@ -81,7 +81,7 @@ public class StageManager : Singleton<StageManager>
             currentStage += 1;
 
             if (currentStage >= stageValue.Count)
-                UIManager.Instance.ChangeScene("Clear");
+                UIManager.Instance?.ChangeScene("Clear");
             else
             {
                 isClear = false;

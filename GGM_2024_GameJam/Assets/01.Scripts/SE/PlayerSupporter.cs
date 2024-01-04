@@ -177,7 +177,6 @@ public class PlayerSupporter : MonoBehaviour
         if (supportersList.Count != 0 && GameManager.Instance.Is3D)        // 3D ¿œ∂ß∏∏
         {
             GameObject supporterEdge = Instantiate(supporterEdgePrefab, transform.position, rotation, transform);
-            supporterEdge.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
             supporterEdgeList.Add(supporterEdge);
         }
         lineRenderer.positionCount++;
