@@ -24,17 +24,18 @@ public class Supporter : MonoBehaviour, IReset
     [SerializeField] private bool is_tutorial = false;
 
 
-    private Transform orginPos;
+    [SerializeField] private Vector3 orginPos;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
-        orginPos = gameObject.transform;
+        orginPos = gameObject.transform.position;
     }
 
     public void ChaseStart(Transform _target)
     {
+     //   agent.isStopped = false;
         target = _target;
         chase = true;
         agent.stoppingDistance = 2.5f;
@@ -75,10 +76,12 @@ public class Supporter : MonoBehaviour, IReset
 
     public void Reset()
     {
+        Debug.Log("지지자 초기화");
         target = null;
         chase = false;      // 쫒지마
-        //agent.isStopped = true;       //멈춤으로 해주기
-        agent.SetDestination(orginPos.position);        // 본래 포지션으로 설정해서 멈주게
-        transform.position = orginPos.position;     // 본래 포지션으로 이동
+       // agent.isStopped = true;       //멈춤으로 해주기
+        agent.SetDestination(orginPos);        // 본래 포지션으로 설정해서 멈주게
+        transform.position = orginPos;     // 본래 포지션으로 이동
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }
