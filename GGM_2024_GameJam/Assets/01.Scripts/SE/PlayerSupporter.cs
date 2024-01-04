@@ -143,6 +143,10 @@ public class PlayerSupporter : MonoBehaviour
             if (!GameManager.Instance.Is3D)         // 2D ¿œ ∂ß
             {
                 is_showEdge = false;
+                for (int i = 0; i < supporterEdgeList.Count; i++)
+                {
+                    supporterEdgeList[i].gameObject.SetActive(false);
+                }
             }
         }
     }
