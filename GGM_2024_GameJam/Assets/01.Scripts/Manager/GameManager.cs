@@ -72,12 +72,13 @@ public class GameManager : Singleton<GameManager>
         if (Is3D == false)
         {
             Physics.gravity = _2DGravity;
-            _light.transform.DORotate(new Vector3(15, -15, 0), 1f);
+            _light.transform.DORotate(new Vector3(40, -30, 0), 1f);
         }
         else
         {
             Physics.gravity = _3DGravity;
-            _light.transform.DORotate(new Vector3(30, 0, 0), 1f);
+            _light.transform.DORotate(new Vector3(40, 0, 40), 1f);
+            _light.intensity = 0.7f;
         }
     }
 
