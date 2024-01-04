@@ -2,7 +2,7 @@ using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
     private PlayerMovement _player;
     public PlayerMovement PlayerMovement { get { return _player; } private set { } }
@@ -23,6 +23,8 @@ public class GameManager : Singleton<GameManager>
         set => _canConvert = value;
     }
 
+    public static GameManager Instance;
+
 
     // 이게 지금 3D인지 2D인지 확인해주는 불변수임
     [HideInInspector] public bool Is3D = false;
@@ -33,9 +35,9 @@ public class GameManager : Singleton<GameManager>
     private Vector3 _2DGravity = new Vector3(0, -9.8f, 0);
     private Vector3 _3DGravity = new Vector3(0, 0, 0);
 
-    public override void Awake()
+    public void Awake()
     {
-        base.Awake();
+        Instance = this;
         _3DCam = GameObject.Find("3DCam").GetComponent<CinemachineVirtualCamera>();
         _2DCam = GameObject.Find("2DCam").GetComponent<CinemachineVirtualCamera>();
         _player = FindObjectOfType<PlayerMovement>();
@@ -53,14 +55,8 @@ public class GameManager : Singleton<GameManager>
     {
         timeSinceLastSwitch += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log($"큐키를 누름. {CanConvert}");
-        }
-
         if (Input.GetKeyDown(KeyCode.Q) && CanConvert && !_player.OnPlatform && timeSinceLastSwitch >= switchCooldown)
         {
-            Debug.Log("시점변경");
             Is3D = !Is3D;
             GravityConvert();
             SwitchCamera();
