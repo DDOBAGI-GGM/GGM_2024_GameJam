@@ -3146,6 +3146,7 @@ MonoBehaviour:
   settingPanel: {fileID: 7472804118174810120}
   settingBackBtn: {fileID: 461503364}
   esc: 0
+  gameBuildIndex: 3
 --- !u!224 &2597226088503804250
 RectTransform:
   m_ObjectHideFlags: 0
