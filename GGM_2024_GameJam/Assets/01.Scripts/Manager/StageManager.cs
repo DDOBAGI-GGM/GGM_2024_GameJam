@@ -80,8 +80,13 @@ public class StageManager : Singleton<StageManager>
             beforeStage = currentStage;
             currentStage += 1;
 
+            Debug.Log(currentStage + " ÇöÀç ¾À" + stageValue.Count);
+
             if (currentStage >= stageValue.Count)
+            {
                 UIManager.Instance?.ChangeScene("Clear");
+                Debug.Log("¤»¤»");
+            }
             else
             {
                 isClear = false;
