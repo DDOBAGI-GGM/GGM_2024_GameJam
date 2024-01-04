@@ -6,7 +6,7 @@ namespace Collections.Shaders.CircleTransition
 {
     public class CircleTransition : Singleton<CircleTransition>
     {
-        public Transform player;
+        private Transform player;
 
         private Canvas _canvas;
         private Image _blackScreen;
@@ -26,6 +26,7 @@ namespace Collections.Shaders.CircleTransition
 
         private void Start()
         {
+            player = GameObject.Find("Player").GetComponent<Transform>();
             OpenBlackScreen();
         }
 

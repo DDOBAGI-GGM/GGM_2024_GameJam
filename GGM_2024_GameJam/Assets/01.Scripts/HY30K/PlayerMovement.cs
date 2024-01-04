@@ -57,12 +57,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        _animator = gameObject.GetComponentInChildren<Animator>();
         _characterController = GetComponent<CharacterController>();
-        _followEnemy = FindObjectOfType<FollowEnemy>();
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
         _playerInput.OnJump += Jump;
+    }
+
+    private void Start()
+    {
+        _animator = gameObject.GetComponentInChildren<Animator>();
+        _followEnemy = FindObjectOfType<FollowEnemy>();
+
+        if (_characterController == null)
+            Debug.Log("�� ^�Ӥӹ�");
     }
 
     private void FixedUpdate()
@@ -71,6 +78,11 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerDead();
             isOneDead = true;
+        }
+
+        if (IsDead)
+        {
+            GameManager.Instance.CanConvert = true;
         }
 
         //?ï¿½ë³´?ï¿½ë¡œ ?ï¿½ì§??ï¿½ë§Œ ?ï¿½ë ?��???ï¿½ì§?´ï¿½?
@@ -108,15 +120,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetPosition()
     {
-/*       Physics.gravity = Vector3.zero;
-        transform.position = Vector3.zero;
-        Debug.Log(GetComponent<CharacterController>().velocity);*/
-       _characterController.enabled = false;
-   /*     Debug.Log(transform.position);
-        CharacterController a = gameObject.GetComponent<CharacterController>();
-        a.Move(StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position);
-        //GetComponent<CharacterController>().transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
-        Debug.Log(GetComponent<CharacterController>().velocity);*/
+        /*       Physics.gravity = Vector3.zero;
+                transform.position = Vector3.zero;
+                Debug.Log(GetComponent<CharacterController>().velocity);*/
+        _characterController.enabled = false;
+        /*     Debug.Log(transform.position);
+             CharacterController a = gameObject.GetComponent<CharacterController>();
+             a.Move(StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position);
+             //GetComponent<CharacterController>().transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
+             Debug.Log(GetComponent<CharacterController>().velocity);*/
     }
 
     private void Deadfalse()
@@ -128,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
         _Crown.gameObject.SetActive(true);
 
         Invoke("DeadfalseInvoke", 1f);
-        
+
         IsDead = false;
         isOneDead = false;
     }
