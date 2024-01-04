@@ -39,7 +39,7 @@ public class Star : MonoBehaviour, IReset
                     isInteraction = true;
                     if (StageManager.Instance.GetStar())
                     {
-                        Debug.Log("¾òÀ½");
+                        Debug.Log("ï¿½ï¿½ï¿½ï¿½");
                         PlayerStar.Instance.StarAdd(this.transform);
                     }
                 }
