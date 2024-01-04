@@ -316,25 +316,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1425616740}
     m_Modifications:
-    - target: {fileID: 825374239841765601, guid: 2679dcec15de05b40b0d14f77a389749,
-        type: 3}
-      propertyPath: _walls.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 825374239841765601, guid: 2679dcec15de05b40b0d14f77a389749,
-        type: 3}
-      propertyPath: _bridges.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4035804175438748456, guid: 2679dcec15de05b40b0d14f77a389749,
         type: 3}
       propertyPath: m_Name
       value: Stage05
-      objectReference: {fileID: 0}
-    - target: {fileID: 7605005642546015679, guid: 2679dcec15de05b40b0d14f77a389749,
-        type: 3}
-      propertyPath: stage
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7818298380291511996, guid: 2679dcec15de05b40b0d14f77a389749,
         type: 3}
@@ -515,7 +500,6 @@ MonoBehaviour:
     - {fileID: 763269283}
     - {fileID: 991985326}
     - {fileID: 77528179}
-    - {fileID: 888479354}
   - reStartPos: {fileID: 1452581960}
     pointCnt: 4
     obj:
@@ -737,21 +721,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919740609761956160, guid: 746bf8e7f2ed8924194caa4c0cb32609,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 2.4898772
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919740609761956160, guid: 746bf8e7f2ed8924194caa4c0cb32609,
-        type: 3}
-      propertyPath: m_Center.y
-      value: -3.480787e-15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919740609761956160, guid: 746bf8e7f2ed8924194caa4c0cb32609,
-        type: 3}
-      propertyPath: m_Center.z
-      value: -0.7449385
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1148,11 +1117,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage03
       objectReference: {fileID: 0}
-    - target: {fileID: 8573068605195288479, guid: 5a5f61715b5bbfd45a42bd28348d41da,
-        type: 3}
-      propertyPath: stage
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1266,12 +1230,6 @@ GameObject:
 --- !u!1 &763269283 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2756463319428755324, guid: 5a5f61715b5bbfd45a42bd28348d41da,
-    type: 3}
-  m_PrefabInstance: {fileID: 672148411}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &888479354 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7335660155793295871, guid: 5a5f61715b5bbfd45a42bd28348d41da,
     type: 3}
   m_PrefabInstance: {fileID: 672148411}
   m_PrefabAsset: {fileID: 0}
@@ -1659,11 +1617,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2636864139303936180, guid: a6c93ddbb630892439d77354443dcb10,
-        type: 3}
-      propertyPath: stage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6951440684852742037, guid: a6c93ddbb630892439d77354443dcb10,
         type: 3}
       propertyPath: m_Name
@@ -1824,21 +1777,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1425616740}
     m_Modifications:
-    - target: {fileID: 531923477814736914, guid: 1e371eb85edf07b4eb17b6c3e692140c,
-        type: 3}
-      propertyPath: _walls.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 531923477814736914, guid: 1e371eb85edf07b4eb17b6c3e692140c,
-        type: 3}
-      propertyPath: _bridges.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3055361674872971159, guid: 1e371eb85edf07b4eb17b6c3e692140c,
-        type: 3}
-      propertyPath: stage
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3489382203579625518, guid: 1e371eb85edf07b4eb17b6c3e692140c,
         type: 3}
       propertyPath: m_Name
