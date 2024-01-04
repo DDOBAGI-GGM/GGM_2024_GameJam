@@ -25,6 +25,8 @@ public class Supporter : MonoBehaviour, IReset
 
 
     [SerializeField] private Vector3 orginPos;
+    [SerializeField] private bool isInteraction = false;
+    public bool IsInteraction { get { return isInteraction;} set { isInteraction = value; } }
 
     void Start()
     {
@@ -76,12 +78,16 @@ public class Supporter : MonoBehaviour, IReset
 
     public void Reset()
     {
-        Debug.Log("지지자 초기화");
-        target = null;
-        chase = false;      // 쫒지마
-       // agent.isStopped = true;       //멈춤으로 해주기
-        agent.SetDestination(orginPos);        // 본래 포지션으로 설정해서 멈주게
-        transform.position = orginPos;     // 본래 포지션으로 이동
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (isInteraction)
+        {
+            Debug.Log("지지자 초기화");
+            isInteraction = false;
+            target = null;
+            chase = false;      // 쫒지마
+           // agent.isStopped = true;       //멈춤으로 해주기
+            agent.SetDestination(orginPos);        // 본래 포지션으로 설정해서 멈주게
+            transform.position = orginPos;     // 본래 포지션으로 이동
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }

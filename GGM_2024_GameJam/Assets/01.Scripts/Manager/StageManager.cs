@@ -86,6 +86,7 @@ public class StageManager : Singleton<StageManager>
             {
                 isClear = false;
                 starCnt = 0;
+                PlayerStar.Instance.UseStar();
                 currentStageMax = stageValue[currentStage].pointCnt;
             }
         }
@@ -99,13 +100,16 @@ public class StageManager : Singleton<StageManager>
         {
             beforeStage = currentStage - 1;
             dustCnt = stageValue[beforeStage].pointCnt;
-            starCnt = stageValue[beforeStage].pointCnt;
+            starCnt = 0;
+            //starCnt = stageValue[beforeStage].pointCnt;
         }
         else
         {
             dustCnt = 0;
             starCnt = 0;
         }
+
+        PlayerStar.Instance.UseStar();
 
         foreach (var stage in stageValue[currentStage].obj)
         {

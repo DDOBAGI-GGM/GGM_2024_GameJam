@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerDead();
         }
 
-        //?�보?�로 ?�직??�만 ?�렇�??�직?��?
+        //?�보?�로 ?�직??�만 ?�렇�??�직?��?
         if (IsDead == false)
         {
             if (_activeMove && GameManager.Instance.Is3D)
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
                 CalulatePlayer2DMovement();
             }
             if (!GameManager.Instance.Is3D)
-                ApplyGravity(); //중력 ?�용 (2D?�때�?
+                ApplyGravity(); //중력 ?�용 (2D?�때�?
 
             Move();
             AnimatorControl();

@@ -9,6 +9,14 @@ public class Star : MonoBehaviour, IReset
 
     [Header("Reset")]
     [SerializeField] private bool isInteraction = false;
+    private Vector3 originPos;
+    private Transform parent;
+
+    private void Start()
+    {
+        originPos = transform.position;
+        parent = transform.parent;
+    }
 
     public void Reset()
     {
@@ -16,6 +24,9 @@ public class Star : MonoBehaviour, IReset
         {
             isCollision = false;
             isInteraction = false;
+            transform.position = originPos;
+            transform.SetParent(parent);
+            gameObject.SetActive(true);
         }
     }
 
