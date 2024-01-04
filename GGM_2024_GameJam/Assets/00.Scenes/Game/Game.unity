@@ -331,6 +331,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage05
       objectReference: {fileID: 0}
+    - target: {fileID: 7605005642546015679, guid: 2679dcec15de05b40b0d14f77a389749,
+        type: 3}
+      propertyPath: stage
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7818298380291511996, guid: 2679dcec15de05b40b0d14f77a389749,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -733,6 +738,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7919740609761956160, guid: 746bf8e7f2ed8924194caa4c0cb32609,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 2.4898772
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919740609761956160, guid: 746bf8e7f2ed8924194caa4c0cb32609,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -3.480787e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7919740609761956160, guid: 746bf8e7f2ed8924194caa4c0cb32609,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.7449385
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -820,7 +840,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 9e89102c8230fe340948fe96cc26f4ff, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a71227e2c1ff15e40a704100570b86d1, type: 2}
   m_BuildHeightMesh: 0
 --- !u!65 &638043589
 BoxCollider:
@@ -921,7 +941,7 @@ Transform:
   m_GameObject: {fileID: 648910630}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9, y: -10, z: 0}
+  m_LocalPosition: {x: -9, y: -9.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -995,6 +1015,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1626307602911063369, guid: 46fa27c6191c0884b835a8912a3d159d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2889439679076784577, guid: 46fa27c6191c0884b835a8912a3d159d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1122,6 +1147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stage03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573068605195288479, guid: 5a5f61715b5bbfd45a42bd28348d41da,
+        type: 3}
+      propertyPath: stage
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1629,6 +1659,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2636864139303936180, guid: a6c93ddbb630892439d77354443dcb10,
+        type: 3}
+      propertyPath: stage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6951440684852742037, guid: a6c93ddbb630892439d77354443dcb10,
         type: 3}
       propertyPath: m_Name
@@ -1798,6 +1833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _bridges.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3055361674872971159, guid: 1e371eb85edf07b4eb17b6c3e692140c,
+        type: 3}
+      propertyPath: stage
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3489382203579625518, guid: 1e371eb85edf07b4eb17b6c3e692140c,
         type: 3}

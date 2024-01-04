@@ -33,14 +33,14 @@ namespace Collections.Shaders.CircleTransition
         {
             // We control by keyboard for fast prototype
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+           /* if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 OpenBlackScreen();
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 CloseBlackScreen();
-            }
+            }*/
         }
 
         public void OpenBlackScreen()

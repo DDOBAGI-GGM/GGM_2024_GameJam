@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float _3DY, _2DY;
     //[SerializeField] bool test = false;
 
-    private Vector3 _2DGravity = new Vector3(0, 0, -9.8f);
+    private Vector3 _2DGravity = new Vector3(0, -9.8f, 0);
     private Vector3 _3DGravity = new Vector3(0, 0, 0);
 
     public override void Awake()
@@ -49,13 +49,13 @@ public class GameManager : Singleton<GameManager>
         _3DCam.Priority = 0;
     }
 
-    void LateUpdate()
+    void Update()
     {
         timeSinceLastSwitch += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Q) && CanConvert && timeSinceLastSwitch >= switchCooldown)
+        if (Input.GetKeyDown(KeyCode.Q) && CanConvert && !_player.OnPlatform && timeSinceLastSwitch >= switchCooldown)
         {
-            //Debug.Log("시점변경");
+            Debug.Log("시점변경");
             Is3D = !Is3D;
             GravityConvert();
             SwitchCamera();
@@ -67,7 +67,7 @@ public class GameManager : Singleton<GameManager>
         //Cam.transform.DOMoveX(_player.transform.position.x, 2f);
     }
 
-    private void GravityConvert()
+    public void GravityConvert()
     {
         if (Is3D == false)
         {

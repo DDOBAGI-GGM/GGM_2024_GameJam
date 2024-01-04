@@ -20,11 +20,17 @@ public class Supporter : MonoBehaviour, IReset
     public int FollowNum { get { return followNum; } set {  followNum = value; } }
 
     private bool firstGetMe = false;
+    public bool FirstGetMe { get {  return firstGetMe; } set {  firstGetMe = value; } }
     
     [SerializeField] private bool is_tutorial = false;
 
 
     [SerializeField] private Vector3 orginPos;
+    //[SerializeField] private bool isInteraction = false;
+    //public bool IsInteraction { get { return isInteraction;} set { isInteraction = value; } }
+
+    [SerializeField] private int stage = 0;
+    public int Stage { get { return stage; } private set { } }
 
     void Start()
     {
@@ -35,10 +41,10 @@ public class Supporter : MonoBehaviour, IReset
 
     public void ChaseStart(Transform _target)
     {
-     //   agent.isStopped = false;
         target = _target;
         chase = true;
         agent.stoppingDistance = 2.5f;
+        //agent.isStopped = false;
 
         if (!firstGetMe)
         {
@@ -76,12 +82,15 @@ public class Supporter : MonoBehaviour, IReset
 
     public void Reset()
     {
-        Debug.Log("ÁöÁöÀÚ ÃÊ±âÈ­");
-        target = null;
-        chase = false;      // ¦iÁö¸¶
-       // agent.isStopped = true;       //¸ØÃãÀ¸·Î ÇØÁÖ±â
-        agent.SetDestination(orginPos);        // º»·¡ Æ÷Áö¼ÇÀ¸·Î ¼³Á¤ÇØ¼­ ¸ØÁÖ°Ô
-        transform.position = orginPos;     // º»·¡ Æ÷Áö¼ÇÀ¸·Î ÀÌµ¿
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (firstGetMe)
+        {
+            Debug.Log("¼­Æ÷ÅÍ ÃÊ±âÈ­");
+            target = null;
+            chase = false;      // iì§€ë§?
+            //agent.isStopped = true;       //ë©ˆì¶¤?¼ë¡œ ?´ì£¼ê¸?
+            agent.SetDestination(orginPos);        // ë³¸ë˜ ?¬ì??˜ìœ¼ë¡??¤ì •?´ì„œ ë©ˆì£¼ê²?
+            transform.position = orginPos;     // ë³¸ë˜ ?¬ì??˜ìœ¼ë¡??´ë™
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }

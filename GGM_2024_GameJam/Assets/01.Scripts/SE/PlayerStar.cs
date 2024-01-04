@@ -28,13 +28,14 @@ public class PlayerStar : MonoBehaviour
         starList.Add(star.gameObject);
     }
 
-    public void UseStar()
+    public void UseStar()           // 별 다 지워줌.
     {
         for (int i = 0; i < starList.Count; i++)
         {
             Instantiate(bombParticle, starList[i].transform.position, Quaternion.identity);
-            Destroy(starList[i].gameObject);
+            starList[i].gameObject.SetActive(false);
         }
+        nowStarCount = 0;
         starList.Clear();
     }
 }
