@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Collections.Shaders.CircleTransition
 {
-    public class CircleTransition : MonoBehaviour
+    public class CircleTransition : Singleton<CircleTransition>
     {
         public Transform player;
 
@@ -37,6 +37,11 @@ namespace Collections.Shaders.CircleTransition
                 OpenBlackScreen();
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                CloseBlackScreen();
+            }
+
+            if (StageManager.Instance.IsClear)
             {
                 CloseBlackScreen();
             }
