@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject _visual;
     [SerializeField] private GameObject _Crown;
     [SerializeField] float zPos = -2.08f;
-    //[SerializeField] private ParticleSystem _deadParticle;
+    [SerializeField] private ParticleSystem _deadParticle;
 
     public bool IsDead = false;
     public int FacingDirection { get; private set; } = 1;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     protected bool _facingRight = true;
     private PlayerInput _playerInput;
     private Animator _animator;
-    //private FollowEnemy _followEnemy;
+    private FollowEnemy _followEnemy;
 
     private CharacterController _characterController;
     public bool IsGround
@@ -45,11 +45,19 @@ public class PlayerMovement : MonoBehaviour
         set => _activeMove = value;
     }
 
+    private bool _onPlatform = false;
+
+    public bool OnPlatform
+    {
+        get => _onPlatform;
+        set => _onPlatform = value;
+    }
+
     private void Awake()
     {
         _animator = gameObject.GetComponentInChildren<Animator>();
         _characterController = GetComponent<CharacterController>();
-        //_followEnemy = FindObjectOfType<FollowEnemy>();
+        _followEnemy = FindObjectOfType<FollowEnemy>();
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
         _playerInput.OnJump += Jump;
@@ -62,8 +70,8 @@ public class PlayerMovement : MonoBehaviour
             PlayerDead();
         }
 
-        //?�보?�로 ?�직??�만 ?�렇�??�직?��?
-        if (IsDead == false)
+        //?ï¿½ë³´?ï¿½ë¡œ ?ï¿½ì§??ï¿½ë§Œ ?ï¿½ë ‡ï¿??ï¿½ì§?´ï¿½?
+        if (IsDead == false || _onPlatform == false)
         {
             if (_activeMove && GameManager.Instance.Is3D)
             {
@@ -74,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
                 CalulatePlayer2DMovement();
             }
             if (!GameManager.Instance.Is3D)
-                ApplyGravity(); //중력 ?�용 (2D?�때�?
+                ApplyGravity(); //ì¤‘ë ¥ ?ï¿½ìš© (2D?ï¿½ë•Œï¿?
 
             Move();
             AnimatorControl();
@@ -87,12 +95,13 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerDead()
     {
         //SoundManager.Instance.PlaySFX("die");
-        //Instantiate(_deadParticle, transform.position, Quaternion.identity);
+        Instantiate(_deadParticle, transform.position, Quaternion.identity);
         CircleTransition.Instance.CloseBlackScreen();
         Invoke("ResetPosition", 0.6f);
+        StageManager.Instance.ReSet();
         //_followEnemy.PlayerDead();
 
-        StartCoroutine(DeadfalseCoroutine());
+        Invoke("Deadfalse", 1f);
     }
 
     private void ResetPosition()
@@ -100,10 +109,8 @@ public class PlayerMovement : MonoBehaviour
         transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
     }
 
-    private IEnumerator DeadfalseCoroutine()
+    private void Deadfalse()
     {
-        yield return new WaitForSeconds(0.7f);
-        StageManager.Instance.ReSet();
         CircleTransition.Instance.OpenBlackScreen();
         IsDead = false;
     }
@@ -158,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _visual.transform.rotation = Quaternion.Euler(0, -90, 0);
             _Crown.transform.rotation = Quaternion.Euler(0, 0, 15);
-            _Crown.transform.position = transform.position +  new Vector3(-0.2f, 0.554f, 0);
+            _Crown.transform.position = transform.position + new Vector3(-0.2f, 0.554f, 0);
         }
         else
         {
@@ -168,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // 즉시 ?��?
+    // ì¦‰ì‹œ ?ï¿½ï¿½?
     public void StopImmediately()
     {
         _movementVelocity = Vector3.zero;
@@ -176,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (IsGround && _verticalVelocity < 0)  //?�에 착�? ?�태
+        if (IsGround && _verticalVelocity < 0)  //?ï¿½ì— ì°©ï¿½? ?ï¿½íƒœ
         {
             _verticalVelocity = -0.1f;
         }

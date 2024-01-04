@@ -32,12 +32,11 @@ public class Supporter : MonoBehaviour, IReset
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
-        orginPos = gameObject.transform.position;
+        orginPos = gameObject.transform;
     }
 
     public void ChaseStart(Transform _target)
     {
-     //   agent.isStopped = false;
         target = _target;
         chase = true;
         agent.stoppingDistance = 2.5f;
@@ -80,13 +79,13 @@ public class Supporter : MonoBehaviour, IReset
     {
         if (isInteraction)
         {
-            Debug.Log("ÁöÁöÀÚ ÃÊ±âÈ­");
+            Debug.Log("ì§€ì§€ì ì´ˆê¸°í™”");
             isInteraction = false;
             target = null;
-            chase = false;      // ¦iÁö¸¶
-           // agent.isStopped = true;       //¸ØÃãÀ¸·Î ÇØÁÖ±â
-            agent.SetDestination(orginPos);        // º»·¡ Æ÷Áö¼ÇÀ¸·Î ¼³Á¤ÇØ¼­ ¸ØÁÖ°Ô
-            transform.position = orginPos;     // º»·¡ Æ÷Áö¼ÇÀ¸·Î ÀÌµ¿
+            chase = false;      // iì§€ë§ˆ
+           // agent.isStopped = true;       //ë©ˆì¶¤ìœ¼ë¡œ í•´ì£¼ê¸°
+            agent.SetDestination(orginPos);        // ë³¸ë˜ í¬ì§€ì…˜ìœ¼ë¡œ ì„¤ì •í•´ì„œ ë©ˆì£¼ê²Œ
+            transform.position = orginPos;     // ë³¸ë˜ í¬ì§€ì…˜ìœ¼ë¡œ ì´ë™
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
