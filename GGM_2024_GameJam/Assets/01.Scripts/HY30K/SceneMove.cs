@@ -1,11 +1,9 @@
-using Collections.Shaders.CircleTransition;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class SceneMove : MonoBehaviour
 {
+    [SerializeField] private GameObject _wall;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -15,6 +13,7 @@ public class SceneMove : MonoBehaviour
             if (supporter != null)
             {
                 supporter.TutorialReSet();
+                _wall.transform.DOScaleY(1, 2f);
             }
         }
     }
