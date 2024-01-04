@@ -22,11 +22,14 @@ public class PlayerSupporter : MonoBehaviour
 
     private bool reverse = false;
 
+    public static PlayerSupporter Instance;
+
     private void Start()
     {
         _playerInput = GameManager.Instance.PlayerMovement.gameObject.GetComponent<PlayerInput>();
         lineRenderer = GetComponentInChildren<LineRenderer>();
         lastFollow = transform;
+        Instance = this;
     }
 
     private void Update()
@@ -43,7 +46,6 @@ public class PlayerSupporter : MonoBehaviour
                 //if (supporter != null && !supportersQueue.Contains(supporter))      // 큐에 없어야행
                 if (supporter != null && !supportersList.Contains(supporter))      // 리스트에 없어야행
                 {
-                    Debug.Log(supporter);
                     supporter.ChaseStart(lastFollow);
                     lastFollow = supporter.transform;
                     //supportersQueue.Enqueue(supporter);
@@ -221,15 +223,28 @@ public class PlayerSupporter : MonoBehaviour
         }
     }
 
-/*    public void ChangeState(bool is3D)
-    {
-        if (is3D)
+    /*    public void ChangeState(bool is3D)
         {
-            for (int i = 0; i < supportersList.Count; i++)
+            if (is3D)
             {
-                supportersList[i].ChaseStart(lastFollow);
-                CreateSupporterEdge();
+                for (int i = 0; i < supportersList.Count; i++)
+                {
+                    supportersList[i].ChaseStart(lastFollow);
+                    CreateSupporterEdge();
+                }
             }
+        }*/
+
+    public void ReStart()
+    {
+        supportersList.Clear();
+        for (int i = 0; i < supporterEdgeList.Count; i++)
+        {
+            Destroy(supporterEdgeList[i].gameObject);
         }
-    }*/
+        supporterEdgeList.Clear();
+        lastFollow = transform;
+        lineRenderer.positionCount = 1;
+    }
+
 }

@@ -112,5 +112,7 @@ public class StageManager : Singleton<StageManager>
             IReset reset = stage.GetComponent<IReset>();
             reset.Reset();
         }
+
+        PlayerSupporter.Instance.ReStart();
     }
 }
