@@ -86,23 +86,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerDead()
     {
-        SoundManager.Instance?.PlaySFX("die");
-
-        transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
+        //SoundManager.Instance.PlaySFX("die");
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         CircleTransition.Instance.CloseBlackScreen();
+        Invoke("ResetPosition", 1f);
         StageManager.Instance.ReSet();
         _followEnemy.PlayerDead();
-
 
         StartCoroutine(DeadfalseCoroutine());
     }
 
+    private void ResetPosition()
+    {
+        transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
+    }
+
     private IEnumerator DeadfalseCoroutine()
     {
-        yield return new WaitForSeconds(0.1f);
-        IsDead = false;
+        yield return new WaitForSeconds(1.2f);
         CircleTransition.Instance.OpenBlackScreen();
+        IsDead = false;
     }
 
     private void AnimatorControl()
