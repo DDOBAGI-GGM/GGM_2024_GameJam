@@ -4,17 +4,18 @@ using DG.Tweening;
 
 public class Gate : MonoBehaviour
 {
-    private Transform bridge;
-    private GameObject _gate;
+    [SerializeField] private List<GameObject> walls;
+    [SerializeField] private GameObject _bridge;
     private bool isChecking = false;
 
-    [SerializeField] private List<GameObject> walls;
-
-    private void Awake()
+    private void Start()
     {
-        bridge = transform.GetChild(0).GetComponent<Transform>();
-        bridge.gameObject.SetActive(false);
-        _gate = transform.GetChild(1).GetComponent<GameObject>();
+        _bridge.gameObject.SetActive(false);
+    }
+
+    public void ActiveBridge()
+    {
+        _bridge.gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,14 +24,16 @@ public class Gate : MonoBehaviour
         {
             if (StageManager.Instance.IsClear)
             {
-                bridge.gameObject.SetActive(true);
-                StageManager.Instance.NextStage();
-                isChecking = true;
-
                 PlayerStar.Instance.UseStar();
 
+                StageManager.Instance.NextStage();
+
                 foreach (GameObject obj in walls)
-                    obj.gameObject.transform.DOScaleZ(0, 2f);
+                {
+                    obj.gameObject.transform.DOScaleZ(0, 2f).OnComplete(ActiveBridge);
+                }
+
+                isChecking = true;
             }
         }
     }

@@ -1539,7 +1539,7 @@ Transform:
   - {fileID: 5422357121336661047}
   - {fileID: 6652370331461863261}
   - {fileID: 640007717262774964}
-  - {fileID: 9156893903607114563}
+  - {fileID: 5143074600398356190}
   - {fileID: 4869560239414038726}
   m_Father: {fileID: 718484103183890701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1987,6 +1987,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gate
       objectReference: {fileID: 0}
+    - target: {fileID: 6299606915872732659, guid: 81a059e9718efae4ab625bc6020ed615,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6299606915872732659, guid: 81a059e9718efae4ab625bc6020ed615,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.77999973
+      objectReference: {fileID: 0}
+    - target: {fileID: 6299606915872732659, guid: 81a059e9718efae4ab625bc6020ed615,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.000002
+      objectReference: {fileID: 0}
     - target: {fileID: 7384696684319446636, guid: 81a059e9718efae4ab625bc6020ed615,
         type: 3}
       propertyPath: walls.Array.size
@@ -2062,9 +2077,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81a059e9718efae4ab625bc6020ed615, type: 3}
---- !u!4 &9156893903607114563 stripped
+--- !u!4 &5143074600398356190 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8007609560562065518, guid: 81a059e9718efae4ab625bc6020ed615,
+  m_CorrespondingSourceObject: {fileID: 6299606915872732659, guid: 81a059e9718efae4ab625bc6020ed615,
     type: 3}
   m_PrefabInstance: {fileID: 1167395499014343469}
   m_PrefabAsset: {fileID: 0}
