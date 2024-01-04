@@ -119,7 +119,7 @@ public class PlayerSupporter : MonoBehaviour
 
             Vector3 dir = GameManager.Instance.PlayerMovement.GetComponent<PlayerInput>().Move.normalized;     // 노멀라이즈하고
 
-            if (Physics.Raycast(transform.position, dir, out RaycastHit hit, (lineRenderer.positionCount - 1 * 1.5f) + 2.5f, WallOrObstacleLayer))            // 벽에 닿았다면 
+            if (Physics.Raycast(transform.position, dir, out RaycastHit hit, (lineRenderer.positionCount - 1 * 1.5f) + 1.5f, WallOrObstacleLayer))            // 벽에 닿았다면 
             {
                 Vector3 pos = hit.point;
                 if (dir.x != 0) pos.x += dir.x * -1;
@@ -144,7 +144,7 @@ public class PlayerSupporter : MonoBehaviour
             {
                 reverse = false;
                 lineRenderer.SetPosition(0, transform.position);
-                Vector3 lineEnd = new Vector3(transform.position.x + dir.x * 2, transform.position.y + dir.y * 2, transform.position.z);
+                Vector3 lineEnd = new Vector3(transform.position.x + dir.x * 1.5f, transform.position.y + dir.y * 1.5f, transform.position.z);
                 lineRenderer.SetPosition(1, lineEnd);
                 for (int i = 2; i < lineRenderer.positionCount; i++)
                 {
@@ -245,6 +245,7 @@ public class PlayerSupporter : MonoBehaviour
                 {
                     supportersList[i].FirstGetMe = false;
                     supportersList.Remove(supportersList[i]);
+                    Destroy(supporterEdgeList[i].gameObject);
                     supporterEdgeList.Remove(supporterEdgeList[i]);
                 }
             }
