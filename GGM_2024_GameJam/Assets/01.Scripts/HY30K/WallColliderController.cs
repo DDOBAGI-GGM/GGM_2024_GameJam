@@ -21,11 +21,13 @@ public class WallColliderController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.Instance.CanConvert = false;
+        if (other.CompareTag("Player"))
+            GameManager.Instance.CanConvert = false;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GameManager.Instance.CanConvert = true;
+        if (other.CompareTag("Player"))
+            GameManager.Instance.CanConvert = true;
     }
 }
