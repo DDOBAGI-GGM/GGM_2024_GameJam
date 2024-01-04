@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Laser : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class Laser : MonoBehaviour
     private float lineDis;
 
     PlayerMovement _playerMovement;
+    [SerializeField] bool isCollision = false;
 
     private void Awake()
     {
@@ -20,9 +23,35 @@ public class Laser : MonoBehaviour
 
     private void Update()
     {
+        //RaycastHit hit;
+        //_lineRenderer.SetPosition(0, transform.position);
+        //if (Physics.Raycast(transform.position, transform.forward, out hit, 25f, _mapLayerMask))
+        //{
+        //    _lineRenderer.SetPosition(1, hit.point);
+        //    lineDis = hit.distance;
+        //}
+        //else
+        //{
+        //    _lineRenderer.SetPosition(1, transform.position + transform.forward * 25f);
+        //}
+
+        //Debug.DrawRay(transform.position, transform.forward * lineDis, Color.yellow);
+
+        //if (Physics.Raycast(transform.position, transform.forward, out hit, lineDis, _playerLayerMask))
+        //{
+        //    Debug.LogError("·¹ÀÌÀú¶û ÇÃ·¹ÀÌ¾î¶û ´êÀ½");
+        //    _playerMovement.IsDead = true;
+        //}
+
+        Ray();
+    }
+    
+    private void Ray()
+    {
         RaycastHit hit;
         _lineRenderer.SetPosition(0, transform.position);
-        if(Physics.Raycast(transform.position, transform.forward, out hit, 25f, _mapLayerMask))
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 25f, _mapLayerMask))
         {
             _lineRenderer.SetPosition(1, hit.point);
             lineDis = hit.distance;
@@ -36,8 +65,20 @@ public class Laser : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.forward, out hit, lineDis, _playerLayerMask))
         {
-            Debug.LogError("·¹ÀÌÀú¶û ÇÃ·¹ÀÌ¾î¶û ´êÀ½");
-            _playerMovement.IsDead = true;
+            if (!isCollision)
+            {
+                isCollision = true;
+                _playerMovement.IsDead = true;
+            }
+        }
+        else
+        {
+            if (isCollision)
+            {
+                isCollision = false;
+            }
         }
     }
 }
+
+
