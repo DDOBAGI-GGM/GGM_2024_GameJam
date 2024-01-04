@@ -10,6 +10,8 @@ public class SettingManager : Singleton<SettingManager>
     [SerializeField] private Button settingBackBtn;
     [SerializeField] private bool esc = false;      // SerializeField 지워도 됨.
 
+    [SerializeField] private int gameBuildIndex = 4;
+
     private void OnEnable()
     {
         //Debug.Log("씬 이동 이벤트 등록");
@@ -25,7 +27,7 @@ public class SettingManager : Singleton<SettingManager>
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
         Debug.Log(scene.name + "으로 변경되었습니다.");
-        if (SceneManager.GetActiveScene().buildIndex >= 3)             // 이것들 게임일때만 ㅇㅇ
+        if (SceneManager.GetActiveScene().buildIndex >= gameBuildIndex)             // 이것들 게임일때만 ㅇㅇ
         {
             settingBackBtn.onClick.RemoveAllListeners();
             settingBackBtn.onClick.AddListener(() => { OnSetting(false); });
@@ -52,7 +54,7 @@ public class SettingManager : Singleton<SettingManager>
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex >= 3)      // 게임씬일 때만. 
+        if (SceneManager.GetActiveScene().buildIndex >= gameBuildIndex)      // 게임씬일 때만. 
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -65,7 +67,7 @@ public class SettingManager : Singleton<SettingManager>
 
     public void OnSetting(bool value)
     {
-        if (SceneManager.GetActiveScene().buildIndex >= 3) inGamePanel.SetActive(!value);            // 게임씬일때만
+        if (SceneManager.GetActiveScene().buildIndex >= gameBuildIndex) inGamePanel.SetActive(!value);            // 게임씬일때만
         settingPanel.SetActive(value);
     }
 
