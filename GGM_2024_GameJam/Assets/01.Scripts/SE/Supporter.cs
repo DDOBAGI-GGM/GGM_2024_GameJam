@@ -75,6 +75,7 @@ public class Supporter : MonoBehaviour, IReset
 
     public void Reset()
     {
+        target = null;
         chase = false;      // 쫒지마
         //agent.isStopped = true;       //멈춤으로 해주기
         agent.SetDestination(orginPos.position);        // 본래 포지션으로 설정해서 멈주게

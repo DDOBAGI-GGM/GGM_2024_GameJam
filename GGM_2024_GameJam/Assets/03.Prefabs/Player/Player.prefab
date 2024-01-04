@@ -386,6 +386,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starSize: 1
+  bombParticle: {fileID: 695506783536675238, guid: 526ba324f370fd34ca7e7a83878fb05a,
+    type: 3}
 --- !u!1001 &1654658615001987953
 PrefabInstance:
   m_ObjectHideFlags: 0
