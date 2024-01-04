@@ -6283,6 +6283,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weigh
       objectReference: {fileID: 0}
+    - target: {fileID: 8272283327397947459, guid: fd25f0a1733984b499d764ee4c28a560,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8272283327397947459, guid: fd25f0a1733984b499d764ee4c28a560,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.99
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
