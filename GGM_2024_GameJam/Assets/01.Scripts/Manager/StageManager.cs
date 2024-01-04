@@ -54,14 +54,6 @@ public class StageManager : Singleton<StageManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-            starCnt++;
-        if (Input.GetKeyDown(KeyCode.N))
-            NextStage();
-
-        //if (Input.GetKeyDown(KeyCode.P))
-        //    ReSet();
-
         if (starCnt == currentStageMax && dustCnt == currentStageMax)
             isClear = true;
     }
