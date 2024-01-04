@@ -32,7 +32,7 @@ public class Supporter : MonoBehaviour, IReset
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
-        orginPos = gameObject.transform;
+        //orginPos = gameObject.transform;
     }
 
     public void ChaseStart(Transform _target)

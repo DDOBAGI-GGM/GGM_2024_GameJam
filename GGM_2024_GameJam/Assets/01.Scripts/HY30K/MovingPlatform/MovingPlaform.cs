@@ -1,10 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class MovingPlaform : MonoBehaviour
 {
     [SerializeField] private WaypointPath _waypointPath;
     [SerializeField] private float _speed;
+    [SerializeField] private int _Cnt;
+    [SerializeField] private LayerMask _layerMask;
 
     private PlayerMovement _player;
 
@@ -16,6 +18,8 @@ public class MovingPlaform : MonoBehaviour
 
     private float _timeToWayPoint;
     private float _elapsedTime;
+
+    private int _objCnt = 0;
 
     public static MovingPlaform Instance;
 
@@ -45,6 +49,12 @@ public class MovingPlaform : MonoBehaviour
         }
     }
 
+    private int GetTargetCount()
+    {
+        Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(5, 5, 5), transform.rotation, _layerMask);
+        return colliders.Length;
+    }
+
     private void TargetNextWaypoint()
     {
         _previousWaypoint = _waypointPath.GetWayPoint(_targetWaypointIndex);
@@ -59,14 +69,21 @@ public class MovingPlaform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Ãæµ¹µÊ");
         _player.OnPlatform = true;
-        other.transform.SetParent(transform);
+        if (GetTargetCount() == _Cnt)
+            other.transform.SetParent(transform);
     }
 
     private void OnTriggerExit(Collider other)
     {
         _player.OnPlatform = false;
         other.transform.SetParent(null);
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, new Vector3(5, 5, 5));
     }
 }
