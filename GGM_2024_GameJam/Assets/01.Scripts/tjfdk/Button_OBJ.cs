@@ -28,6 +28,8 @@ public class Button_OBJ : MonoBehaviour, IReset
     private Transform body;
     private bool isCollision = false;
 
+    private bool is_down = false;
+
     private void Awake()
     {
         body = transform.GetChild(0).GetComponent<Transform>();
@@ -39,8 +41,11 @@ public class Button_OBJ : MonoBehaviour, IReset
 
     public void Reset()
     {
-        for (int i = 0; i < objActive.Count - 1; i++)
-            objs[i].SetActive(objActive[i]);
+        if (!is_down)
+        {
+            for (int i = 0; i < objActive.Count - 1; i++)
+                objs[i].SetActive(objActive[i]);
+        }
     }
 
     private void Update()
@@ -57,6 +62,7 @@ public class Button_OBJ : MonoBehaviour, IReset
             if (!isCollision)
             {
                 isCollision = true;
+                is_down = true;
 
                 foreach (Collider collider in colliders)
                 {
@@ -74,6 +80,7 @@ public class Button_OBJ : MonoBehaviour, IReset
             if (isCollision)
             {
                 isCollision = false;
+                is_down = false;
 
                 foreach (GameObject obj in objs)
                     obj.SetActive(!obj.activeSelf);
