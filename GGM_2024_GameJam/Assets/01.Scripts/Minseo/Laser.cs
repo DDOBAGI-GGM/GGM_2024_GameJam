@@ -9,6 +9,8 @@ public class Laser : MonoBehaviour
     [SerializeField] private LayerMask _mapLayerMask;
     [SerializeField] private LayerMask _playerLayerMask;
 
+    private float lineDis;
+
     PlayerMovement _playerMovement;
 
     private void Awake()
@@ -23,13 +25,14 @@ public class Laser : MonoBehaviour
         if(Physics.Raycast(transform.position, transform.forward, out hit, 25f, _mapLayerMask))
         {
             _lineRenderer.SetPosition(1, hit.point);
+            lineDis = hit.distance;
         }
         else
         {
             _lineRenderer.SetPosition(1, transform.position + transform.forward * 25f);
         }
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 25f, _playerLayerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, lineDis, _playerLayerMask))
         {
             Debug.LogError("·¹ÀÌÀú¶û ÇÃ·¹ÀÌ¾î¶û ´êÀ½");
             _playerMovement.IsDead = true;
