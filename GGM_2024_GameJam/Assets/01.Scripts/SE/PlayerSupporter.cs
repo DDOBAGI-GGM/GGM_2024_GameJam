@@ -29,6 +29,7 @@ public class PlayerSupporter : MonoBehaviour
         _playerInput = GameManager.Instance.PlayerMovement.gameObject.GetComponent<PlayerInput>();
         lineRenderer = GetComponentInChildren<LineRenderer>();
         lastFollow = transform;
+        lastlastFollow = transform;
         Instance = this;
     }
 
@@ -247,6 +248,7 @@ public class PlayerSupporter : MonoBehaviour
                     supportersList.Remove(supportersList[i]);
                     Destroy(supporterEdgeList[i].gameObject);
                     supporterEdgeList.Remove(supporterEdgeList[i]);
+                    lastFollow = supportersList[i - 1].transform;
                 }
             }
         }
