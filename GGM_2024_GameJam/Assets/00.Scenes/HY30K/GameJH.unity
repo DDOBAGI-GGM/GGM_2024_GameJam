@@ -547,7 +547,7 @@ MonoBehaviour:
   beforeStage: 0
   dustCnt: 0
   starCnt: 0
-  isClear: 0
+  isClear: 1
   isReset: 0
 --- !u!4 &221429902 stripped
 Transform:
@@ -772,7 +772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &638043587
 Transform:
   m_ObjectHideFlags: 0

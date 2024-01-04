@@ -18,7 +18,7 @@ public class Gate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && isChecking == false && GameManager.Instance.Is3D)         // 3D �϶��� ������.
+        if (other.CompareTag("Player") && isChecking == false)         // 3D �϶��� ������.
         {
             if (StageManager.Instance.IsClear)
             {
@@ -28,7 +28,7 @@ public class Gate : MonoBehaviour
 
                 foreach (GameObject obj in _walls)
                 {
-                    obj.gameObject.transform.DOScaleZ(0, 2f);
+                    obj.gameObject.transform.DOScaleY(0, 2f);
                 }
 
                 foreach (GameObject obj in _bridges)
