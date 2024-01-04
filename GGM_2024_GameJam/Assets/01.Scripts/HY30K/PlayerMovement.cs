@@ -45,6 +45,14 @@ public class PlayerMovement : MonoBehaviour
         set => _activeMove = value;
     }
 
+    private bool _onPlatform = false;
+
+    public bool OnPlatform
+    {
+        get => _onPlatform;
+        set => _onPlatform = value;
+    }
+
     private void Awake()
     {
         _animator = gameObject.GetComponentInChildren<Animator>();
@@ -63,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //?�보?�로 ?�직??�만 ?�렇�??�직?��?
-        if (IsDead == false)
+        if (IsDead == false || _onPlatform == false)
         {
             if (_activeMove && GameManager.Instance.Is3D)
             {
@@ -93,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         StageManager.Instance.ReSet();
         //_followEnemy.PlayerDead();
 
-        StartCoroutine(DeadfalseCoroutine());
+        Invoke("Deadfalse", 1f);
     }
 
     private void ResetPosition()
@@ -101,9 +109,8 @@ public class PlayerMovement : MonoBehaviour
         transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
     }
 
-    private IEnumerator DeadfalseCoroutine()
+    private void Deadfalse()
     {
-        yield return new WaitForSeconds(0.7f);
         CircleTransition.Instance.OpenBlackScreen();
         IsDead = false;
     }
@@ -158,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _visual.transform.rotation = Quaternion.Euler(0, -90, 0);
             _Crown.transform.rotation = Quaternion.Euler(0, 0, 15);
-            _Crown.transform.position = transform.position +  new Vector3(-0.2f, 0.554f, 0);
+            _Crown.transform.position = transform.position + new Vector3(-0.2f, 0.554f, 0);
         }
         else
         {
