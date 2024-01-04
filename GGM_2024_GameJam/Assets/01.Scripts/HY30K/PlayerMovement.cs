@@ -15,9 +15,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject _visual;
     [SerializeField] private GameObject _Crown;
     [SerializeField] float zPos = -2.08f;
-    [SerializeField] private ParticleSystem _deadParticle;
+    //[SerializeField] private ParticleSystem _deadParticle;
 
     public bool IsDead = false;
+    public bool isOneDead = false;
+
     public int FacingDirection { get; private set; } = 1;
 
     protected bool _facingRight = true;
@@ -65,12 +67,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (IsDead)
+        if (IsDead && !isOneDead)
         {
             PlayerDead();
+            isOneDead = true;
         }
 
-        //?ï¿½ë³´?ï¿½ë¡œ ?ï¿½ì§??ï¿½ë§Œ ?ï¿½ë ‡ï¿??ï¿½ì§?´ï¿½?
+        //?ï¿½ë³´?ï¿½ë¡œ ?ï¿½ì§??ï¿½ë§Œ ?ï¿½ë ?��???ï¿½ì§?´ï¿½?
         if (IsDead == false || _onPlatform == false)
         {
             if (_activeMove && GameManager.Instance.Is3D)
@@ -82,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
                 CalulatePlayer2DMovement();
             }
             if (!GameManager.Instance.Is3D)
-                ApplyGravity(); //ì¤‘ë ¥ ?ï¿½ìš© (2D?ï¿½ë•Œï¿?
+                ApplyGravity(); //ì¤?�ë �??ï¿½ìš© (2D?ï¿½ë?�Œ�??
 
             Move();
             AnimatorControl();
@@ -94,25 +97,40 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerDead()
     {
-        //SoundManager.Instance.PlaySFX("die");
-        Instantiate(_deadParticle, transform.position, Quaternion.identity);
+        SoundManager.Instance?.PlaySFX("die");
         CircleTransition.Instance.CloseBlackScreen();
-        Invoke("ResetPosition", 0.6f);
-        StageManager.Instance.ReSet();
-        //_followEnemy.PlayerDead();
+        _visual.gameObject.SetActive(false);
+        _Crown.gameObject.SetActive(false);
+        ResetPosition();
 
         Invoke("Deadfalse", 1f);
     }
 
-    private void ResetPosition()
+    public void ResetPosition()
     {
-        transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
+/*       Physics.gravity = Vector3.zero;
+        transform.position = Vector3.zero;
+        Debug.Log(GetComponent<CharacterController>().velocity);*/
+       _characterController.enabled = false;
+   /*     Debug.Log(transform.position);
+        CharacterController a = gameObject.GetComponent<CharacterController>();
+        a.Move(StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position);
+        //GetComponent<CharacterController>().transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
+        Debug.Log(GetComponent<CharacterController>().velocity);*/
     }
 
     private void Deadfalse()
     {
+        Debug.Log("1�� �ڿ�");
+        transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
+        _characterController.enabled = true;
+        _visual.gameObject.SetActive(true);
+        _Crown.gameObject.SetActive(true);
+
         CircleTransition.Instance.OpenBlackScreen();
+        StageManager.Instance.ReSet();
         IsDead = false;
+        isOneDead = false;
     }
 
     private void AnimatorControl()
@@ -175,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // ì¦‰ì‹œ ?ï¿½ï¿½?
+    // ì¦?�ì‹�??ï¿½ï¿½?
     public void StopImmediately()
     {
         _movementVelocity = Vector3.zero;
@@ -183,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (IsGround && _verticalVelocity < 0)  //?ï¿½ì— ì°©ï¿½? ?ï¿½íƒœ
+        if (IsGround && _verticalVelocity < 0)  //?ï¿½ì?��?ì°©ï¿½? ?ï¿½í?œ
         {
             _verticalVelocity = -0.1f;
         }

@@ -20,19 +20,23 @@ public class Supporter : MonoBehaviour, IReset
     public int FollowNum { get { return followNum; } set {  followNum = value; } }
 
     private bool firstGetMe = false;
+    public bool FirstGetMe { get {  return firstGetMe; } set {  firstGetMe = value; } }
     
     [SerializeField] private bool is_tutorial = false;
 
 
     [SerializeField] private Vector3 orginPos;
-    [SerializeField] private bool isInteraction = false;
-    public bool IsInteraction { get { return isInteraction;} set { isInteraction = value; } }
+    //[SerializeField] private bool isInteraction = false;
+    //public bool IsInteraction { get { return isInteraction;} set { isInteraction = value; } }
+
+    [SerializeField] private int stage = 0;
+    public int Stage { get { return stage; } private set { } }
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
-        //orginPos = gameObject.transform;
+        orginPos = gameObject.transform.position;
     }
 
     public void ChaseStart(Transform _target)
@@ -40,6 +44,7 @@ public class Supporter : MonoBehaviour, IReset
         target = _target;
         chase = true;
         agent.stoppingDistance = 2.5f;
+        //agent.isStopped = false;
 
         if (!firstGetMe)
         {
@@ -77,15 +82,14 @@ public class Supporter : MonoBehaviour, IReset
 
     public void Reset()
     {
-        if (isInteraction)
+        if (firstGetMe)
         {
-            Debug.Log("지지자 초기화");
-            isInteraction = false;
+            Debug.Log("������ �ʱ�ȭ");
             target = null;
-            chase = false;      // i지마
-           // agent.isStopped = true;       //멈춤으로 해주기
-            agent.SetDestination(orginPos);        // 본래 포지션으로 설정해서 멈주게
-            transform.position = orginPos;     // 본래 포지션으로 이동
+            chase = false;      // i지�?
+            //agent.isStopped = true;       //멈춤?�로 ?�주�?
+            agent.SetDestination(orginPos);        // 본래 ?��??�으�??�정?�서 멈주�?
+            transform.position = orginPos;     // 본래 ?��??�으�??�동
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
