@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Unity.VisualScripting;
-using System.Linq;
 
 public class Weigh_OBJ : MonoBehaviour, IReset
 {
@@ -21,7 +19,6 @@ public class Weigh_OBJ : MonoBehaviour, IReset
 
     [Header("Count")]
     [SerializeField] private int cnt;
-    private Dictionary<Collider, bool> collisionStates = new Dictionary<Collider, bool>();
 
     public bool isDown = false;
     public bool IsDown { get { return isDown; } }
@@ -75,67 +72,36 @@ public class Weigh_OBJ : MonoBehaviour, IReset
 
         if (colliders.Length > 0)
         {
-            foreach (Collider collider in colliders)
+            if (!isCollision)
             {
-                if (!collisionStates.ContainsKey(collider))
-                    collisionStates.Add(collider, false);
+                isCollision = true;
 
-                if (!collisionStates[collider])
+                foreach (Collider collider in colliders)
                 {
                     cnt--;
-                    collisionStates[collider] = true;
+
+                    if (cnt == 0)
+                    {
+                        isDown = true;
+                    }
                 }
             }
         }
         else
         {
-            foreach (Collider collider in collisionStates.Keys.ToList())
+            if (isCollision)
             {
-                if (collisionStates[collider] == true)
+                isCollision = false;
+
+                cnt++;
+
+                if (cnt != 0)
                 {
-                    cnt++;
-                    collisionStates[collider] = false;
+                    isDown = false;
+                    isInteraction = true;
                 }
             }
         }
-
-        if (cnt == 0)
-            isDown = true;
-        else
-            isDown = false;
-
-        //if (colliders.Length > 0)
-        //{
-        //    if (!isCollision)
-        //    {
-        //        isCollision = true;
-
-        //        foreach (Collider collider in colliders)
-        //        {
-        //            cnt--;
-
-        //            if (cnt == 0)
-        //            {
-        //                isDown = true;
-        //            }
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    if (isCollision)
-        //    {
-        //        isCollision = false;
-
-        //        cnt++;
-
-        //        if (cnt != 0)
-        //        {
-        //            isDown = false;
-        //            isInteraction = true;
-        //        }
-        //    }
-        //}
     }
 
     private void OnDrawGizmos()
