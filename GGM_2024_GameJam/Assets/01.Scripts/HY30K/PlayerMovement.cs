@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _activeMove = true;
 
+    [SerializeField] private float pushForce;
+
     public bool ActiveMove
     {
         get => _activeMove;
@@ -250,6 +252,23 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             transform.rotation = Quaternion.Euler(-90, 0, 0);
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.CompareTag("GravityBlock"))
+        {
+            Rigidbody _rigidbody = hit.collider.attachedRigidbody;
+
+            if (_rigidbody != null)
+            {
+                Vector3 forceDir = hit.gameObject.transform.position - transform.position;
+                forceDir.z = 0;
+                forceDir.Normalize();
+
+                _rigidbody.AddForceAtPosition(forceDir * pushForce, transform.position, ForceMode.Impulse);
+            }
         }
     }
 }
