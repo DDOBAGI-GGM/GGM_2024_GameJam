@@ -439,7 +439,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: GameMain
+          m_StringArgument: GameMain_2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1046583874
@@ -901,7 +901,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 40e272019b52d134a99961fc9ba6164c, type: 3}
   - {fileID: 21300000, guid: 6374c121f90d3ca43ae848a00ea194af, type: 3}
   cutSceneViewer: {fileID: 1559542240}
-  sceneName: GameMain
+  sceneName: GameMain_2
 --- !u!1 &1939330374
 GameObject:
   m_ObjectHideFlags: 0
