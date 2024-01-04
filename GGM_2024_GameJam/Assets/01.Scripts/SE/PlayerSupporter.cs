@@ -8,11 +8,11 @@ public class PlayerSupporter : MonoBehaviour
     [SerializeField] public List<Supporter> supportersList = new List<Supporter>();     // 나에게 있는 지지자들
     //private Queue<Supporter> supportersQueue = new Queue<Supporter>();
 
-    //[SerializeField] private GameObject supporterEdgePrefab;            // 배치 가능하다고 표시해줄 프리텝
-    //private LineRenderer lineRenderer;
-    //[SerializeField] private List<GameObject> supporterEdgeList = new List<GameObject>();
-    //[SerializeField] private LayerMask WallOrObstacleLayer;
-    //private bool is_showEdge = false;
+    [SerializeField] private GameObject supporterEdgePrefab;            // 배치 가능하다고 표시해줄 프리텝
+    private LineRenderer lineRenderer;
+    [SerializeField] private List<GameObject> supporterEdgeList = new List<GameObject>();
+    [SerializeField] private LayerMask WallOrObstacleLayer;
+    private bool is_showEdge = false;
 
     [SerializeField] private LayerMask supporterLayer;
     private RaycastHit hit;
@@ -22,11 +22,14 @@ public class PlayerSupporter : MonoBehaviour
 
     private bool reverse = false;
 
+    public static PlayerSupporter Instance;
+
     private void Start()
     {
         _playerInput = GameManager.Instance.PlayerMovement.gameObject.GetComponent<PlayerInput>();
-       // lineRenderer = GetComponentInChildren<LineRenderer>();
+        lineRenderer = GetComponentInChildren<LineRenderer>();
         lastFollow = transform;
+        Instance = this;
     }
 
     private void Update()
@@ -43,14 +46,13 @@ public class PlayerSupporter : MonoBehaviour
                 //if (supporter != null && !supportersQueue.Contains(supporter))      // 큐에 없어야행
                 if (supporter != null && !supportersList.Contains(supporter))      // 리스트에 없어야행
                 {
-                    Debug.Log(supporter);
                     supporter.ChaseStart(lastFollow);
                     lastFollow = supporter.transform;
                     //supportersQueue.Enqueue(supporter);
                     supportersList.Add(supporter);
                     //supporter.FollowNum = supportersQueue.Count;
                     supporter.FollowNum = supportersList.Count;
-                    //CreateSupporterEdge();
+                    CreateSupporterEdge();
                 }
                 return;     // 뒤에있는거 작동 ㄴㄴ
             }
@@ -65,7 +67,7 @@ public class PlayerSupporter : MonoBehaviour
             }
             else
             {
-                supportersList[i].UseMe(supportersList[i].transform.position);
+                supportersList[i].UseMe(lineRenderer.GetPosition(i + 1));
             }
         }
 
@@ -100,7 +102,7 @@ public class PlayerSupporter : MonoBehaviour
 
         // 지지자와 라인렌더러의 위치 정해주기
         //if (supportersQueue.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
-    /*    if (supportersList.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
+        if (supportersList.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
         {
             if (!is_showEdge)       // 지금 그려주는 것이 처음이면
             {
@@ -165,10 +167,10 @@ public class PlayerSupporter : MonoBehaviour
                     supporterEdgeList[i].gameObject.SetActive(false);
                 }
             }
-        }*/
+        }
     }
 
-/*    private void CreateSupporterEdge()      // 생성하고 추가만 해줌.
+    private void CreateSupporterEdge()      // 생성하고 추가만 해줌.
     {
         Quaternion rotation = Quaternion.Euler(-90f, 90f, -90f);
         //if (supportersQueue.Count != 0 && GameManager.Instance.Is3D)        // 3D 일때만
@@ -180,7 +182,7 @@ public class PlayerSupporter : MonoBehaviour
         }
         lineRenderer.positionCount++;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, transform.position);
-    }*/
+    }
 
     private void OnDrawGizmos()
     {
@@ -221,15 +223,28 @@ public class PlayerSupporter : MonoBehaviour
         }
     }
 
-/*    public void ChangeState(bool is3D)
-    {
-        if (is3D)
+    /*    public void ChangeState(bool is3D)
         {
-            for (int i = 0; i < supportersList.Count; i++)
+            if (is3D)
             {
-                supportersList[i].ChaseStart(lastFollow);
-                CreateSupporterEdge();
+                for (int i = 0; i < supportersList.Count; i++)
+                {
+                    supportersList[i].ChaseStart(lastFollow);
+                    CreateSupporterEdge();
+                }
             }
+        }*/
+
+    public void ReStart()
+    {
+        supportersList.Clear();
+        for (int i = 0; i < supporterEdgeList.Count; i++)
+        {
+            Destroy(supporterEdgeList[i].gameObject);
         }
-    }*/
+        supporterEdgeList.Clear();
+        lastFollow = transform;
+        lineRenderer.positionCount = 1;
+    }
+
 }

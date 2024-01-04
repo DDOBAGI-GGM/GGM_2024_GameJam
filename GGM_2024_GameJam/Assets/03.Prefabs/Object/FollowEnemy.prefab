@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6042288418440213377}
   - component: {fileID: 7522801525130081380}
+  - component: {fileID: 8047237186489013075}
+  - component: {fileID: 1673680093468818817}
   m_Layer: 0
   m_Name: FollowEnemy
   m_TagString: Untagged
@@ -25,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3169122205935466251}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.579228, y: 0.579228, z: -0.4055798, w: 0.4055798}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34,7 +36,7 @@ Transform:
   - {fileID: 753475048671723897}
   - {fileID: 6546686041999363587}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 110, z: -90}
 --- !u!114 &7522801525130081380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,10 +49,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6341691f347a70f4dad597cf0bafb68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startdelay: 20
+  startdelay: 3
   speed: 3
   numToSubtract: 50
   isStart: 0
+  player: {fileID: 0}
+--- !u!54 &8047237186489013075
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3169122205935466251}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1673680093468818817
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3169122205935466251}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 23, y: 15, z: 14}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3336889178954184260
 GameObject:
   m_ObjectHideFlags: 0
