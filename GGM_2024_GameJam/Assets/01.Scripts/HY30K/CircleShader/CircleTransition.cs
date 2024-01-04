@@ -17,8 +17,9 @@ namespace Collections.Shaders.CircleTransition
         private static readonly int CENTER_X = Shader.PropertyToID("_CenterX");
         private static readonly int CENTER_Y = Shader.PropertyToID("_CenterY");
 
-        private void Awake()
+        public override void Awake()
         {
+            base.Awake();
             _canvas = GetComponent<Canvas>();
             _blackScreen = GetComponentInChildren<Image>();
         }
@@ -51,7 +52,7 @@ namespace Collections.Shaders.CircleTransition
         public void CloseBlackScreen()
         {
             DrawBlackScreen();
-            StartCoroutine(Transition(2, 1, 0));
+            StartCoroutine(Transition(1, 1, 0));
         }
 
         private void DrawBlackScreen()
