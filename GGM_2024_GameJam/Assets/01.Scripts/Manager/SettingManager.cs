@@ -25,11 +25,11 @@ public class SettingManager : Singleton<SettingManager>
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
         Debug.Log(scene.name + "으로 변경되었습니다.");
-        if (SceneManager.GetActiveScene().name == "Game")             // 이것들 게임일때만 ㅇㅇ
+        if (SceneManager.GetActiveScene().buildIndex >= 3)             // 이것들 게임일때만 ㅇㅇ
         {
             settingBackBtn.onClick.RemoveAllListeners();
             settingBackBtn.onClick.AddListener(() => { OnSetting(false); });
-            settingBackBtn.onClick.AddListener(() => { IntroInit.Instance.SettingCancel(); });
+            settingBackBtn.onClick.AddListener(() => { SoundManager.Instance.PlaySFX("button"); });
 
             SoundManager.Instance.PlayBGM("game");
         }
@@ -43,23 +43,29 @@ public class SettingManager : Singleton<SettingManager>
         {
             SoundManager.Instance.PlayBGM("cut");
         }
+
+        if (SceneManager.GetActiveScene().name == "Intro")
+        {
+            settingBackBtn.onClick.AddListener(() => { IntroInit.Instance.SettingCancel(); });          // 이건 인트로일때만 아니니
+        }
     }
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Game")      // 게임씬일 때만. 
+        if (SceneManager.GetActiveScene().buildIndex >= 3)      // 게임씬일 때만. 
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 esc = !esc;
                 inGamePanel.SetActive(esc);
+                Time.timeScale = 0;
             }
         }
     }
 
     public void OnSetting(bool value)
     {
-        if (SceneManager.GetActiveScene().name == "Game") inGamePanel.SetActive(!value);            // 게임씬일때만
+        if (SceneManager.GetActiveScene().buildIndex >= 3) inGamePanel.SetActive(!value);            // 게임씬일때만
         settingPanel.SetActive(value);
     }
 
@@ -68,6 +74,10 @@ public class SettingManager : Singleton<SettingManager>
         Debug.Log("게임누름");
         inGamePanel.SetActive(false);
         esc = !esc;
-        UIManager.Instance.ChangeScene("Game");
+        Time.timeScale = 1;
+        //UIManager.Instance.ChangeScene("Game");
     }
 }
+
+
+// 게임씬들은 다 빌드인덱스 3이상에 두기
