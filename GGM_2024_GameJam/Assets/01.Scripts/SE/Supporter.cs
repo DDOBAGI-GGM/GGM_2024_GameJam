@@ -9,6 +9,7 @@ public class Supporter : MonoBehaviour, IReset
     [TextArea] private string description;
 
    [SerializeField] private Transform target;
+    public Transform Target { get { return target; } private set { } }
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -17,6 +18,8 @@ public class Supporter : MonoBehaviour, IReset
 
     private int followNum = 0;
     public int FollowNum { get { return followNum; } set {  followNum = value; } }
+
+    private bool firstGetMe = false;
 
     // Start is called before the first frame update
 
@@ -34,6 +37,12 @@ public class Supporter : MonoBehaviour, IReset
         target = _target;
         chase = true;
         agent.stoppingDistance = 2.5f;
+
+        if (!firstGetMe)
+        {
+            StageManager.Instance.GetDust();
+            firstGetMe = true;
+        }
     }
 
     // Update is called once per frame
@@ -62,10 +71,9 @@ public class Supporter : MonoBehaviour, IReset
 
     public void Reset()
     {
-        chase = false;
+        chase = false;      // 쫒지마
         //agent.isStopped = true;       //멈춤으로 해주기
-        agent.stoppingDistance = 2.5f;
-        agent.SetDestination(orginPos.position);
-        transform.position = orginPos.position;
+        agent.SetDestination(orginPos.position);        // 본래 포지션으로 설정해서 멈주게
+        transform.position = orginPos.position;     // 본래 포지션으로 이동
     }
 }
