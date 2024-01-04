@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     protected bool _facingRight = true;
     private PlayerInput _playerInput;
     private Animator _animator;
+    private FollowEnemy _followEnemy;
 
     private CharacterController _characterController;
     public bool IsGround
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator = gameObject.GetComponentInChildren<Animator>();
         _characterController = GetComponent<CharacterController>();
+        _followEnemy = FindObjectOfType<FollowEnemy>();
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
         _playerInput.OnJump += Jump;
@@ -90,8 +92,9 @@ public class PlayerMovement : MonoBehaviour
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         CircleTransition.Instance.CloseBlackScreen();
         StageManager.Instance.ReSet();
+        _followEnemy.PlayerDead();
 
-        
+
         StartCoroutine(DeadfalseCoroutine());
     }
 

@@ -152,10 +152,11 @@ MonoBehaviour:
   _lineRenderer: {fileID: 717595159553452399}
   _mapLayerMask:
     serializedVersion: 2
-    m_Bits: 4416
+    m_Bits: 320
   _playerLayerMask:
     serializedVersion: 2
     m_Bits: 512
+  isCollision: 0
 --- !u!1 &3680861203760420942
 GameObject:
   m_ObjectHideFlags: 0

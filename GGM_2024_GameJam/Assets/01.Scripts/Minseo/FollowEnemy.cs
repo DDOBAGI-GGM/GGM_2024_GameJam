@@ -42,7 +42,7 @@ public class FollowEnemy : MonoBehaviour
         {
             isStart = false;
             _playerMovement.IsDead = true;
-            Debug.Log("fef");
+            Debug.Log("플레이어 충돌");
         }
     }
 
