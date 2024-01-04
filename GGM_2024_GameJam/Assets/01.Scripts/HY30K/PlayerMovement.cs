@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject _visual;
     [SerializeField] private GameObject _Crown;
     [SerializeField] float zPos = -2.08f;
-    [SerializeField] private ParticleSystem _deadParticle;
+    //[SerializeField] private ParticleSystem _deadParticle;
 
     public bool IsDead = false;
     public int FacingDirection { get; private set; } = 1;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     protected bool _facingRight = true;
     private PlayerInput _playerInput;
     private Animator _animator;
-    private FollowEnemy _followEnemy;
+    //private FollowEnemy _followEnemy;
 
     private CharacterController _characterController;
     public bool IsGround
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator = gameObject.GetComponentInChildren<Animator>();
         _characterController = GetComponent<CharacterController>();
-        _followEnemy = FindObjectOfType<FollowEnemy>();
+        //_followEnemy = FindObjectOfType<FollowEnemy>();
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.OnMovement += SetMovement;
         _playerInput.OnJump += Jump;
@@ -87,11 +87,9 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerDead()
     {
         //SoundManager.Instance.PlaySFX("die");
-        Instantiate(_deadParticle, transform.position, Quaternion.identity);
+        //Instantiate(_deadParticle, transform.position, Quaternion.identity);
         CircleTransition.Instance.CloseBlackScreen();
         Invoke("ResetPosition", 1f);
-        StageManager.Instance.ReSet();
-        _followEnemy.PlayerDead();
 
         StartCoroutine(DeadfalseCoroutine());
     }
@@ -104,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator DeadfalseCoroutine()
     {
         yield return new WaitForSeconds(1.2f);
+        StageManager.Instance.ReSet();
         CircleTransition.Instance.OpenBlackScreen();
         IsDead = false;
     }
