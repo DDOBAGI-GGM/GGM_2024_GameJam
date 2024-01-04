@@ -36,7 +36,6 @@ public class PlayerSupporter : MonoBehaviour
     {
         // 지지자 너 내 것이 되라
         Vector3 playerPos = new Vector3(transform.position.x, transform.position.y, transform.position.z * 0.7f);
-        Debug.Log(_playerInput.Move);
         if (Physics.Raycast(playerPos, _playerInput.Move, out hit, 3, supporterLayer))           // 레이퀘스트 해주고
         {
             // 변수 가져와서 Supporter 내의 함수 사용
@@ -208,7 +207,7 @@ public class PlayerSupporter : MonoBehaviour
                 }
             }*/
 
-            Vector3 playerPos = new Vector3(transform.position.x, transform.position.y, transform.position.z * 0.7f);       // 플레이어가 지지자 얻으려고 하는 것
+  /*          Vector3 playerPos = new Vector3(transform.position.x, transform.position.y, transform.position.z * 0.7f);       // 플레이어가 지지자 얻으려고 하는 것
             if (Physics.Raycast(playerPos, _playerInput.Move, out hit, 3, supporterLayer))           // 레이퀘스트 해주고
             {
                 Gizmos.color = Color.green;
@@ -218,7 +217,7 @@ public class PlayerSupporter : MonoBehaviour
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawLine(playerPos, new Vector3(playerPos.x + _playerInput.Move.x, playerPos.y + _playerInput.Move.y, playerPos.z));
-            }
+            }*/
 
         }
     }

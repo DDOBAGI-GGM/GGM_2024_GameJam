@@ -18,7 +18,7 @@ public class Stage
     public List<GameObject> obj;
 }
 
-public class StageManager : Singleton<StageManager>
+public class StageManager : MonoBehaviour
 {
     [Header("Stage")]
     [SerializeField] private List<Stage> stageValue = new List<Stage>();
@@ -42,9 +42,11 @@ public class StageManager : Singleton<StageManager>
     [HideInInspector] public bool IsClear => isClear;
     [SerializeField] private bool isReset = false;
 
-    public override void Awake()
+    public static StageManager Instance;
+
+    public void Awake()
     {
-        base.Awake();
+        Instance = this;
     }
 
     private void Start()

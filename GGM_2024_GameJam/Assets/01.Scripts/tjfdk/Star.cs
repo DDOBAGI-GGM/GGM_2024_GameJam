@@ -39,7 +39,7 @@ public class Star : MonoBehaviour, IReset
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, distance, layer);
 
-        if (colliders.Length > 0)
+        if (colliders.Length > 0 && !isInteraction)
         {
             if (!isCollision)
             {
@@ -47,12 +47,12 @@ public class Star : MonoBehaviour, IReset
 
                 foreach (Collider collider in colliders)
                 {
-                    isInteraction = true;
+                    Debug.Log("먹어져야하는 거리");
                     if (StageManager.Instance.GetStar())
                     {
-                        SoundManager.Instance?.PlaySFX("star");
-                        Debug.Log("얻음");
                         PlayerStar.Instance.StarAdd(this.transform);
+                        SoundManager.Instance?.PlaySFX("star");
+                        isInteraction = true;
                     }
                 }
             }
