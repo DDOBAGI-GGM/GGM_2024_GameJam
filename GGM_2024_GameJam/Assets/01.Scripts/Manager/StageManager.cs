@@ -31,7 +31,6 @@ public class StageManager : MonoBehaviour
 
     [Header("Dust")]
     [SerializeField] private int dustCnt;
-    //[HideInInspector] public int DustCnt => dustCnt;
 
     [Header("Star")]
     [SerializeField] private int starCnt;
@@ -58,6 +57,11 @@ public class StageManager : MonoBehaviour
     {
         if (starCnt == currentStageMax && dustCnt == currentStageMax)
             isClear = true;
+    }
+
+    public void DustCntClear()
+    {
+        dustCnt = 0;
     }
 
     public bool GetStar()

@@ -7,24 +7,9 @@ public class Gate : MonoBehaviour
     [SerializeField] private List<GameObject> _walls;
     [SerializeField] private List<GameObject> _bridges;
     private bool isChecking = false;
-    private bool isTuto = true;
-
-    public static Gate Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    public bool IsTuto
-    {
-        get => isTuto;
-        set => isTuto = value;
-    }
 
     private void Start()
     {
-        isTuto = true;
 
         for (int i = 0; i < _bridges.Count; i++)
         {
