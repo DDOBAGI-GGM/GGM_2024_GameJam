@@ -20,8 +20,9 @@ public class Supporter : MonoBehaviour, IReset
     public int FollowNum { get { return followNum; } set {  followNum = value; } }
 
     private bool firstGetMe = false;
+    
+    [SerializeField] private bool is_tutorial = false;
 
-    // Start is called before the first frame update
 
     private Transform orginPos;
 
@@ -40,7 +41,10 @@ public class Supporter : MonoBehaviour, IReset
 
         if (!firstGetMe)
         {
-            StageManager.Instance.GetDust();
+            if (!is_tutorial)
+            {
+                StageManager.Instance.GetDust();
+            }
             firstGetMe = true;
         }
     }
