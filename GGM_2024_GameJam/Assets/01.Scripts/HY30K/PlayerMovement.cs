@@ -127,10 +127,16 @@ public class PlayerMovement : MonoBehaviour
         _visual.gameObject.SetActive(true);
         _Crown.gameObject.SetActive(true);
 
-        CircleTransition.Instance.OpenBlackScreen();
-        StageManager.Instance.ReSet();
+        Invoke("DeadfalseInvoke", 1f);
+        
         IsDead = false;
         isOneDead = false;
+    }
+
+    private void DeadfalseInvoke()
+    {
+        CircleTransition.Instance.OpenBlackScreen();
+        StageManager.Instance.ReSet();
     }
 
     private void AnimatorControl()
