@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerDead();
         }
 
-        //?�보?�로 ?�직일?�만 ?�렇�??�직이�?
+        //?�보?�로 ?�직일?�만 ?�렇�??�직이�?
         if (IsDead == false)
         {
             if (_activeMove && GameManager.Instance.Is3D)
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
                 CalulatePlayer2DMovement();
             }
             if (!GameManager.Instance.Is3D)
-                ApplyGravity(); //중력 ?�용 (2D?�때�?
+                ApplyGravity(); //중력 ?�용 (2D?�때�?
 
             Move();
             AnimatorControl();
@@ -86,13 +86,13 @@ public class PlayerMovement : MonoBehaviour
         transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
         StageManager.Instance.ReSet();
-        IsDead = false;
-        //StartCoroutine(DeadfalseCoroutine());
+        
+        StartCoroutine(DeadfalseCoroutine());
     }
 
     private IEnumerator DeadfalseCoroutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         IsDead = false;
     }
 
@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // 즉시 ?��?
+    // 즉시 ?��?
     public void StopImmediately()
     {
         _movementVelocity = Vector3.zero;
@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (IsGround && _verticalVelocity < 0)  //?�에 착�? ?�태
+        if (IsGround && _verticalVelocity < 0)  //?�에 착�? ?�태
         {
             _verticalVelocity = -0.1f;
         }
