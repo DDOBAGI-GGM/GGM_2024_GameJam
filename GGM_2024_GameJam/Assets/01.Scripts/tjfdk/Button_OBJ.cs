@@ -23,8 +23,7 @@ public class Button_OBJ : MonoBehaviour, IReset
 
     [Header("Interactiond")]
     [SerializeField] private List<GameObject> objs = new List<GameObject>();
-    [SerializeField] private bool isDown = false;
-    public bool IsDown { get { return isDown; } }
+    private List<bool> objActive = new List<bool> { false };
 
     private Transform body;
     private bool isCollision = false;
@@ -33,27 +32,20 @@ public class Button_OBJ : MonoBehaviour, IReset
     {
         body = transform.GetChild(0).GetComponent<Transform>();
         renderer = body.GetComponent<MeshRenderer>();
+
+        foreach (GameObject obj in objs)
+            objActive.Add(obj.activeSelf);
     }
 
     public void Reset()
     {
-        isDown = false;
+        for (int i = 0; i < objActive.Count; i++)
+            objs[i].SetActive(objActive[i]);
     }
 
     private void Update()
     {
         Ray();
-
-        if (isDown)
-        {
-            foreach (GameObject obj in objs)
-                obj.SetActive(true);
-        }
-        else
-        {
-            foreach (GameObject obj in objs)
-                obj.SetActive(false);
-        }
     }
 
     private void Ray()
@@ -68,7 +60,9 @@ public class Button_OBJ : MonoBehaviour, IReset
 
                 foreach (Collider collider in colliders)
                 {
-                    isDown = true;
+                    foreach (GameObject obj in objs)
+                        obj.SetActive(!obj.activeSelf);
+
                     body.DOKill();
                     body.DOLocalMoveY(downPos, 0.5f);
                     renderer.material = downColor;
@@ -79,8 +73,11 @@ public class Button_OBJ : MonoBehaviour, IReset
         {
             if (isCollision)
             {
-                isDown = false;
                 isCollision = false;
+
+                foreach (GameObject obj in objs)
+                    obj.SetActive(!obj.activeSelf);
+
                 body.DOKill();
                 body.DOLocalMoveY(upPos, 0.5f);
                 renderer.material = upColor;
