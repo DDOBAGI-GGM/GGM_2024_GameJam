@@ -18,13 +18,15 @@ public class Gate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && isChecking == false)
+        if (other.CompareTag("Player") && isChecking == false && GameManager.Instance.Is3D)         // 3D 일때만 감지함.
         {
             if (StageManager.Instance.IsClear)
             {
                 bridge.gameObject.SetActive(true);
                 StageManager.Instance.NextStage();
                 isChecking = true;
+
+                PlayerStar.Instance.UseStar();
 
                 foreach (Transform obj in walls)
                     obj.gameObject.SetActive(false);

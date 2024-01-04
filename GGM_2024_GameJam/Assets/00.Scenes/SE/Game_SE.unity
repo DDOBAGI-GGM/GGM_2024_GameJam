@@ -237,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd67a2239055aa47b90493f89cb4ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSupporter: {fileID: 0}
   switchCooldown: 1
   Is3D: 0
   _3DY: 15
