@@ -20,17 +20,18 @@ public class Laser : MonoBehaviour
     {
         RaycastHit hit;
         _lineRenderer.SetPosition(0, transform.position);
-        if(Physics.Raycast(transform.position, transform.forward, out hit, 50f, _mapLayerMask))
+        if(Physics.Raycast(transform.position, transform.forward, out hit, 25f, _mapLayerMask))
         {
             _lineRenderer.SetPosition(1, hit.point);
         }
         else
         {
-            _lineRenderer.SetPosition(1, transform.position + transform.forward * 50f);
+            _lineRenderer.SetPosition(1, transform.position + transform.forward * 25f);
         }
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 50f, _playerLayerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 25f, _playerLayerMask))
         {
+            Debug.LogError("·¹ÀÌÀú¶û ÇÃ·¹ÀÌ¾î¶û ´êÀ½");
             _playerMovement.IsDead = true;
         }
     }
