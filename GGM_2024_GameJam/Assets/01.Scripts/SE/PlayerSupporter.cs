@@ -183,44 +183,6 @@ public class PlayerSupporter : MonoBehaviour
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, transform.position);
     }
 
-    private void OnDrawGizmos()
-    {
-        if (UnityEditor.EditorApplication.isPlaying)
-        {
-            /*Vector3 playerPos = new Vector3(transform.position.x, transform.position.y, transform.position.z * 0.7f);
-            Debug.DrawLine(playerPos, new Vector3(transform.position.x + _playerInput.Move.x, transform.position.y + _playerInput.Move.y, playerPos.z), Color.red);
-
-            if (supportersQueue.Count > 0)
-            {
-                bool isHit = Physics.SphereCast(transform.position, 1f, GameManager.Instance.PlayerMovement.GetComponent<PlayerInput>().Move, out hit, 2f);
-                if (isHit)
-                {
-                    //Debug.Log(hit.collider.gameObject.name);
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawRay(transform.position, transform.up * hit.distance);
-                    Gizmos.DrawWireSphere(transform.position + transform.up * hit.distance, 1);
-                }
-                else
-                {
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawRay(transform.position, transform.up);
-                }
-            }*/
-
-  /*          Vector3 playerPos = new Vector3(transform.position.x, transform.position.y, transform.position.z * 0.7f);       // 플레이어가 지지자 얻으려고 하는 것
-            if (Physics.Raycast(playerPos, _playerInput.Move, out hit, 3, supporterLayer))           // 레이퀘스트 해주고
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawLine(playerPos, hit.point);
-            }
-            else
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(playerPos, new Vector3(playerPos.x + _playerInput.Move.x, playerPos.y + _playerInput.Move.y, playerPos.z));
-            }*/
-
-        }
-    }
 
     /*    public void ChangeState(bool is3D)
         {
