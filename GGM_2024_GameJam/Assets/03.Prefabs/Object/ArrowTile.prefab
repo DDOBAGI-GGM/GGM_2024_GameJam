@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4325077596933527162}
   - component: {fileID: 1815262066520733251}
   - component: {fileID: 3239129181543059936}
+  - component: {fileID: 5779701380287361435}
   m_Layer: 6
   m_Name: ArrowTile
-  m_TagString: Untagged
+  m_TagString: GravityBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,3 +134,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.0000006, z: 1.0000006}
   m_Center: {x: 0, y: 0.5000009, z: -0.00000017881396}
+--- !u!114 &5779701380287361435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038397697280065350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3021dd2a17a714c49844a7ecd23cdb54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

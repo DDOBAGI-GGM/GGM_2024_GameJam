@@ -4,50 +4,42 @@ using UnityEngine;
 
 public class GravityBlock : MonoBehaviour
 {
-    
+    Rigidbody rb;
 
-    [SerializeField] private float pushForce = 2f; 
+    RigidbodyConstraints _2d = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+    RigidbodyConstraints _3d = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
 
-    public bool issf = false;
+    private bool is3D;
 
     private void Awake()
     {
-        //_rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Start()
     {
-        //Freeze();
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        is3D = !GameManager.Instance.Is3D;
     }
 
-    private void Freeze()
+    private void Update()
     {
-        ////if (!GameManager.Instance.Is3D)
-        //if (issf)
-        //{
-        //    _rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
-        //    _rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
-
-            
-        //}
-        //else
-        //{
-        //    _rigidbody.constraints &= ~RigidbodyConstraints.FreezePositionZ;
-        //    _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;   
-        //}
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Rigidbody _rigidbody = hit.collider.attachedRigidbody;
-
-        if(_rigidbody != null)
+        if (GameManager.Instance.Is3D != is3D)
         {
-            Vector3 forceDir = hit.gameObject.transform.position - transform.position;
-            forceDir.y = 0;
-            forceDir.Normalize();
-            
-            _rigidbody.AddForceAtPosition(forceDir * pushForce, transform.position, ForceMode.Impulse);
+            is3D = GameManager.Instance.Is3D;
+            if (GameManager.Instance.Is3D)
+            {
+                rb.constraints = ~_2d;
+                rb.constraints = _3d;
+            }
+            else
+            {
+                rb.constraints = ~_3d;
+                rb.constraints = _2d;
+            }
         }
+
+        if (rb.velocity != Vector3.zero && GameManager.Instance.Is3D)
+            rb.velocity = Vector3.zero;
     }
 }
