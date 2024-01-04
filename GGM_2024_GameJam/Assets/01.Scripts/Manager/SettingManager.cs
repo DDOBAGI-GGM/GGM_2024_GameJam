@@ -10,12 +10,6 @@ public class SettingManager : Singleton<SettingManager>
     [SerializeField] private Button settingBackBtn;
     [SerializeField] private bool esc = false;      // SerializeField 지워도 됨.
 
-    private void Start()
-    {
-        //inGamePanel.SetActive(esc);
-        Debug.Log(SceneManager.GetActiveScene().name);
-    }
-
     private void OnEnable()
     {
         //Debug.Log("씬 이동 이벤트 등록");
@@ -30,23 +24,30 @@ public class SettingManager : Singleton<SettingManager>
 
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
-        //Debug.Log(scene.name + "으로 변경되었습니다.");
-        if (SceneManager.GetActiveScene().name == "SE")
+        Debug.Log(scene.name + "으로 변경되었습니다.");
+        if (SceneManager.GetActiveScene().name == "Game")             // 이것들 게임일때만 ㅇㅇ
         {
             settingBackBtn.onClick.RemoveAllListeners();
             settingBackBtn.onClick.AddListener(() => { OnSetting(false); });
             settingBackBtn.onClick.AddListener(() => { IntroInit.Instance.SettingCancel(); });
+
+            SoundManager.Instance.PlayBGM("game");
         }
         else
         {
             settingBackBtn.onClick.RemoveAllListeners();
             settingBackBtn.onClick.AddListener(() => { OnSetting(false); });
         }
+
+        if (SceneManager.GetActiveScene().name == "CutScene")
+        {
+            SoundManager.Instance.PlayBGM("cut");
+        }
     }
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Game")      // 게임씬일 때만. 임의로 SE 로 해줌.
+        if (SceneManager.GetActiveScene().name == "Game")      // 게임씬일 때만. 
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
