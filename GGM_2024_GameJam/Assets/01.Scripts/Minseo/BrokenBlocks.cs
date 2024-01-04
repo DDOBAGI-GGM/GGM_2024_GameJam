@@ -36,14 +36,13 @@ public class BrokenBlocks : MonoBehaviour//, IReset
     private void Ray()
     {
         RaycastHit hit;
-        bool isHit = Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.up, out hit, transform.rotation, 0.2f);
+        bool isHit = Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.up, out hit, transform.rotation, 0.3f);
 
         Debug.DrawRay(transform.position, transform.forward * 1f, Color.red);
 
         if (isHit)
         {
-
-            Debug.Log("1"); 
+            Debug.Log("ef3refvfkr");
             if (!isCollision)
             {
                 isCollision = true;
