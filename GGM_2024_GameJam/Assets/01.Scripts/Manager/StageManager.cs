@@ -24,16 +24,16 @@ public class StageManager : MonoBehaviour
     [SerializeField] private List<Stage> stageValue = new List<Stage>();
     [HideInInspector] public List<Stage> StageValue => stageValue;
     //[SerializeField] private List<GameObject> stageObj = new List<GameObject>();
-    [SerializeField] private int currentStageMax;
+    [SerializeField] public int currentStageMax;
     [SerializeField] private int currentStage;
     [HideInInspector] public int CurrentStage => currentStage;
     [SerializeField] private int beforeStage;
 
     [Header("Dust")]
-    [SerializeField] private int dustCnt;
+    [SerializeField] public int dustCnt;
 
     [Header("Star")]
-    [SerializeField] private int starCnt;
+    [SerializeField] public int starCnt;
     //[HideInInspector] public int StarCnt => starCnt;
 
     [Header("Clear")]
