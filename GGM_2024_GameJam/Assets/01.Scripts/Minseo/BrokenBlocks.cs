@@ -3,13 +3,12 @@ using System.Collections;
 using DG.Tweening;
 using System;
 
-public class BrokenBlocks : MonoBehaviour//, IReset
+public class BrokenBlocks : MonoBehaviour, IReset
 {
     [SerializeField] private float delay = 1;
 
     private Vector3 originalPosition;
 
-    public bool isBroken = false;
     bool isCollision = false;
 
     private void Start()
@@ -17,16 +16,13 @@ public class BrokenBlocks : MonoBehaviour//, IReset
         originalPosition = transform.position;
     }
 
-    //public void Reset()
-    //{
-    //    isBroken = true;
-    //}
+    public void Reset()
+    {
+        gameObject.SetActive(true);
+    }
 
     private void Update()
     {
-        if(isBroken)
-            gameObject.SetActive(true);
-
         Ray();
     }
 

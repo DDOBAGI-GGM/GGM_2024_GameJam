@@ -17,8 +17,6 @@ public class SceneMove : MonoBehaviour
             }
 
             Debug.Log("¾Æ´Ï");
-            StageManager.Instance.starCnt = StageManager.Instance.currentStageMax;
-            StageManager.Instance.dustCnt = StageManager.Instance.currentStageMax;
             StageManager.Instance.NextStage();
             StageManager.Instance.DustCntClear();
         }
