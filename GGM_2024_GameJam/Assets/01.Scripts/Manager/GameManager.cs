@@ -75,8 +75,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             _player.IsDead = true;
 
-        if (Input.GetKeyDown(KeyCode.T))
-            cannotAttack = !cannotAttack;
+        //if (Input.GetKeyDown(KeyCode.T))
+        //    cannotAttack = !cannotAttack;
     }
 
     public void GravityConvert()
