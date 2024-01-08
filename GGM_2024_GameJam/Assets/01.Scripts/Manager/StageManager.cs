@@ -107,7 +107,7 @@ public class StageManager : MonoBehaviour
     {
         isClear = false;
 
-        if (currentStage > 0)
+        if (currentStage > 0 && currentStage != 3)
         {
             beforeStage = currentStage - 1;
             dustCnt = stageValue[beforeStage].pointCnt;
