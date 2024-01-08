@@ -41,7 +41,8 @@ public class FollowEnemy : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             isStart = false;
-            _playerMovement.IsDead = true;
+            if (GameManager.Instance.cannotAttack == false)
+                _playerMovement.IsDead = true;
             Debug.Log("플레이어 충돌");
         }
     }
