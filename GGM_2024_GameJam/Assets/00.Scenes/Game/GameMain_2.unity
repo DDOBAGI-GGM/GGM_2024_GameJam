@@ -2527,8 +2527,6 @@ MonoBehaviour:
     - {fileID: 1925854905}
     - {fileID: 1925854904}
     - {fileID: 1925854903}
-    - {fileID: 1925854902}
-    - {fileID: 1925854901}
     - {fileID: 1925854900}
     - {fileID: 1925854906}
     - {fileID: 1925854905}
@@ -12304,6 +12302,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage04
       objectReference: {fileID: 0}
+    - target: {fileID: 6421615028518752024, guid: 1e371eb85edf07b4eb17b6c3e692140c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7533527575493473261, guid: 1e371eb85edf07b4eb17b6c3e692140c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16946,18 +16949,6 @@ Transform:
 --- !u!1 &1925854900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8858849641825581400, guid: 1e371eb85edf07b4eb17b6c3e692140c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1452581958}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1925854901 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1195841020559107293, guid: 1e371eb85edf07b4eb17b6c3e692140c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1452581958}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1925854902 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4554015437037068240, guid: 1e371eb85edf07b4eb17b6c3e692140c,
     type: 3}
   m_PrefabInstance: {fileID: 1452581958}
   m_PrefabAsset: {fileID: 0}
