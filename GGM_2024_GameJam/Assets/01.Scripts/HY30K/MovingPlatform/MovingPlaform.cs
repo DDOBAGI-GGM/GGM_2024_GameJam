@@ -8,9 +8,6 @@ public class MovingPlaform : MonoBehaviour
     [SerializeField] private int _Cnt;
     [SerializeField] private LayerMask _layerMask;
 
-    private PlayerMovement _player;
-
-    public bool IsOn = false;
     private int _targetWaypointIndex;
 
     private Transform _previousWaypoint;
@@ -21,13 +18,12 @@ public class MovingPlaform : MonoBehaviour
 
     private int _objCnt = 0;
 
-    public static MovingPlaform Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-        _player = GameObject.Find("Player").GetComponent<PlayerMovement>();
-    }
+    [Header("Collider!")]
+    [SerializeField] private BoxCollider _wallCollider;
+    [SerializeField] private BoxCollider _myRightCollider;
+    [SerializeField] private BoxCollider _myLeftCollider;
+    [SerializeField] private bool is_Right = true;
+    [SerializeField] private float _openPersent = 0.5f;
 
     private void Start()
     {
@@ -43,17 +39,30 @@ public class MovingPlaform : MonoBehaviour
 
         transform.position = Vector3.Lerp(_previousWaypoint.position, _targetWaypoint.position, elapsedPercentage);
 
+        //Debug.Log(elapsedPercentage);
+
+        if (elapsedPercentage >= _openPersent)
+        {
+            if (is_Right)
+            {
+                _myRightCollider.enabled = false;
+            }
+            else
+            {
+                _myLeftCollider.enabled = false;
+            }
+        }
+        else
+        {
+            _myRightCollider.enabled = true;
+            _myLeftCollider.enabled = true;
+        }
+
         if (elapsedPercentage >= 1)
         {
             TargetNextWaypoint();
+            is_Right = !is_Right;
         }
-    }
-
-    private int GetTargetCount()
-    {
-        Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(5, 5, 5), transform.rotation, _layerMask);
-        Debug.Log(colliders.Length);
-        return colliders.Length;
     }
 
     private void TargetNextWaypoint()
@@ -68,17 +77,32 @@ public class MovingPlaform : MonoBehaviour
         _timeToWayPoint = distanceToWaypoint / _speed;
     }
 
+    private int GetTargetCount()
+    {
+        Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(5, 5, 5), transform.rotation, _layerMask);
+        Debug.Log(colliders.Length);
+        return colliders.Length;
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
-        _player.OnPlatform = true;
+        Debug.Log(other.gameObject);
+        //_player.OnPlatform = true;
         if (GetTargetCount() >= _Cnt)
-            other.transform.SetParent(transform);
+        {
+            //other.transform.SetParent(transform);
+            _wallCollider.enabled = false;
+            Debug.Log("들어옴");
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _player.OnPlatform = false;
-        other.transform.SetParent(null);
+        //_player.OnPlatform = false;
+        //other.transform.SetParent(null);
+            _wallCollider.enabled = true;
+            Debug.Log("나가기");
     }
 
 

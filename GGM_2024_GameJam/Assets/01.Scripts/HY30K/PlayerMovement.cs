@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     protected bool _facingRight = true;
     private PlayerInput _playerInput;
     private Animator _animator;
-    private FollowEnemy _followEnemy;
+    //private FollowEnemy _followEnemy;
 
     private CharacterController _characterController;
 
@@ -45,13 +45,13 @@ public class PlayerMovement : MonoBehaviour
         set => _activeMove = value;
     }
 
-    private bool _onPlatform = false;
+    //private bool _onPlatform = false;
 
-    public bool OnPlatform
-    {
-        get => _onPlatform;
-        set => _onPlatform = value;
-    }
+    //public bool OnPlatform
+    //{
+    //    get => _onPlatform;
+    //    set => _onPlatform = value;
+    //}
 
     private void Awake()
     {
@@ -64,10 +64,10 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _animator = gameObject.GetComponentInChildren<Animator>();
-        _followEnemy = FindObjectOfType<FollowEnemy>();
+        //_followEnemy = FindObjectOfType<FollowEnemy>();
 
         if (_characterController == null)
-            Debug.Log("�� ^�Ӥӹ�");
+            Debug.Log("ĳ������Ʈ�ѷ� ����");
     }
 
     private void FixedUpdate()
@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //?ï¿½ë³´?ï¿½ë¡œ ?ï¿½ì§??ï¿½ë§Œ ?ï¿½ë ?��???ï¿½ì§?´ï¿½?
-        if (IsDead == false || _onPlatform == false)
+        if (IsDead == false /*|| _onPlatform == false*/)
         {
             if (_activeMove && GameManager.Instance.Is3D)
             {
@@ -133,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("1�� �ڿ�");
         transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
-        _characterController.enabled = true;
         _visual.gameObject.SetActive(true);
         _Crown.gameObject.SetActive(true);
 
@@ -145,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void DeadfalseInvoke()
     {
+        _characterController.enabled = true;
         CircleTransition.Instance.OpenBlackScreen();
         StageManager.Instance.ReSet();
     }
@@ -231,7 +231,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        _characterController.Move(_movementVelocity);
+        if (_characterController.enabled == true)
+        {
+            _characterController.Move(_movementVelocity);
+        }
     }
 
     private void Jump()
