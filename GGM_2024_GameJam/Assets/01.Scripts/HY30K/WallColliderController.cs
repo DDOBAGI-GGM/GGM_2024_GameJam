@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WallColliderController : MonoBehaviour
 {
-    private BoxCollider _boxCol;
+    private BoxCollider[] _boxCol;
 
     private void Awake()
     {
-        _boxCol = GetComponent<BoxCollider>();
+        _boxCol = GetComponents<BoxCollider>();
     }
 
     private void Update()
     {
         if (GameManager.Instance.Is3D)
-            _boxCol.isTrigger = false;
+        {
+            _boxCol.ToList().ForEach(x => x.isTrigger = false);
+        }
         else
-            _boxCol.isTrigger = true;
+        {
+            _boxCol.ToList().ForEach(x => x.isTrigger = true);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
