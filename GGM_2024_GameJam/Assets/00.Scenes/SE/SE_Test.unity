@@ -680,6 +680,8 @@ MonoBehaviour:
     - {fileID: 250057158}
     - {fileID: 250057157}
     - {fileID: 250057156}
+    - {fileID: 555424231}
+    - {fileID: 1827615302}
   - reStartPos: {fileID: 75614502}
     pointCnt: 8
     obj:
@@ -1274,6 +1276,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4647c65096471a044989e9591817001e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &555424231 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3832382918381844882, guid: 1d653ccfae6dbff45ac5c45e2fc9342f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1708524800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &578432969 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3183731614642940438, guid: 566fb8d7512a28741be4b1a50f9677bc,
@@ -2905,6 +2913,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 189568214541426393, guid: 566fb8d7512a28741be4b1a50f9677bc,
     type: 3}
   m_PrefabInstance: {fileID: 1956171615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1827615302 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2901818142259138655, guid: 1d653ccfae6dbff45ac5c45e2fc9342f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1708524800}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1908805792
 PrefabInstance:
