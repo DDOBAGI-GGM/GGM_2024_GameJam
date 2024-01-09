@@ -21,7 +21,6 @@ public class BrokenBlocks : MonoBehaviour, IReset
     public void Reset()
     {
         gameObject.SetActive(isOrigin);
-        Debug.Log("dkdl tlqkf");
     }
 
     private void Update()

@@ -198,6 +198,8 @@ public class PlayerSupporter : MonoBehaviour
 
     public void ReStart()
     {
+        Debug.Log("스테이지 리스타트");
+
         for (int i = 0; i < supportersList.Count; i++)
         {
             if (supportersList[i].Stage == StageManager.Instance.CurrentStage)

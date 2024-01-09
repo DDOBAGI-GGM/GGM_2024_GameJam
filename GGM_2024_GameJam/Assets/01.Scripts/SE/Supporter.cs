@@ -58,7 +58,7 @@ public class Supporter : MonoBehaviour, IReset
     // Update is called once per frame
     void Update()
     {
-        if (chase && GameManager.Instance.Is3D)
+        if (chase && GameManager.Instance.Is3D && target != null)
         {
             agent.SetDestination(target.position);
         }
@@ -84,9 +84,9 @@ public class Supporter : MonoBehaviour, IReset
     {
         if (firstGetMe)
         {
-            Debug.Log("¼­Æ÷ÅÍ ÃÊ±âÈ­" + gameObject.name);
-            target = null;
+            Debug.Log("¼­Æ÷ÅÍ ÃÊ±âÈ­ " + gameObject.name);
             chase = false;      // iì§€ë§?
+            target = null;
             //agent.isStopped = true;       //ë©ˆì¶¤?¼ë¡œ ?´ì£¼ê¸?
             agent.SetDestination(orginPos);        // ë³¸ë˜ ?¬ì??˜ìœ¼ë¡??¤ì •?´ì„œ ë©ˆì£¼ê²?
             transform.position = orginPos;     // ë³¸ë˜ ?¬ì??˜ìœ¼ë¡??´ë™
