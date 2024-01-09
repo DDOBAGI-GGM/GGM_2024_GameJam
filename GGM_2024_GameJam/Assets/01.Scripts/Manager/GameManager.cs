@@ -66,6 +66,9 @@ public class GameManager : MonoBehaviour
 
            // _playerSupporter.ChangeState(Is3D);
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+            cannotAttack = !cannotAttack;
         // 이거 위에 이프문 안으로 넣어두기!
         //Cam.transform.DOMoveX(_player.transform.position.x, 2f);
     }
