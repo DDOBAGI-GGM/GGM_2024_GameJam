@@ -1343,6 +1343,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7232903220097279549, guid: 4dae472ed17fb104080d6a04879bd80b,
+        type: 3}
+      propertyPath: stage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 9104687558327243082, guid: 4dae472ed17fb104080d6a04879bd80b,
         type: 3}
       propertyPath: m_Name
@@ -15299,6 +15304,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1389073256990583332, guid: 1d653ccfae6dbff45ac5c45e2fc9342f,
+        type: 3}
+      propertyPath: stage
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3837246235202730313, guid: 1d653ccfae6dbff45ac5c45e2fc9342f,
         type: 3}
       propertyPath: m_LocalScale.z
@@ -16812,6 +16822,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage06
       objectReference: {fileID: 0}
+    - target: {fileID: 2198245861685346937, guid: 28f901f11ae9bd44c95f5499eb9b3f7c,
+        type: 3}
+      propertyPath: stage
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2716733275196639210, guid: 28f901f11ae9bd44c95f5499eb9b3f7c,
         type: 3}
       propertyPath: m_Size.z
@@ -17607,6 +17622,11 @@ PrefabInstance:
       propertyPath: _bridges.Array.data[9]
       value: 
       objectReference: {fileID: 82946345}
+    - target: {fileID: 7178814345911545488, guid: 566fb8d7512a28741be4b1a50f9677bc,
+        type: 3}
+      propertyPath: stage
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7276843282803974369, guid: 566fb8d7512a28741be4b1a50f9677bc,
         type: 3}
       propertyPath: m_LocalScale.z
