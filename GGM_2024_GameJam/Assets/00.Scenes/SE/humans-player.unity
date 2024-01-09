@@ -294,6 +294,7 @@ MonoBehaviour:
   Is3D: 0
   _3DY: 15
   _2DY: 2.25
+  cannotAttack: 0
 --- !u!114 &112843419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1321,7 +1322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &834577291
 MonoBehaviour:
   m_ObjectHideFlags: 0

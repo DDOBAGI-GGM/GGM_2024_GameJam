@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     protected bool _facingRight = true;
     private PlayerInput _playerInput;
     private Animator _animator;
-    private FollowEnemy _followEnemy;
+    //private FollowEnemy _followEnemy;
 
     private CharacterController _characterController;
 
@@ -64,10 +64,10 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _animator = gameObject.GetComponentInChildren<Animator>();
-        _followEnemy = FindObjectOfType<FollowEnemy>();
+        //_followEnemy = FindObjectOfType<FollowEnemy>();
 
         if (_characterController == null)
-            Debug.Log("아 ^ㅣㅣ발");
+            Debug.Log("캐릭터컨트롤러 없음");
     }
 
     private void FixedUpdate()
@@ -133,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("1초 뒤에");
         transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
-        _characterController.enabled = true;
         _visual.gameObject.SetActive(true);
         _Crown.gameObject.SetActive(true);
 
@@ -145,6 +144,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void DeadfalseInvoke()
     {
+        _characterController.enabled = true;
         CircleTransition.Instance.OpenBlackScreen();
         StageManager.Instance.ReSet();
     }
@@ -231,7 +231,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        _characterController.Move(_movementVelocity);
+        if (_characterController.enabled == true)
+        {
+            _characterController.Move(_movementVelocity);
+        }
     }
 
     private void Jump()
