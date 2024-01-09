@@ -10,15 +10,17 @@ public class BrokenBlocks : MonoBehaviour, IReset
     private Vector3 originalPosition;
 
     bool isCollision = false;
+    bool isOrigin = false;
 
     private void Start()
     {
         originalPosition = transform.position;
+        isOrigin = gameObject.activeSelf;
     }
 
     public void Reset()
     {
-        gameObject.SetActive(true);
+        gameObject.SetActive(isOrigin);
         Debug.Log("dkdl tlqkf");
     }
 
