@@ -41,7 +41,7 @@ public class MovingPlaform : MonoBehaviour
 
         //Debug.Log(elapsedPercentage);
 
-        if (elapsedPercentage >= _openPersent)
+        if (elapsedPercentage >= _openPersent/* || elapsedPercentage <= (1 - _openPersent)*/)
         {
             if (is_Right)
             {
@@ -88,7 +88,7 @@ public class MovingPlaform : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject);
-        //_player.OnPlatform = true;
+        GameManager.Instance.PlayerMovement.OnPlatform = true;
         if (GetTargetCount() >= _Cnt)
         {
             //other.transform.SetParent(transform);
@@ -99,7 +99,7 @@ public class MovingPlaform : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //_player.OnPlatform = false;
+        GameManager.Instance.PlayerMovement.OnPlatform = false;
         //other.transform.SetParent(null);
             _wallCollider.enabled = true;
             Debug.Log("³ª°¡±â");
