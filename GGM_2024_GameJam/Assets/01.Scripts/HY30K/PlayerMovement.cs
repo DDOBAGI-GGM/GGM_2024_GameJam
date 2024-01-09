@@ -45,13 +45,13 @@ public class PlayerMovement : MonoBehaviour
         set => _activeMove = value;
     }
 
-    //private bool _onPlatform = false;
+    private bool _onPlatform = false;
 
-    //public bool OnPlatform
-    //{
-    //    get => _onPlatform;
-    //    set => _onPlatform = value;
-    //}
+    public bool OnPlatform
+    {
+        get => _onPlatform;
+        set => _onPlatform = value;
+    }
 
     private void Awake()
     {
@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //?ï¿½ë³´?ï¿½ë¡œ ?ï¿½ì§??ï¿½ë§Œ ?ï¿½ë ?��???ï¿½ì§?´ï¿½?
-        if (IsDead == false /*|| _onPlatform == false*/)
+        if (IsDead == false || _onPlatform == false)
         {
             if (_activeMove && GameManager.Instance.Is3D)
             {

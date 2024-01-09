@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
 
         timeSinceLastSwitch += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Q) && CanConvert /*&& !_player.OnPlatform*/ && timeSinceLastSwitch >= switchCooldown)
+        if (Input.GetKeyDown(KeyCode.Q) && CanConvert && !_player.OnPlatform && timeSinceLastSwitch >= switchCooldown)
         {
             Is3D = !Is3D;
             GravityConvert();
