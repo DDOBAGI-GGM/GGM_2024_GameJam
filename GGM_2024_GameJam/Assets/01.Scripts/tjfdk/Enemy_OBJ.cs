@@ -14,6 +14,7 @@ public class Enemy_OBJ : MonoBehaviour, IReset
     [SerializeField] private Transform[] points;
     [SerializeField] private float speed;
     private int idx = 0;
+    Rigidbody rb;
 
     private bool isCollision = false;
 
@@ -22,6 +23,7 @@ public class Enemy_OBJ : MonoBehaviour, IReset
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>(); 
         originPos = transform.position;
     }
 
@@ -66,7 +68,7 @@ public class Enemy_OBJ : MonoBehaviour, IReset
     {
         Vector3 target = points[idx].position;
         Vector3 dir = (target - transform.position).normalized;
-        transform.Translate(dir * speed * Time.deltaTime);
+        rb.velocity = dir * speed;
 
         float distance = Vector3.Distance(transform.position, target);
 
