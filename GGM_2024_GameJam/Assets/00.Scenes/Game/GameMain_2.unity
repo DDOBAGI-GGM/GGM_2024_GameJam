@@ -1049,7 +1049,7 @@ Camera:
   far clip plane: 80
   field of view: 70
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 7.75
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1073,8 +1073,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51485033}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -361, y: -0.25, z: -20.8}
+  m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
+  m_LocalPosition: {x: -361, y: -11.5, z: -20.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4722,7 +4722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 4.75, z: -20}
+  m_FollowOffset: {x: 0, y: 5, z: -20}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -8325,7 +8325,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1602482061}
   m_Lens:
     FieldOfView: 70
-    OrthographicSize: 8
+    OrthographicSize: 7.75
     NearClipPlane: 0.3
     FarClipPlane: 80
     Dutch: 0
@@ -8351,7 +8351,7 @@ Transform:
   m_GameObject: {fileID: 911120825}
   serializedVersion: 2
   m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: -361, y: -11.85, z: -20.8}
+  m_LocalPosition: {x: -361, y: -11.5, z: -20.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14127,7 +14127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1601193499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14206,7 +14206,7 @@ Transform:
   m_GameObject: {fileID: 1601193498}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -361, y: -0.25, z: -20.8}
+  m_LocalPosition: {x: -361, y: 0, z: -20.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15308,6 +15308,21 @@ PrefabInstance:
         type: 3}
       propertyPath: stage
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782960356335502361, guid: 1d653ccfae6dbff45ac5c45e2fc9342f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604630181908254458, guid: 1d653ccfae6dbff45ac5c45e2fc9342f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 31.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604630181908254458, guid: 1d653ccfae6dbff45ac5c45e2fc9342f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.57
       objectReference: {fileID: 0}
     - target: {fileID: 3837246235202730313, guid: 1d653ccfae6dbff45ac5c45e2fc9342f,
         type: 3}
@@ -19017,7 +19032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 3
-  m_FollowOffset: {x: 0, y: -6.85, z: -20}
+  m_FollowOffset: {x: 0, y: -6.5, z: -20}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
