@@ -2834,12 +2834,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.231934, y: -0.00022107363, z: 0.00000008940697}
     m_Extent: {x: 0.50770307, y: 0.44427577, z: 0.44387892}
   m_DirtyAABB: 0
---- !u!1 &211260330 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 980694073548915160, guid: 566fb8d7512a28741be4b1a50f9677bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1956171615}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &212551090
 GameObject:
   m_ObjectHideFlags: 0
@@ -17244,13 +17238,13 @@ PrefabInstance:
     - target: {fileID: 4730165971315387474, guid: 566fb8d7512a28741be4b1a50f9677bc,
         type: 3}
       propertyPath: objs.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4730165971315387474, guid: 566fb8d7512a28741be4b1a50f9677bc,
         type: 3}
       propertyPath: objs.Array.data[1]
       value: 
-      objectReference: {fileID: 211260330}
+      objectReference: {fileID: 257481446}
     - target: {fileID: 4730165971315387474, guid: 566fb8d7512a28741be4b1a50f9677bc,
         type: 3}
       propertyPath: objs.Array.data[2]
