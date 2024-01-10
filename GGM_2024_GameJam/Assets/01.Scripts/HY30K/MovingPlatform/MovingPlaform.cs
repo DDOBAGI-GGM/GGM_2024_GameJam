@@ -80,20 +80,20 @@ public class MovingPlaform : MonoBehaviour
     private int GetTargetCount()
     {
         Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(5, 5, 5), transform.rotation, _layerMask);
-        Debug.Log(colliders.Length);
+        //Debug.Log(colliders.Length);
         return colliders.Length;
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject);
+        //Debug.Log(other.gameObject);
         GameManager.Instance.PlayerMovement.OnPlatform = true;
         if (GetTargetCount() >= _Cnt)
         {
             //other.transform.SetParent(transform);
             _wallCollider.enabled = false;
-            Debug.Log("들어옴");
+            //Debug.Log("들어옴");
         }
     }
 
@@ -102,7 +102,7 @@ public class MovingPlaform : MonoBehaviour
         GameManager.Instance.PlayerMovement.OnPlatform = false;
         //other.transform.SetParent(null);
             _wallCollider.enabled = true;
-            Debug.Log("나가기");
+            //Debug.Log("나가기");
     }
 
 

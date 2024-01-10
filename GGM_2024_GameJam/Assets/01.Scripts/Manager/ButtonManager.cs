@@ -17,7 +17,7 @@ public class ButtonManager : MonoBehaviour
 
     public void OnExit()
     {
-        Debug.Log("나가기 누름!");
+        //Debug.Log("나가기 누름!");
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

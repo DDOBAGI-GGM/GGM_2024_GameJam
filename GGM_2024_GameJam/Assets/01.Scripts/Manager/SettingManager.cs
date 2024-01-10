@@ -26,7 +26,7 @@ public class SettingManager : Singleton<SettingManager>
 
     private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log(scene.name + "으로 변경되었습니다.");
+        //Debug.Log(scene.name + "으로 변경되었습니다.");
         if (SceneManager.GetActiveScene().buildIndex >= gameBuildIndex)             // 이것들 게임일때만 ㅇㅇ
         {
             settingBackBtn.onClick.RemoveAllListeners();
@@ -53,7 +53,7 @@ public class SettingManager : Singleton<SettingManager>
 
         if (SceneManager.GetActiveScene().name == "Clear")
         {
-            Debug.Log("클리어 소리 재생됨.");
+            //Debug.Log("클리어 소리 재생됨.");
             SoundManager.Instance.PlaySFX("clear");
         }
     }
@@ -79,7 +79,7 @@ public class SettingManager : Singleton<SettingManager>
 
     public void OnGame()
     {
-        Debug.Log("게임누름");
+        //Debug.Log("게임누름");
         inGamePanel.SetActive(false);
         esc = !esc;
         Time.timeScale = 1;

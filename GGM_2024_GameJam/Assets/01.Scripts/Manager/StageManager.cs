@@ -86,12 +86,12 @@ public class StageManager : MonoBehaviour
             beforeStage = currentStage;
             currentStage += 1;
 
-            Debug.Log(currentStage + " ⑷營 壁" + stageValue.Count);
+            //Debug.Log(currentStage + " ⑷營 壁" + stageValue.Count);
 
             if (currentStage >= stageValue.Count)
             {
                 UIManager.Instance?.ChangeScene("Clear");
-                Debug.Log("六六");
+                //Debug.Log("六六");
             }
             else
             {

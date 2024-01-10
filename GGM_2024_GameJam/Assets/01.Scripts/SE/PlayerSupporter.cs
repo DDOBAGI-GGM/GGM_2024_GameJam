@@ -36,7 +36,7 @@ public class PlayerSupporter : MonoBehaviour
     {
         // 지지자 너 내 것이 되라
         Vector3 playerPos = new Vector3(transform.position.x, transform.position.y, transform.position.z * 0.7f);
-        if (Physics.Raycast(playerPos, _playerInput.Move, out hit, 3, supporterLayer))           // 레이퀘스트 해주고
+        if (Physics.Raycast(playerPos, _playerInput.Move, out hit, 1, supporterLayer))           // 레이퀘스트 해주고
         {
             // 변수 가져와서 Supporter 내의 함수 사용
             // 큐에 넣어주고 끝 이 친구 더이상 충돌하지 않도록 나의 서포터로 레이어? 바꿔주기
@@ -198,13 +198,13 @@ public class PlayerSupporter : MonoBehaviour
 
     public void ReStart()
     {
-        Debug.Log("스테이지 리스타트");
+        //Debug.Log("스테이지 리스타트");
 
         for (int i = 0; i < supportersList.Count; i++)
         {
             if (supportersList[i].Stage == StageManager.Instance.CurrentStage)
             {
-                Debug.Log($"{supportersList[i].FirstGetMe} {i} ");
+                //Debug.Log($"{supportersList[i].FirstGetMe} {i} ");
                 if (supportersList[i].FirstGetMe)
                 {
                     supportersList[i].FirstGetMe = false;

@@ -84,7 +84,7 @@ public class Supporter : MonoBehaviour, IReset
     {
         if (firstGetMe)
         {
-            Debug.Log("¼­Æ÷ÅÍ ÃÊ±âÈ­ " + gameObject.name);
+            //Debug.Log("¼­Æ÷ÅÍ ÃÊ±âÈ­ " + gameObject.name);
             chase = false;      // iì§€ë§?
             target = null;
             //agent.isStopped = true;       //ë©ˆì¶¤?¼ë¡œ ?´ì£¼ê¸?
