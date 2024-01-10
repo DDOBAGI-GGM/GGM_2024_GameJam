@@ -66,7 +66,7 @@ public class SettingManager : Singleton<SettingManager>
             {
                 esc = !esc;
                 inGamePanel.SetActive(esc);
-                Time.timeScale = 0;
+                Time.timeScale = esc ? 0.0f : 1.0f;
             }
         }
     }
