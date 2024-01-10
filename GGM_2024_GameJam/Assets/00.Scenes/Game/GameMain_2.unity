@@ -2834,6 +2834,12 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.231934, y: -0.00022107363, z: 0.00000008940697}
     m_Extent: {x: 0.50770307, y: 0.44427577, z: 0.44387892}
   m_DirtyAABB: 0
+--- !u!1 &211260330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 980694073548915160, guid: 566fb8d7512a28741be4b1a50f9677bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1956171615}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &212551090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,6 +3298,12 @@ Transform:
   - {fileID: 1694477505}
   m_Father: {fileID: 1252270155}
   m_LocalEulerAnglesHint: {x: -1.1772655, y: -2.8850853, z: 6.038915}
+--- !u!1 &257481446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5463073453158097758, guid: 566fb8d7512a28741be4b1a50f9677bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1956171615}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &270324906
 GameObject:
   m_ObjectHideFlags: 0
@@ -17229,6 +17241,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage09
       objectReference: {fileID: 0}
+    - target: {fileID: 4730165971315387474, guid: 566fb8d7512a28741be4b1a50f9677bc,
+        type: 3}
+      propertyPath: objs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730165971315387474, guid: 566fb8d7512a28741be4b1a50f9677bc,
+        type: 3}
+      propertyPath: objs.Array.data[1]
+      value: 
+      objectReference: {fileID: 211260330}
+    - target: {fileID: 4730165971315387474, guid: 566fb8d7512a28741be4b1a50f9677bc,
+        type: 3}
+      propertyPath: objs.Array.data[2]
+      value: 
+      objectReference: {fileID: 257481446}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
