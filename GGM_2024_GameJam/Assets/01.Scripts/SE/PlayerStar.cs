@@ -21,7 +21,7 @@ public class PlayerStar : MonoBehaviour
 
     public void StarAdd(Transform star)
     {
-        Debug.Log(nowStarCount);
+        //Debug.Log(nowStarCount);
         star.parent = playerSupporter.supportersList[nowStarCount].gameObject.transform;      // 자식으로 넣어줌.
         nowStarCount++;
         star.localScale = new Vector3(starSize, starSize, starSize);

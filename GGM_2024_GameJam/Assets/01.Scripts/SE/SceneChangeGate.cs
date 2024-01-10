@@ -9,7 +9,7 @@ public class SceneChangeGate : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("³¡");
+            //Debug.Log("³¡");
             SceneManager.LoadScene("Clear");
         }
     }

@@ -17,10 +17,10 @@ public class FollowXOnly : MonoBehaviour
             virtualCamera.Follow = null;
             virtualCamera.LookAt = null;
         }
-        else
+/*        else
         {
             Debug.LogError("Cinemachine Virtual Camera 또는 Target이 설정되지 않았습니다.");
-        }
+        }*/
     }
 
     private void Update()

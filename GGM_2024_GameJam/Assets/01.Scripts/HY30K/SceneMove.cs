@@ -8,7 +8,7 @@ public class SceneMove : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("튜토 따까리 초기화");
+            //Debug.Log("튜토 따까리 초기화");
             var supporter = other.gameObject.GetComponent<PlayerSupporter>();
             if (supporter != null)
             {
@@ -16,7 +16,7 @@ public class SceneMove : MonoBehaviour
                 _wall.transform.DOScaleY(1, 2f);
             }
 
-            Debug.Log("아니");
+            //Debug.Log("아니");
             StageManager.Instance.NextStage();
             StageManager.Instance.DustCntClear();
         }

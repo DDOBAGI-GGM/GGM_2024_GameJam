@@ -33,11 +33,11 @@ public class BrokenBlocks : MonoBehaviour, IReset
         RaycastHit hit;
         bool isHit = Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.up, out hit, transform.rotation, 0.3f);
 
-        Debug.DrawRay(transform.position, transform.forward * 1f, Color.red);
+        //Debug.DrawRay(transform.position, transform.forward * 1f, Color.red);
 
         if (isHit)
         {
-            Debug.Log("ef3refvfkr");
+            //Debug.Log("ef3refvfkr");
             if (!isCollision)
             {
                 isCollision = true;
@@ -53,7 +53,7 @@ public class BrokenBlocks : MonoBehaviour, IReset
         while (isCollision)
         {
             ShakeBlock();
-            Debug.Log("ef");
+            //Debug.Log("ef");
             yield return null;
         }
     }

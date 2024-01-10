@@ -66,8 +66,8 @@ public class PlayerMovement : MonoBehaviour
         _animator = gameObject.GetComponentInChildren<Animator>();
         //_followEnemy = FindObjectOfType<FollowEnemy>();
 
-        if (_characterController == null)
-            Debug.Log("캐릭터컨트롤러 없음");
+        //if (_characterController == null)
+            //Debug.Log("캐릭터컨트롤러 없음");
     }
 
     private void FixedUpdate()
@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Deadfalse()
     {
-        Debug.Log("1초 뒤에");
+        //Debug.Log("1초 뒤에");
         transform.position = StageManager.Instance.StageValue[StageManager.Instance.CurrentStage].reStartPos.position;
         _visual.gameObject.SetActive(true);
         _Crown.gameObject.SetActive(true);
@@ -270,7 +270,7 @@ public class PlayerMovement : MonoBehaviour
                 forceDir.z = 0;
                 forceDir.Normalize();
 
-                Debug.Log("df");
+                //Debug.Log("df");
                 _rigidbody.AddForceAtPosition(forceDir * pushForce, transform.position, ForceMode.Impulse);
             }
         }

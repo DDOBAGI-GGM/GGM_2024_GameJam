@@ -64,7 +64,7 @@ public class Laser : MonoBehaviour
         {
             if (!isCollision)
             {
-                Debug.Log("µÚÁü");
+                //Debug.Log("µÚÁü");
                 isCollision = true;
                 if (GameManager.Instance.cannotAttack == false)
                     _playerMovement.IsDead = true;
