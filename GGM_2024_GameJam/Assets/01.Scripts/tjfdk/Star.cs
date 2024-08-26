@@ -47,7 +47,6 @@ public class Star : MonoBehaviour, IReset
 
                 foreach (Collider collider in colliders)
                 {
-                    //Debug.Log("먹어져야하는 거리");
                     if (StageManager.Instance.GetStar())
                     {
                         PlayerStar.Instance.StarAdd(this.transform);
