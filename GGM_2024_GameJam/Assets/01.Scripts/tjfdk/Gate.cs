@@ -19,7 +19,7 @@ public class Gate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && isChecking == false)         // 3D �϶��� ������.
+        if (other.CompareTag("Player") && isChecking == false)
         {
             if (StageManager.Instance.IsClear)
             {
